@@ -18,6 +18,7 @@ body {
 .container {
     max-width: 900px;
     width: 100%;
+    overflow: hidden;
 }
 
 header {
@@ -59,17 +60,14 @@ button:hover {
     margin-bottom: 30px;
 }
 
-.video-container.small {
-    max-width: 480px;
+.video-container {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     margin: 0 auto;
 }
 
-.video-container iframe {
-    width: 100%;
-    height: auto;
-}
-
-/* עיצוב לגלריית תמונות מצומצמת */
+/* עיצוב לגלריית תמונות קטנות */
 .screenshots {
     margin-bottom: 30px;
 }
@@ -77,11 +75,12 @@ button:hover {
 .gallery {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .screenshot {
     width: 45%;
+    max-width: 200px;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
