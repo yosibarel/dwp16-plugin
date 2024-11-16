@@ -1,4 +1,4 @@
-/* Reset styles */
+/* איפוס סגנון */
 * {
     margin: 0;
     padding: 0;
@@ -10,13 +10,19 @@ body {
     background-color: #121212;
     color: #ffffff;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    padding: 20px;
 }
 
 .container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+header {
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .logo {
@@ -48,13 +54,17 @@ button:hover {
     background-color: #1c86ee;
 }
 
+/* עיצוב לסרטון */
+.demo-video {
+    margin-bottom: 40px;
+}
+
 .video-container {
     position: relative;
     padding-bottom: 56.25%; /* יחס של 16:9 */
     height: 0;
     overflow: hidden;
     max-width: 100%;
-    margin: 20px 0;
 }
 
 .video-container iframe {
@@ -63,4 +73,42 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+/* עיצוב לגלריית התמונות */
+.screenshots {
+    margin-bottom: 40px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.screenshot:hover {
+    transform: scale(1.05);
+}
+
+/* עיצוב לכותרות */
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* עיצוב לפוטר */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #777;
 }
