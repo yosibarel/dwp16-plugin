@@ -45,8 +45,8 @@ p {
 /* Button Styles */
 button {
     padding: 10px 20px;
-    background: linear-gradient(to bottom, #363940, #1a1a21); /* גרדיאנט מלמעלה למטה */
-    color: #4de6fd; /* צבע הטקסט - צבע פעיל */
+    background: linear-gradient(to bottom, #363940, #1a1a21);
+    color: #4de6fd;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -54,16 +54,14 @@ button {
     transition: background 0.3s, color 0.3s;
 }
 
-/* מצב ריחוף (hover) */
 button:hover {
     background: linear-gradient(to bottom, #363940, #1a1a21);
-    color: #4ebdcd; /* צבע לא פעיל */
+    color: #4ebdcd;
 }
 
-/* מצב לחיצה (active) */
 button:active {
-    background: linear-gradient(to bottom, #3a3e44, #1f1f25); /* רקע כהה יותר */
-    color: #4de6fd; /* צבע פעיל */
+    background: linear-gradient(to bottom, #3a3e44, #1f1f25);
+    color: #4de6fd;
 }
 
 /* Features Section */
@@ -75,7 +73,7 @@ h2 {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 40px;
-    color: #4de6fd; /* getColorActive */
+    color: #4de6fd;
 }
 
 .feature-row {
@@ -93,12 +91,12 @@ h2 {
 .feature-text {
     flex: 1;
     padding: 20px;
-    color: #4ebdcd; /* getColorNotActive */
+    color: #4ebdcd;
 }
 
 .feature-text h3 {
     font-size: 1.8rem;
-    color: #4de6fd; /* getColorActive */
+    color: #4de6fd;
     margin-bottom: 15px;
 }
 
@@ -162,20 +160,40 @@ iframe {
 /* Mobile Styles */
 @media (max-width: 768px) {
     .feature-row {
+        display: flex;
         flex-direction: column;
-    }
-
-    .feature-image {
-        margin-bottom: 20px;
+        align-items: center;
+        gap: 20px;
     }
 
     .feature-text {
+        order: 1;
         text-align: center;
+        padding: 10px;
+    }
+
+    .feature-image {
+        order: 2;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .feature-row.reverse .feature-text {
+        order: 2;
+    }
+
+    .feature-row.reverse .feature-image {
+        order: 1;
     }
 
     button {
         width: 100%;
         max-width: 300px;
         margin: 10px auto;
+    }
+
+    iframe {
+        max-width: 100%;
+        height: auto;
     }
 }
