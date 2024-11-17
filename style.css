@@ -45,7 +45,7 @@ p {
 /* Button Styles */
 button {
     padding: 10px 20px;
-    background: linear-gradient(to bottom, #1a1a21, #363940); /* גרדיאנט מלמעלה למטה */
+    background: linear-gradient(to bottom, #363940, #1a1a21); /* גרדיאנט מלמעלה למטה */
     color: #4de6fd; /* צבע הטקסט - צבע פעיל */
     border: none;
     border-radius: 5px;
@@ -62,7 +62,7 @@ button:hover {
 
 /* מצב לחיצה (active) */
 button:active {
-    background: linear-gradient(to bottom, #3b2423, #593624); /* רקע כהה יותר */
+    background: linear-gradient(to bottom, #3a3e44, #1f1f25); /* רקע כהה יותר */
     color: #4de6fd; /* צבע פעיל */
 }
 
