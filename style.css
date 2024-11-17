@@ -9,8 +9,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #1a1a21; /* getBackgroundColorDark */
+    color: #4de6fd; /* getColorActive */
 }
 
 .container {
@@ -23,8 +23,7 @@ body {
 header {
     text-align: center;
     padding: 20px 0;
-    background-color: #ffffff;
-    border-bottom: 2px solid #007BFF;
+    background-color: #363940; /* getBackgroundColorLight */
 }
 
 .logo {
@@ -34,22 +33,36 @@ header {
 
 h1 {
     font-size: 2.5rem;
-    color: #007BFF;
+    color: #4de6fd; /* getColorActive */
 }
 
 p {
     font-size: 1.1rem;
+    color: #4ebdcd; /* getColorNotActive */
     margin-bottom: 20px;
 }
 
+/* Button Styles */
 button {
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    background: linear-gradient(135deg, #1a1a21, #363940); /* getButtonBackground */
+    color: #4de6fd; /* Active color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Hover and Active State */
+button:hover {
+    background: linear-gradient(135deg, #363940, #1a1a21);
+    color: #4ebdcd; /* getColorNotActive */
+}
+
+button:active {
+    background: linear-gradient(135deg, #3b2423, #593624); /* getBackgroundColorDarkRec */
+    color: #4de6fd; /* getColorActive */
 }
 
 /* Features Section */
@@ -61,10 +74,9 @@ h2 {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 40px;
-    color: #007BFF;
+    color: #4de6fd; /* getColorActive */
 }
 
-/* Feature Row Styles */
 .feature-row {
     display: flex;
     align-items: center;
@@ -80,17 +92,13 @@ h2 {
 .feature-text {
     flex: 1;
     padding: 20px;
+    color: #4ebdcd; /* getColorNotActive */
 }
 
 .feature-text h3 {
     font-size: 1.8rem;
-    color: #007BFF;
+    color: #4de6fd; /* getColorActive */
     margin-bottom: 15px;
-}
-
-.feature-text p {
-    font-size: 1rem;
-    line-height: 1.6;
 }
 
 .feature-image {
@@ -102,14 +110,14 @@ h2 {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Video Section */
 #demo {
     text-align: center;
     padding: 40px 0;
-    background-color: #ffffff;
+    background-color: #1a1a21;
 }
 
 .video-container {
@@ -127,7 +135,7 @@ iframe {
 #download {
     text-align: center;
     padding: 40px 0;
-    background-color: #f9f9f9;
+    background-color: #363940;
 }
 
 #download button {
@@ -141,7 +149,7 @@ iframe {
 }
 
 #contact a {
-    color: #007BFF;
+    color: #4de6fd;
     text-decoration: none;
     font-weight: bold;
 }
