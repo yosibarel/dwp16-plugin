@@ -5,39 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DWP-16 Plugin</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="ic_logo.png" alt="DWP-16 Logo" class="logo">
+
+    <!-- תפריט עליון -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo"><img src="ic_logo.png" alt="DWP-16 Logo"></a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- כותרת ראשית -->
+    <header class="hero">
+        <div class="container">
             <h1>Welcome to DWP-16</h1>
             <p>The ultimate audio plugin for music production.</p>
-            <button onclick="window.location.href='downloads.html'">Download Now</button>
-        </header>
+            <button onclick="window.location.href='#download'">Download Now</button>
+        </div>
+    </header>
 
-        <!-- סרטון הדגמה ממורכז -->
-        <section class="demo-video">
-            <h2>Demo Video</h2>
+    <!-- סקשן תכונות -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why Choose DWP-16?</h2>
+            <p>DWP-16 is a 16-channel sampler that offers advanced sample manipulations like pitch shifting, reverse, loop, and FM synthesis.</p>
+            <div class="feature-list">
+                <div class="feature">
+                    <h3>Import Custom Audio</h3>
+                    <p>Import and edit samples directly within the plugin. Easily manipulate audio with pitch, reverse, loop, and more.</p>
+                    <img src="screenshot1.png" alt="Import Audio">
+                </div>
+                <div class="feature">
+                    <h3>Built-in Effects</h3>
+                    <p>Each channel features effects like delay, filter, reverb, flanger, chorus, phaser, and distortion.</p>
+                    <img src="screenshot2.png" alt="Effects">
+                </div>
+                <div class="feature">
+                    <h3>Advanced Modulation</h3>
+                    <p>Use LFOs, Curve Sequencer, and Random Note features to create dynamic soundscapes.</p>
+                    <img src="screenshot3.png" alt="Modulation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- סקשן וידאו -->
+    <section id="demo" class="demo-video">
+        <div class="container">
+            <h2>Watch DWP-16 in Action</h2>
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/7VQdV4gDjEM"
-                    title="DWP-16 Plugin Demo" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/7VQdV4gDjEM" frameborder="0" allowfullscreen></iframe>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- גלריית תמונות קטנה יותר -->
-        <section class="screenshots">
-            <h2>Screenshots</h2>
-            <div class="gallery">
-                <img src="images/screenshot-main.png" alt="Main Screenshot" class="screenshot">
-                <img src="images/screenshot1.png" alt="Screenshot 1" class="screenshot">
-            </div>
-        </section>
+    <!-- סקשן הורדה -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2>Download DWP-16</h2>
+            <p>Try the demo version or purchase the full version now!</p>
+            <button class="btn-download" onclick="window.location.href='downloads.html'">Download Demo</button>
+            <button class="btn-buy" onclick="window.location.href='https://your-purchase-link.com'">Buy Now</button>
+        </div>
+    </section>
 
-        <footer>
-            <p>© 2024 DWP-16 Plugin. All rights reserved.</p>
-        </footer>
-    </div>
+    <!-- פוטר -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DWP-16. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
