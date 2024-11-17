@@ -35,21 +35,24 @@ button {
     padding: 50px 0;
 }
 
-.row {
-    display: block;
-    width: 100%;
-    overflow: hidden;
+.feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
     margin-bottom: 40px;
 }
 
-.column {
-    width: 45%;
-    float: left;
+.feature-row.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.feature-text {
     padding: 20px;
 }
 
-.reverse .column {
-    float: right;
+.feature-image {
+    text-align: center;
 }
 
 .feature-image img {
@@ -84,9 +87,11 @@ button {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .column {
-        width: 100%;
-        float: none;
-        padding: 10px;
+    .feature-row {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-image {
+        order: -1;
     }
 }
