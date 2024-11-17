@@ -35,32 +35,27 @@ button {
     padding: 50px 0;
 }
 
-.feature-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.row {
+    display: block;
+    width: 100%;
+    overflow: hidden;
     margin-bottom: 40px;
 }
 
-.feature-text {
-    flex: 1;
+.column {
+    width: 45%;
+    float: left;
     padding: 20px;
 }
 
-.feature-image {
-    flex: 1;
-    text-align: center;
+.reverse .column {
+    float: right;
 }
 
 .feature-image img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-}
-
-/* Reverse Row */
-.reverse {
-    flex-direction: row-reverse;
 }
 
 /* Video Section */
@@ -89,15 +84,9 @@ button {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .feature-row {
-        flex-direction: column;
-    }
-
-    .reverse {
-        flex-direction: column;
-    }
-
-    .feature-text {
-        padding: 0;
+    .column {
+        width: 100%;
+        float: none;
+        padding: 10px;
     }
 }
