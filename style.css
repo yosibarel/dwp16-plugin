@@ -1,9 +1,16 @@
 /* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    color: #333;
 }
 
 .container {
@@ -12,13 +19,27 @@ body {
     margin: 0 auto;
 }
 
+/* Header */
 header {
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
+    background-color: #ffffff;
+    border-bottom: 2px solid #007BFF;
 }
 
 .logo {
     max-width: 150px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #007BFF;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
 }
 
 button {
@@ -28,6 +49,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 /* Features Section */
@@ -35,6 +57,14 @@ button {
     padding: 50px 0;
 }
 
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #007BFF;
+}
+
+/* Feature Row Styles */
 .feature-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -43,12 +73,25 @@ button {
     margin-bottom: 40px;
 }
 
+/* מחלקה להיפוך סדר - Reverse Row */
 .feature-row.reverse {
-    grid-template-columns: 1fr 1fr;
+    direction: rtl;
 }
 
 .feature-text {
     padding: 20px;
+    direction: ltr;
+}
+
+.feature-text h3 {
+    font-size: 1.8rem;
+    color: #007BFF;
+    margin-bottom: 15px;
+}
+
+.feature-text p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .feature-image {
@@ -59,12 +102,14 @@ button {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Video Section */
 #demo {
     text-align: center;
     padding: 40px 0;
+    background-color: #ffffff;
 }
 
 .video-container {
@@ -73,10 +118,20 @@ button {
     margin-top: 20px;
 }
 
+iframe {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
 /* Download Section */
 #download {
     text-align: center;
     padding: 40px 0;
+    background-color: #f9f9f9;
+}
+
+#download button {
+    font-size: 1.2rem;
 }
 
 /* Contact Section */
@@ -85,13 +140,34 @@ button {
     padding: 40px 0;
 }
 
+#contact a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
     .feature-row {
         grid-template-columns: 1fr;
+        direction: ltr;
     }
 
     .feature-image {
         order: -1;
+    }
+
+    .feature-text {
+        text-align: center;
+    }
+
+    button {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
     }
 }
