@@ -53,7 +53,7 @@ button {
 }
 
 .feature-image img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     border-radius: 10px;
 }
@@ -63,7 +63,7 @@ button {
     flex-direction: row-reverse;
 }
 
-/* Demo Section */
+/* Video Section */
 #demo {
     text-align: center;
     padding: 40px 0;
