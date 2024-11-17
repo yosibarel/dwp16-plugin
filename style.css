@@ -45,8 +45,8 @@ p {
 /* Button Styles */
 button {
     padding: 10px 20px;
-    background: linear-gradient(135deg, #1a1a21, #363940); /* getButtonBackground */
-    color: #4de6fd; /* Active color */
+    background: linear-gradient(to bottom, #1a1a21, #363940); /* גרדיאנט מלמעלה למטה */
+    color: #4de6fd; /* צבע הטקסט - צבע פעיל */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -54,15 +54,16 @@ button {
     transition: background 0.3s, color 0.3s;
 }
 
-/* Hover and Active State */
+/* מצב ריחוף (hover) */
 button:hover {
-    background: linear-gradient(135deg, #363940, #1a1a21);
-    color: #4ebdcd; /* getColorNotActive */
+    background: linear-gradient(to bottom, #363940, #1a1a21);
+    color: #4ebdcd; /* צבע לא פעיל */
 }
 
+/* מצב לחיצה (active) */
 button:active {
-    background: linear-gradient(135deg, #3b2423, #593624); /* getBackgroundColorDarkRec */
-    color: #4de6fd; /* getColorActive */
+    background: linear-gradient(to bottom, #3b2423, #593624); /* רקע כהה יותר */
+    color: #4de6fd; /* צבע פעיל */
 }
 
 /* Features Section */
