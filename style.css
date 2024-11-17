@@ -197,3 +197,35 @@ iframe {
         height: auto;
     }
 }
+
+/* Footer Navigation Styles */
+footer {
+    background-color: #1a1a21;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: #4de6fd; /* getColorActive */
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: #4ebdcd; /* getColorNotActive */
+}
+
