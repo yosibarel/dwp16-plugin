@@ -22,20 +22,25 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 10px 20px;
     background-color: #363940;
 }
 
 .logo {
-    max-width: 70px;
+    max-width: 60px;
     margin-right: 20px;
 }
 
+.header-nav {
+    display: flex;
+    gap: 20px;
+}
+
 .header-nav a {
-    margin-right: 20px;
     color: #4de6fd;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1rem;
 }
 
 .header-nav a:hover {
@@ -60,20 +65,21 @@ body {
 
 h1 {
     font-size: 2.5rem;
+    color: #4de6fd;
 }
 
 p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: #4ebdcd;
 }
 
 /* Button Styles */
 button {
-    display: inline-block;
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    color: #4de6fd; /* צבע הטקסט */
-    background: linear-gradient(to bottom, #363940, #1a1a21); /* גרדיאנט מלמעלה למטה */
+    color: #4de6fd;
+    background: linear-gradient(to bottom, #363940, #1a1a21);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -81,18 +87,16 @@ button {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* מצב ריחוף (hover) */
+/* Hover and Active States */
 button:hover {
     background: linear-gradient(to bottom, #3a3e44, #1f1f25);
-    color: #4ebdcd; /* צבע לא פעיל */
+    color: #4ebdcd;
 }
 
-/* מצב לחיצה (active) */
 button:active {
     background: linear-gradient(to bottom, #2f3238, #1a1a21);
     color: #4de6fd;
 }
-
 
 /* Features Section */
 .features {
@@ -113,6 +117,7 @@ button:active {
 .feature-text {
     flex: 1;
     padding: 20px;
+    color: #4ebdcd;
 }
 
 .feature-image {
@@ -123,12 +128,19 @@ button:active {
 .feature-image img {
     max-width: 100%;
     height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Video Section */
 #demo {
     text-align: center;
     padding: 40px 0;
+}
+
+iframe {
+    max-width: 100%;
+    border-radius: 10px;
 }
 
 /* Download Section */
@@ -145,6 +157,31 @@ button:active {
 
 #contact a {
     color: #4de6fd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Footer Navigation Styles */
+footer {
+    background-color: #1a1a21;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-nav a {
+    color: #4de6fd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-nav a:hover {
+    color: #4ebdcd;
 }
 
 /* Mobile Styles */
@@ -152,15 +189,38 @@ button:active {
     .toolbar {
         flex-direction: column;
         align-items: flex-start;
+        padding: 10px 20px;
     }
 
-    .feature-row {
-        flex-direction: column;
+    .logo {
+        max-width: 50px;
+        margin-bottom: 10px;
+    }
+
+    .header-nav {
+        flex-direction: row;
+        gap: 10px;
+        margin-top: 10px;
     }
 
     .title-row {
         flex-direction: column;
         align-items: flex-start;
+        text-align: left;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
     }
 
     #download,
