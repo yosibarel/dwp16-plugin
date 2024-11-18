@@ -68,15 +68,31 @@ p {
 
 /* Button Styles */
 button {
+    display: inline-block;
     padding: 10px 20px;
-    background: linear-gradient(to bottom, #363940, #1a1a21);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4de6fd; /* צבע הטקסט */
+    background: linear-gradient(to bottom, #363940, #1a1a21); /* גרדיאנט מלמעלה למטה */
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* מצב ריחוף (hover) */
 button:hover {
     background: linear-gradient(to bottom, #3a3e44, #1f1f25);
+    color: #4ebdcd; /* צבע לא פעיל */
 }
+
+/* מצב לחיצה (active) */
+button:active {
+    background: linear-gradient(to bottom, #2f3238, #1a1a21);
+    color: #4de6fd;
+}
+
 
 /* Features Section */
 .features {
