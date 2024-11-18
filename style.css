@@ -26,22 +26,16 @@ body {
     background-color: #363940;
 }
 
-.toolbar-left {
-    display: flex;
-    align-items: center;
-}
-
 .logo {
-    max-width: 80px; /* הקטנתי את גודל הלוגו */
+    max-width: 60px;
     margin-right: 20px;
 }
 
 .header-nav a {
-    margin-right: 25px; /* מרווחים נוספים בין הכפתורים */
+    margin-right: 30px;
     color: #4de6fd;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1rem;
 }
 
 .header-nav a:hover {
@@ -66,28 +60,22 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    color: #4de6fd;
 }
 
 p {
     font-size: 1.1rem;
-    color: #4ebdcd;
 }
 
 /* Button Styles */
 button {
     padding: 10px 20px;
     background: linear-gradient(to bottom, #363940, #1a1a21);
-    color: #4de6fd;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
 }
 
 button:hover {
     background: linear-gradient(to bottom, #3a3e44, #1f1f25);
-    color: #4ebdcd;
 }
 
 /* Features Section */
@@ -99,7 +87,6 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
     margin-bottom: 40px;
 }
 
@@ -110,7 +97,6 @@ button:hover {
 .feature-text {
     flex: 1;
     padding: 20px;
-    color: #4ebdcd;
 }
 
 .feature-image {
@@ -121,7 +107,6 @@ button:hover {
 .feature-image img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
 }
 
 /* Video Section */
@@ -130,9 +115,20 @@ button:hover {
     padding: 40px 0;
 }
 
-.video-container {
-    display: flex;
-    justify-content: center;
+/* Download Section */
+#download {
+    text-align: center;
+    padding: 60px 0;
+}
+
+/* Contact Section */
+#contact {
+    text-align: center;
+    padding: 60px 0;
+}
+
+#contact a {
+    color: #4de6fd;
 }
 
 /* Mobile Styles */
@@ -142,33 +138,17 @@ button:hover {
         align-items: flex-start;
     }
 
+    .feature-row {
+        flex-direction: column;
+    }
+
     .title-row {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .feature-row {
-        flex-direction: column;
-    }
-
-    .title-right {
-        text-align: right;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .header-nav {
-        display: flex;
-        gap: 15px;
-        margin-top: 10px;
-    }
-
-    .feature-text {
-        text-align: center;
-    }
-
-    button {
-        width: 100%;
-        max-width: 300px;
+    #download,
+    #contact {
+        padding: 40px 20px;
     }
 }
