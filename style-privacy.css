@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #1a1a21; /* Dark background for readability */
+    background-color: #011;
     color: #ffffff; /* Light text for contrast */
     line-height: 1.6;
     padding: 20px;
@@ -18,7 +18,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #2a2a35; /* Slightly lighter background for content */
+    background-color: #1a1a21; /* Slightly lighter background for content */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
