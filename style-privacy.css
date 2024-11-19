@@ -1,0 +1,125 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a21; /* Dark background for readability */
+    color: #ffffff; /* Light text for contrast */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2a2a35; /* Slightly lighter background for content */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #fff; /* Accent border for emphasis */
+    padding-bottom: 10px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #fff; /* Accent color */
+}
+
+header p {
+    font-size: 1rem;
+    color: #fff; /* Muted accent color */
+    margin-top: 10px;
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 30px;
+    padding: 10px 20px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #fff; /* Section title color */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #fff; /* Underline for section titles */
+    padding-bottom: 5px;
+}
+
+section p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+section a {
+    color: #4de6fd; /* Section title color */
+}
+section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+section ul li {
+    margin-bottom: 10px;
+}
+
+/* Contact Information */
+address {
+    font-style: normal;
+    background-color: #363940; /* Dark background for address block */
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #fff;
+}
+
+address a {
+    color: #4de6fd; /* Link color */
+    text-decoration: none;
+}
+
+address a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: #fff;
+    border-top: 1px solid #fff; /* Subtle top border */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    section p {
+        font-size: 0.9rem;
+    }
+}
