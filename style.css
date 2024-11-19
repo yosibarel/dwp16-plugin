@@ -262,47 +262,110 @@ footer {
 }
 
 /* Mobile Styles */
+/* Mobile Styles */
 @media (max-width: 768px) {
-    .toolbar {
+    body {
+        padding-top: 10px;
+    }
+
+    .header-container {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
+        align-items: center;
+        text-align: center;
     }
 
     .logo {
-        max-width: 50px;
+        max-width: 40px; /* קטנה יותר למובייל */
         margin-bottom: 10px;
     }
 
     .header-nav {
         flex-direction: row;
-        gap: 10px;
+        gap: 15px;
         margin-top: 10px;
     }
 
-    .title-row {
+    .main-header {
         flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        align-items: center;
+        text-align: center;
     }
 
-    h1 {
-        font-size: 2rem;
+    .main-header h1 {
+        font-size: 1.8rem; /* כותרת קטנה יותר */
+        margin-bottom: 10px;
     }
 
-    p {
+    .main-header p {
         font-size: 1rem;
+        margin-bottom: 20px;
     }
 
     button {
-        width: 100%;
-        max-width: 300px;
-        margin: 20px auto;
+        width: 90%;
+        max-width: 250px;
+        margin: 10px auto;
+        font-size: 1rem;
     }
 
-    #download,
-    #contact {
-        background-color: #1a1a21;
-        padding: 40px 20px;
+    .features {
+        padding: 20px 10px;
     }
+
+    .feature-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .feature-text {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .feature-image {
+        margin-bottom: 10px;
+    }
+
+    #demo {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    iframe {
+        width: 100%;
+        height: auto;
+    }
+
+    #download {
+        padding: 20px;
+    }
+
+    #contact {
+        padding: 20px;
+        text-align: center;
+    }
+
+    #contact h2 {
+        font-size: 1.5rem;
+    }
+
+    #contact a {
+        font-size: 1rem;
+    }
+
+    footer {
+        padding: 10px;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-nav a {
+        font-size: 0.9rem;
+    }
+}
+
 }
