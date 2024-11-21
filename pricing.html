@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download DWP-16 Plugin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-privacy.css">
 </head>
 <body>
     <div class="container">
@@ -16,11 +16,14 @@
         <section id="downloads">
             <h2>Choose Your Platform</h2>
             <div class="download-buttons">
-                <button onclick="window.location.href='downloads/DWP-16-Windows.zip'">
-                    Download for Windows
+                <!-- Windows Download Button -->
+                <button class="download-button windows" onclick="window.location.href='downloads/DWP-16-Windows.zip'">
+                    <span>Download for Windows</span>
                 </button>
-                <button onclick="window.location.href='downloads/DWP-16-Mac.dmg'">
-                    Download for Mac
+
+                <!-- Mac Download Button -->
+                <button class="download-button mac" onclick="window.location.href='downloads/DWP-16-Mac.dmg'">
+                    <span>Download for Mac</span>
                 </button>
             </div>
         </section>
@@ -30,8 +33,8 @@
             <p>
                 Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
             </p>
-            <button onclick="window.location.href='https://checkout.paddle.com/your-purchase-link'">
-                Purchase Now
+            <button class="purchase-button" onclick="window.location.href='https://checkout.paddle.com/your-purchase-link'">
+                Buy Now 49.99 USD
             </button>
         </section>
     </div>
