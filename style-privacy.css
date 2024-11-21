@@ -100,7 +100,28 @@ footer {
     color: #fff;
     border-top: 1px solid #fff; /* Subtle top border */
 }
+button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background: linear-gradient(to bottom, #363940, #1a1a21);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
+/* Hover and Active States */
+button:hover {
+    background: linear-gradient(to bottom, #3a3e44, #1f1f25);
+    color: #4ebdcd;
+}
+
+button:active {
+    background: linear-gradient(to bottom, #2f3238, #1a1a21);
+    color: #4de6fd;
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
     body {
