@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download DWP-16 Plugin</title>
     <link rel="stylesheet" href="style-privacy.css?v=1.2">
+    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    <script>
+        // Setup Paddle with your Vendor ID
+        Paddle.Setup({ vendor: 208730 }); // Replace with your actual Vendor ID
+    </script>
 </head>
 <body>
     <div class="container">
@@ -33,7 +38,8 @@
             <p>
                 Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
             </p>
-            <button class="purchase-button" onclick="window.location.href='comingsoon.html'">
+            <!-- Paddle Purchase Button -->
+            <button class="purchase-button" onclick="Paddle.Checkout.open({ product: 'pro_01jddh2csez7bhtcrfh870axqa' })">
                 Buy Now 49.99 USD
             </button>
         </section>
