@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download DWP-16 Plugin</title>
+    <link rel="stylesheet" href="style-privacy.css?v=1.2">
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script type="text/javascript">
+        // Paddle.Environment.set("sandbox");
+        Paddle.Initialize({
+            token: "live_a85b777d7141337be15f9ea86d2" // replace with a client-side token
+        });
+    </script>
+    <script>
+        // Setup Paddle with your Vendor ID
+        Paddle.Setup({ vendor: 208730 }); // Replace with your actual Vendor ID
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Download DWP-16 Plugin</h1>
+            <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
+        </header>
+
+        <section id="downloads">
+            <h2>Choose Your Platform</h2>
+            <div class="download-buttons">
+                <!-- Windows Download Button -->
+                <button class="download-button windows" onclick="window.location.href='comingsoon.html'">
+                    <span>Download for Windows</span>
+                </button>
+
+                <!-- Mac Download Button -->
+                <button class="download-button mac" onclick="window.location.href='comingsoon.html'">
+                    <span>Download for Mac</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="purchase">
+            <h2>Upgrade to Full Version</h2>
+            <p>
+                Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
+            </p>
+            <!-- Paddle Purchase Button -->
+            <button class="purchase-button paddle_button"
+                data-locale="en"
+                data-items='[{"priceId": "pri_01jddhf723nrxmwcv70z19fkaq","quantity": 1}]'>
+                Buy Now 49.99 USD
+            </button>
+        </section>
+    </div>
+</body>
+
+</html>
