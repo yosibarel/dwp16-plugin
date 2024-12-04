@@ -4,30 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download DWP-16 Plugin</title>
+    <title>Purchase DWP-16 Plugin</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script type="text/javascript">
+        Paddle.Environment.set('sandbox'); // Set to "sandbox" for testing
+        Paddle.Initialize({
+            vendor: 25327, // Your Vendor ID
+            checkout: {
+                settings: {
+                    displayMode: "overlay", // Choose "inline" or "overlay"
+                    theme: "dark", // Dark mode theme
+                    locale: "en", // Language
+                    allowLogout: false, // Prevent customers from changing their email
+                    showAddDiscounts: false, // Hide the discount code input
+                    showAddTaxId: false // Hide the tax ID input
+                }
+            }
+        });
+    </script>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Welcome to DWP-16 Plugin Store</h1>
-            <p>Get the full version of the DWP-16 Plugin and unlock all features for just $0.01.</p>
+            <h1>Upgrade to Full Version</h1>
+            <p>Unlock the full power of the DWP-16 Plugin for only $0.01.</p>
         </header>
 
-        <section>
-            <h2>Purchase the Full Version  22</h2>
-            <p>Click the button below to complete your purchase securely via Paddle.</p>
+        <section id="purchase">
+            <h2>Get the Full Version</h2>
+            <p>Click the button below to purchase securely via Paddle.</p>
+
             <!-- Paddle Button -->
-            <a href="#!" class="paddle_button" data-product="pri_01jddhf723nrxmwcv70z19fkaq">Buy Now!</a>
+            <a href="#" 
+               class="paddle_button"
+               data-theme="dark"
+               data-locale="en"
+               data-allow-logout="false"
+               data-items='[
+                 {
+                   "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en",
+                   "quantity": 1
+                 }
+               ]'>
+               Buy Now
+            </a>
+        </section>
+
+        <!-- Inline Checkout Example (if required) -->
+        <section id="checkout-container" style="margin-top: 50px;">
+            <h2>Inline Checkout Example</h2>
+            <div id="inline-checkout-container" style="width: 100%; height: 450px; border: 1px solid #ccc;">
+                <!-- Inline checkout will be rendered here -->
+            </div>
         </section>
     </div>
 
-    <!-- Paddle Scripts -->
-    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
     <script type="text/javascript">
-        //Paddle.Environment.set('sandbox');
-        Paddle.Setup({ vendor: 208730 }); // Your Vendor ID
+        // Render inline checkout if "displayMode" is set to "inline"
+        Paddle.Checkout.open({
+            displayMode: "inline",
+            frameTarget: "inline-checkout-container", // Target container ID
+            frameInitialHeight: "450",
+            frameStyle: "width: 100%; min-width: 312px; background-color: transparent; border: none;",
+            priceId: "pri_01je9xw6ajn6k7gpdwreybw8en"
+        });
     </script>
 </body>
 
