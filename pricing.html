@@ -5,48 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download DWP-16 Plugin</title>
-    <link rel="stylesheet" href="style-privacy.css?v=1.2">
-    <script src="https://sandbox-cdn.paddle.com/paddle/v2/paddle.js"></script>
-    <script type="text/javascript">
-        Paddle.Environment.set("sandbox");
-        Paddle.Initialize({
-            token: "test_a9bc25e67e02e040352001ecdd9" // Sandbox token
-        });
-        Paddle.Setup({ vendor: 25327 });
-    </script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Download DWP-16 Plugin</h1>
-            <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
+            <h1>Welcome to DWP-16 Plugin Store</h1>
+            <p>Get the full version of the DWP-16 Plugin and unlock all features for just $0.01.</p>
         </header>
 
-        <section id="downloads">
-            <h2>Choose Your Platform</h2>
-            <div class="download-buttons">
-                <button class="download-button windows" onclick="window.location.href='comingsoon.html'">
-                    <span>Download for Windows</span>
-                </button>
-                <button class="download-button mac" onclick="window.location.href='comingsoon.html'">
-                    <span>Download for Mac</span>
-                </button>
-            </div>
-        </section>
-
-        <section id="purchase">
-            <h2>Upgrade to Full Version</h2>
-            <p>
-                Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$00.01</strong>.
-            </p>
-            <button class="purchase-button paddle_button"
-                data-locale="en"
-                data-items='[{"priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1}]'>
-                Buy Now
-            </button>
+        <section>
+            <h2>Purchase the Full Version</h2>
+            <p>Click the button below to complete your purchase securely via Paddle.</p>
+            <!-- Paddle Button -->
+            <a href="#!" class="paddle_button" data-product="pro_01je9xnfkfx2h87azcs3s61e69">Buy Now!</a>
         </section>
     </div>
+
+    <!-- Paddle Scripts -->
+    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    <script type="text/javascript">
+        Paddle.Environment.set('sandbox');
+        Paddle.Setup({ vendor: 25327 }); // Your Vendor ID
+    </script>
 </body>
 
 </html>
