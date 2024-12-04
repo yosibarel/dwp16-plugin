@@ -9,13 +9,9 @@
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script type="text/javascript">
          Paddle.Environment.set("sandbox");
-        Paddle.Initialize({
-            token: "test_a9bc25e67e02e040352001ecdd9" // replace with a client-side token
+        Paddle.Setup({
+            vendor: 25327 // Sandbox Vendor ID
         });
-    </script>
-    <script>
-        // Setup Paddle with your Vendor ID
-        Paddle.Setup({ vendor: 25327 }); // Replace with your actual Vendor ID
     </script>
 </head>
 
@@ -44,7 +40,7 @@
         <section id="purchase">
             <h2>Upgrade to Full Version</h2>
             <p>
-                Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$00.01</strong>.
+                Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$0.01</strong>.
             </p>
             <!-- Paddle Purchase Button -->
             <button class="purchase-button paddle_button"
