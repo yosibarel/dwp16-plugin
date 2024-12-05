@@ -8,19 +8,10 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script type="text/javascript">
-        Paddle.Environment.set('sandbox'); // Set to "sandbox" for testing
+        // Initialize Paddle with the correct Vendor ID
+        Paddle.Environment.set('sandbox'); // Use "sandbox" for testing, "production" for live
         Paddle.Initialize({
-            vendor: 25327, // Your Vendor ID
-            checkout: {
-                settings: {
-                    displayMode: "overlay", // Choose "inline" or "overlay"
-                    theme: "dark", // Dark mode theme
-                    locale: "en", // Language
-                    allowLogout: false, // Prevent customers from changing their email
-                    showAddDiscounts: false, // Hide the discount code input
-                    showAddTaxId: false // Hide the tax ID input
-                }
-            }
+            vendor: 25327 // Your Paddle Seller ID
         });
     </script>
 </head>
@@ -51,26 +42,7 @@
                Buy Now
             </a>
         </section>
-
-        <!-- Inline Checkout Example (if required) -->
-        <section id="checkout-container" style="margin-top: 50px;">
-            <h2>Inline Checkout Example</h2>
-            <div id="inline-checkout-container" style="width: 100%; height: 450px; border: 1px solid #ccc;">
-                <!-- Inline checkout will be rendered here -->
-            </div>
-        </section>
     </div>
-
-    <script type="text/javascript">
-        // Render inline checkout if "displayMode" is set to "inline"
-        Paddle.Checkout.open({
-            displayMode: "inline",
-            frameTarget: "inline-checkout-container", // Target container ID
-            frameInitialHeight: "450",
-            frameStyle: "width: 100%; min-width: 312px; background-color: transparent; border: none;",
-            priceId: "pri_01je9xw6ajn6k7gpdwreybw8en"
-        });
-    </script>
 </body>
 
 </html>
