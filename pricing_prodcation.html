@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="style-privacy.css?v=1.2">
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script type="text/javascript">
-        // Paddle.Environment.set("sandbox");
+        Paddle.Environment.set("sandbox");
         Paddle.Initialize({
-            token: "live_a85b777d7141337be15f9ea86d2" // replace with a client-side token
+            //token: "live_a85b777d7141337be15f9ea86d2" //production
+            token: "test_a9bc25e67e02e040352001ecdd9" //sandbox
         });
     </script>
     <script>
@@ -48,8 +49,16 @@
             </p>
             <!-- Paddle Purchase Button -->
             <button class="purchase-button paddle_button"
-                data-locale="en"
-                data-items='[{"priceId": "pri_01jddhf723nrxmwcv70z19fkaq","quantity": 1}]'>
+               data-theme="dark"
+               data-locale="en"
+               data-allow-logout="false"                
+               data-items='[
+                    {
+                        //"priceId": "pri_01jddhf723nrxmwcv70z19fkaq","quantity": 1 //production
+                        "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1 //sandbox
+
+                    }
+                ]'>
                 Buy Now 49.99 USD
             </button>
         </section>
