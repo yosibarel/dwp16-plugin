@@ -10,8 +10,7 @@
     <script type="text/javascript">
         Paddle.Environment.set("sandbox");
         Paddle.Initialize({
-            //token: "live_a85b777d7141337be15f9ea86d2" //production
-            token: "test_a9bc25e67e02e040352001ecdd9" //sandbox
+            token: "test_a9bc25e67e02e040352001ecdd9"
         });
     </script>
     <script>
@@ -49,12 +48,12 @@
             </p>
             <!-- Paddle Purchase Button -->
             <button class="purchase-button paddle_button"
+               data-theme="dark"
                data-locale="en"
+               data-allow-logout="false"
                data-items='[
                     {
-                        //"priceId": "pri_01jddhf723nrxmwcv70z19fkaq","quantity": 1 //production
-                        "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1 //sandbox
-
+                        "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1
                     }
                 ]'>
                 Buy Now 49.99 USD
