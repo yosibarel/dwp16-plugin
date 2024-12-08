@@ -100,6 +100,9 @@ footer {
     color: #fff;
     border-top: 1px solid #fff; /* Subtle top border */
 }
+.paddle_button {
+    all: unset;
+}
 button,
 .paddle_button {
     padding: 10px 20px;
