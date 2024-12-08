@@ -100,7 +100,8 @@ footer {
     color: #fff;
     border-top: 1px solid #fff; /* Subtle top border */
 }
-button {
+button,
+.paddle_button {
     padding: 10px 20px;
     font-size: 1.1rem;
     color: #4de6fd;
@@ -112,13 +113,14 @@ button {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Hover and Active States */
-button:hover {
+button:hover,
+.paddle_button:hover {
     background: linear-gradient(to bottom, #3a3e44, #1f1f25);
     color: #4ebdcd;
 }
 
-button:active {
+button:active,
+.paddle_button:active {
     background: linear-gradient(to bottom, #2f3238, #1a1a21);
     color: #2dc6dd;
 }
