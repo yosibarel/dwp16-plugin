@@ -40,29 +40,18 @@
             <p>
                 Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
             </p>
-            <button id="buyNowButton" class="purchase-button">
+            <button class="purchase-button paddle_button"
+               data-locale="en"
+               data-items='[
+                    {
+                        "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1 //sandbox
+                    }
+                ]'>
                 Buy Now 49.99 USD
             </button>
         </section>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const buyNowButton = document.getElementById("buyNowButton");
-            buyNowButton.addEventListener("click", function () {
-                Paddle.Checkout.open({
-                    product: pri_01je9xw6ajn6k7gpdwreybw8en, // Replace with your actual product ID
-                    successCallback: function (data) {
-                        console.log("Payment successful!", data);
-                        alert("Thank you for your purchase!");
-                    },
-                    closeCallback: function () {
-                        console.log("Payment was canceled.");
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
