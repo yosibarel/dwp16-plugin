@@ -100,11 +100,13 @@ footer {
     color: #fff;
     border-top: 1px solid #fff; /* Subtle top border */
 }
-.paddle_button {
+.paddle_button,
+.paddle_styled_button {
     all: unset;
 }
 button,
-.paddle_button {
+.paddle_button,
+.purchase-button {
     padding: 10px 20px;
     font-size: 1.1rem;
     color: #4de6fd;
@@ -117,13 +119,15 @@ button,
 }
 
 button:hover,
-.paddle_button:hover {
+.paddle_button:hover,
+.purchase-button:hover{
     background: linear-gradient(to bottom, #3a3e44, #1f1f25);
     color: #4ebdcd;
 }
 
 button:active,
-.paddle_button:active {
+.paddle_button:active,
+.purchase-button:active {
     background: linear-gradient(to bottom, #2f3238, #1a1a21);
     color: #2dc6dd;
 }
