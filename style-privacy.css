@@ -100,12 +100,17 @@ footer {
     color: #fff;
     border-top: 1px solid #fff; /* Subtle top border */
 }
-.paddle_button,
-.paddle_styled_button {
-    all: unset !important;
-    display: inline-block !important;
-}
 
+.paddle_button, 
+.paddle_styled_button {
+    display: inline-block; /* מבטיח שהכפתור יתנהג נכון */
+    border: none; /* הסרת גבולות מיותרים */
+    background: none; /* ביטול רקע ברירת מחדל */
+    color: inherit; /* שימוש בצבעים של העיצוב שלך */
+    font: inherit; /* שימוש בפונט של הדף שלך */
+    padding: 0; /* ביטול מרווחים ברירת מחדל */
+    margin: 0; /* ביטול מרווחים חיצוניים */
+}
 button,
 .paddle_button,
 .purchase-button {
