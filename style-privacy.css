@@ -102,8 +102,10 @@ footer {
 }
 .paddle_button,
 .paddle_styled_button {
-    all: unset;
+    all: unset !important;
+    display: inline-block !important;
 }
+
 button,
 .paddle_button,
 .purchase-button {
@@ -114,6 +116,7 @@ button,
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
     transition: background 0.3s, color 0.3s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
