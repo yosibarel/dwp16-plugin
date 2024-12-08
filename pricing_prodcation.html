@@ -12,10 +12,7 @@
         Paddle.Initialize({
             token: "test_a9bc25e67e02e040352001ecdd9"
         });
-    </script>
-    <script>
-        // Setup Paddle with your Vendor ID
-        Paddle.Setup({ vendor: 208730 }); // Replace with your actual Vendor ID
+        Paddle.Setup({ vendor: 208730 });
     </script>
 </head>
 
@@ -29,12 +26,9 @@
         <section id="downloads">
             <h2>Choose Your Platform</h2>
             <div class="download-buttons">
-                <!-- Windows Download Button -->
                 <button class="download-button windows" onclick="window.location.href='comingsoon.html'">
                     <span>Download for Windows</span>
                 </button>
-
-                <!-- Mac Download Button -->
                 <button class="download-button mac" onclick="window.location.href='comingsoon.html'">
                     <span>Download for Mac</span>
                 </button>
@@ -46,30 +40,27 @@
             <p>
                 Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
             </p>
-            <!-- Paddle Purchase Button -->
-            <button id="paddleButton" class="purchase-button paddle_button"
-               data-theme="dark"
-               data-locale="en"
-               data-allow-logout="false"
-               data-items='[
-                    {
-                        "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1
-                    }
-                ]'
-                data-init="true">
+            <button id="buyNowButton" class="purchase-button">
                 Buy Now 49.99 USD
             </button>
         </section>
     </div>
 
-    <!-- JavaScript to remove unnecessary Paddle classes -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const paddleButton = document.getElementById("paddleButton");
-            if (paddleButton) {
-                paddleButton.classList.add("purchase-button"); // הוספת סגנונות שלך
-                paddleButton.classList.remove("paddle_styled_button"); // הסרת המחלקה הלא רצויה
-            }
+        document.addEventListener("DOMContentLoaded", function () {
+            const buyNowButton = document.getElementById("buyNowButton");
+            buyNowButton.addEventListener("click", function () {
+                Paddle.Checkout.open({
+                    product: pri_01je9xw6ajn6k7gpdwreybw8en, // Replace with your actual product ID
+                    successCallback: function (data) {
+                        console.log("Payment successful!", data);
+                        alert("Thank you for your purchase!");
+                    },
+                    closeCallback: function () {
+                        console.log("Payment was canceled.");
+                    }
+                });
+            });
         });
     </script>
 </body>
