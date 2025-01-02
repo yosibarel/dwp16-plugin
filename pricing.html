@@ -4,45 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purchase DWP-16 Plugin</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Download DWP-16 Plugin</title>
+    <link rel="stylesheet" href="style-privacy.css?v=1.2">
+    <link rel="icon" href="ic_logo.png" type="image/png">
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script type="text/javascript">
-        // Initialize Paddle with the correct Vendor ID
-        Paddle.Environment.set('sandbox'); // Use "sandbox" for testing, "production" for live
+        Paddle.Environment.set("sandbox");
         Paddle.Initialize({
-            token: "test_a9bc25e67e02e040352001ecdd9" // Your client-side token for Sandbox
+            token: "test_a9bc25e67e02e040352001ecdd9"
         });
+        Paddle.Setup({ vendor: 208730 });
     </script>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Upgrade to Full Version</h1>
-            <p>Unlock the full power of the DWP-16 Plugin for only $0.01.</p>
+            <h1>Download DWP-16 Plugin</h1>
+            <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
         </header>
 
-        <section id="purchase">
-            <h2>Get the Full Version</h2>
-            <p>Click the button below to purchase securely via Paddle.</p>
+        <section id="downloads">
+            <h2>Choose Your Platform</h2>
+            <div class="download-buttons">
+                <button class="download-button windows" onclick="window.location.href='comingsoon.html'">
+                    <span>Download for Windows</span>
+                </button>
+                <button class="download-button mac" onclick="window.location.href='comingsoon.html'">
+                    <span>Download for Mac</span>
+                </button>
+            </div>
+        </section>
 
-            <!-- Paddle Button -->
-            <a href="#" 
-               class="paddle_button"
-               data-theme="dark"
+        <section id="purchase">
+            <h2>Upgrade to Full Version</h2>
+            <p>
+                Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
+            </p>
+            <button class="purchase-button paddle_button"
                data-locale="en"
-               data-allow-logout="false"
                data-items='[
-                 {
-                   "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en",
-                   "quantity": 1
-                 }
-               ]'>
-               Buy Now
-            </a>
+                    {
+                        "priceId": "pri_01je9xw6ajn6k7gpdwreybw8en","quantity": 1
+                    }
+                ]'>
+                Buy Now 49.99 USD
+            </button>
         </section>
     </div>
+
 </body>
 
 </html>
