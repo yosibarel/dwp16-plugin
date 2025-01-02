@@ -20,6 +20,15 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.formats-support {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.formats-support .coming-soon {
+    color: #4de6fd;
+}
 
 .container {
     width: 90%;
