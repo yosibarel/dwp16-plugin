@@ -150,7 +150,7 @@ button:active,
 /* Download Buttons Layout */
 .download-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
     margin: 20px 0;
 }
@@ -158,7 +158,7 @@ button:active,
 .download-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 250px;
 }
 
@@ -170,6 +170,8 @@ button:active,
 
 .download-button span {
     white-space: nowrap;
+    flex: 1;
+    text-align: left;
 }
 
 /* Responsive Styles */
