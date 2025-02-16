@@ -1,3 +1,4 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 release/v1.0.0/mac/DWP16Installer.zip filter=lfs diff=lfs merge=lfs -text
 release/v1.0.0/win/DWP16_Setup.zip filter=lfs diff=lfs merge=lfs -text
+*.pkg filter=lfs diff=lfs merge=lfs -text
