@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,12 @@
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script type="text/javascript">
         Paddle.Initialize({
-            token: "live_a85b777d7141337be15f9ea86d2"
+            token: "live_e2340a100db3ddedd42f4e6006c"
         });
-    
+        Paddle.Setup({ vendor: 208730 });
     </script>
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -27,7 +29,8 @@
                     <img src="images/windows-icon.png" alt="Windows">
                     <span>Download for Windows</span>
                 </button>
-                <button class="download-button" onclick="window.location.href='https://github.com/yosibarel/dwp16-plugin/releases/download/v1.0.0/DWP16Installer.pkg'">
+                <button class="download-button"
+                    onclick="window.location.href='https://github.com/yosibarel/dwp16-plugin/releases/download/v1.0.0/DWP16Installer.pkg'">
                     <img src="images/mac-icon.png" alt="Mac">
                     <span>Download for Mac</span>
                 </button>
@@ -38,9 +41,15 @@
             <p>
                 Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
             </p>
-            <button class="purchase-button paddle_button"
-               data-locale="en"
-               data-items='[
+            <a href="#" class="paddle_button" data-theme="dark" data-items='[
+    {
+      "priceId": "pri_01jddhf723nrxmwcv70z19fkaq",
+      "quantity": 1
+    }
+  ]'>
+                Sign up now
+            </a>
+            <button class="purchase-button paddle_button" data-locale="en" data-items='[
                     {
                         "priceId": "pri_01jddhf723nrxmwcv70z19fkaq","quantity": 1
                     }
@@ -50,4 +59,5 @@
         </section>
     </div>
 </body>
+
 </html>
