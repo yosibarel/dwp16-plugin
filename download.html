@@ -24,6 +24,19 @@
   gtag('config', 'G-9KQHGHMQ9Q');
 </script>
 <body>
+    <script>
+    function trackDownload(platform) {
+        if (typeof gtag === "function") {
+            gtag('event', 'download', {
+                'event_category': 'Download',
+                'event_label': platform
+            });
+        } else {
+            console.warn("gtag function not available.");
+        }
+    }
+    </script>
+
     <div class="container">
         <header>
             <h1>Download DWP-16 Plugin</h1>
