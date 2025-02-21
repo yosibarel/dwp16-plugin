@@ -27,7 +27,7 @@
     <script>
     function trackDownload(platform) {
         if (typeof gtag === "function") {
-            gtag('event', 'download', {
+            gtag('event', 'downloadBinary', {
                 'event_category': 'Download',
                 'event_label': platform
             });
