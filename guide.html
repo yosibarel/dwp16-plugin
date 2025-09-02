@@ -32,7 +32,6 @@
           <a href="#modulation" class="nav-link">Modulation</a>
           <a href="#recorder" class="nav-link">Recorder</a>
           <a href="#menu" class="nav-link">Main Menu</a>
-
         </nav>
       </div>
 
@@ -92,8 +91,6 @@
         </div>
       </section>
 
-
-
       <section id="touchpad" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
@@ -101,35 +98,35 @@
           </div>
           <div class="guide-text">
             <h2>Touchpad</h2>
-
             <h3>Overview</h3>
             <p>The touchpad is a matrix of cells, each cell represents a channel. Click and glide with the mouse to play
-              channels in sequence. The Q-PAD knob sets the time quantization for switching between channels (e.g.,
-              1/16).</p>
-
-            <h3>Pitch Tracking</h3>
-            <p>When Pitch Tracking is enabled from the touchpad menu, both axes map pitch by ±12 semitones: X ranges
-              from −12 on the far left to +12 on the far right, Y ranges from −12 at the top to +12 at the bottom. The
-              corners therefore span −24 at the top-left and +24 at the bottom-right.</p>
+              channels in sequence. The PAD-Q knob sets the time quantization for switching between channels (e.g.,
+              1/16, 1/8D, 1/4T).</p>
+            <h3>Glide Controls Pitch</h3>
+            <p>When Glide Controls Pitch is enabled, each touchpad cell uses its own channel as the pitch reference: at
+              the
+              cell’s center the offset is 0 semitones. Horizontal (X) movement maps −12…+12 semitones left→right, and
+              vertical (Y) movement maps −12…+12 top→bottom. Combined, the extremes yield up to ±24 semitones relative
+              to that channel cell (e.g., top-left −24, bottom-right +24).</p>
 
             <h3>Automation</h3>
-            <p>When Control Pitch is enabled, touch position (X/Y) and the resulting pitch offset are exposed as
-              automatable parameters.</p>
+            <p>Touch X/Y and Pitch X/Y are exposed as distinct automatable parameters.
+              Touch X/Y reports the raw pad position, while Pitch X/Y reports the pitch-mapped offsets
+              (±12 semitones per axis, ±24 corner to corner). Both can be recorded and edited via host automation.</p>
 
             <h3>Follow</h3>
             <p>When Follow is enabled from the touchpad menu, clicking a cell also focuses and displays that channel in
               the main UI.</p>
-
             <h3>One Shot</h3>
             <p>When One Shot is enabled from the touchpad menu, a triggered channel plays once. When disabled, the
               channel loops until the mouse pointer exits the pad or you release.</p>
-
             <h3>Rename Channels</h3>
-            <p>Right-click a cell and choose Rename, or press Ctrl and left-click to rename the channel.</p>
+            <p>Right-click a cell and choose Rename, or press Ctrl and left-click to rename the channel. While the name
+              field is focused, press Tab to jump to the next channel.</p>
+
           </div>
         </div>
       </section>
-
 
       <section id="channel" class="guide-section">
         <div class="guide-row">
@@ -138,14 +135,12 @@
           </div>
           <div class="guide-text">
             <h2>Channel Controls</h2>
-
             <h3>Core Controls</h3>
             <ul>
               <li>Gain: sets the output level of the channel.</li>
               <li>Pan: places the channel in the stereo field.</li>
               <li>Release: tail length after note off.</li>
             </ul>
-
             <h3>Playback and Pitch</h3>
             <ul>
               <li>Pitch: transpose the sample.</li>
@@ -156,27 +151,24 @@
               <li>Retrigger: restart sample/envelope on each new note.</li>
               <li>Pitch Bend: responds to MIDI Pitch Bend for expressive control.</li>
             </ul>
-
             <h3>FM Synthesis</h3>
             <p>Enable the built-in FM oscillator to modulate the sample. Adjust the FM amount to add harmonic motion and
               metallic textures.</p>
-
             <h3>Sequencing and Modulation</h3>
             <ul>
               <li>Per-channel Sequencer: pattern-based control for rhythm and parameters.</li>
               <li>LFOs: three LFOs per channel for time-varying modulation.</li>
               <li>LFO 1+2 Merge: combined mode for richer movement using LFO1 and LFO2 together.</li>
             </ul>
-
             <h3>Glitch</h3>
             <p>Per-channel Glitch effect for stutters, reverses, and buffer manipulations to create aggressive rhythmic
               artifacts.</p>
-
             <h3>Multi-Channel Edit</h3>
             <p>Hold Shift while adjusting a control to apply the same parameter change to all channels.</p>
           </div>
         </div>
       </section>
+
       <section id="file-loading" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
@@ -184,7 +176,6 @@
           </div>
           <div class="guide-text">
             <h2>Loading Files</h2>
-
             <h3>Methods</h3>
             <ol>
               <li>Multi-file drop on the Touchpad: select multiple audio files and drop them on a touchpad cell. Files
@@ -193,7 +184,6 @@
               </li>
               <li>Import: click Import in the player to open a file chooser and select a file from disk.</li>
             </ol>
-
             <h3>Supported Formats</h3>
             <p>macOS</p>
             <ul>
@@ -203,7 +193,6 @@
             <ul>
               <li>.wav, .mp3, .aif, .aiff, .aifc, .flac, .ogg, .aac, .m4a, .mp4, .wma, .asf</li>
             </ul>
-
             <h3>Notes</h3>
             <ul>
               <li>Audio tracks in .mp4 and .m4a are supported.</li>
@@ -213,21 +202,17 @@
         </div>
       </section>
 
-
       <section id="channel-editor" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
             <img src="images/guide/placeholder-channel-editor.png" alt="Channel Editor">
             <img src="images/guide/placeholder-channel-editor2.png" alt="Channel Editor">
-
           </div>
           <div class="guide-text">
             <h2>Channel Editor (Ch#)</h2>
-
             <h3>LFO Line for Pitch and Gain</h3>
             <p>The editor provides two modulation lanes: LFO Pitch and LFO Gain. Use the mode switcher to choose which
               lane you are editing. The lane you select drives pitch or gain over time for the current channel.</p>
-
             <h3>Editing Basics</h3>
             <ul>
               <li>Add control points: double-click to create a control point on the curve. Drag points to reshape the
@@ -238,7 +223,6 @@
               <li>Insert shape: right-click inside a selection to insert a predefined shape such as Sine, Saw, Square,
                 or Triangle. The shape is fitted to the selected range.</li>
             </ul>
-
             <h3>Transform Tools</h3>
             <p>After inserting or selecting a range, on-canvas controls appear for quick transforms:</p>
             <ul>
@@ -246,7 +230,6 @@
               <li>Multiply: scale the amplitude of the modulation.</li>
               <li>Compress/Expand: time-scale the selection to contract or stretch its duration.</li>
             </ul>
-
             <h3>Process to Sample</h3>
             <p>From the editor menu you can render the current channel to audio: the sample is processed through the
               channel parameters and the specified number of loop iterations, and the resulting audio is reloaded into
@@ -262,7 +245,6 @@
           </div>
           <div class="guide-text">
             <h2>MIDI Input Modes</h2>
-
             <h3>Modes</h3>
             <ul>
               <li><strong>Drum Map</strong>: each MIDI note triggers a different channel. Use this to play multiple
@@ -273,11 +255,9 @@
                 themselves. Sound is produced only when you click/drag on the touchpad, using the last received MIDI
                 note as the pitch.</li>
               <li><strong>Map Note</strong>: map specific notes to specific channels via the Note Mapping table.</li>
-              <li><strong>Active Seq</strong> plays channels whose per-channel sequencers are active (in Play), ignoring
+              <li><strong>Active Seq</strong>: plays channels whose per-channel sequencers are active (in Play), ignoring
                 channels that are in Record.</li>
-
             </ul>
-
             <h3>MIDI Section Controls</h3>
             <ul>
               <li><strong>Center</strong>: defines the reference note, default C4. Transposition is measured relative to
@@ -291,6 +271,7 @@
           </div>
         </div>
       </section>
+
       <section id="sequencer" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
@@ -298,14 +279,12 @@
           </div>
           <div class="guide-text">
             <h2>Sequencer</h2>
-
             <h3>Structure</h3>
             <p>Per-channel sequencer with 32 patterns. Each pattern provides lanes for <strong>VEL</strong>,
               <strong>PITCH</strong>, <strong>PAN</strong>, <strong>LEN</strong>, <strong>CRV1</strong>, and
               <strong>CRV2</strong>. The Master sequencer adds a <strong>CH</strong> lane. <strong>CRV1</strong> and
               <strong>CRV2</strong> are free modulation lanes assignable to parameters.
             </p>
-
             <h3>Pattern Operations</h3>
             <ul>
               <li><strong>ALT + click a pattern</strong>: broadcast the clicked pattern’s content to all 32 patterns of
@@ -314,10 +293,8 @@
                 wrap-around.</li>
               <li><strong>COPY</strong> and <strong>PASTE</strong>: duplicate a sequencer setup to another channel.</li>
             </ul>
-
             <h3>Recording from MIDI</h3>
             <p>During recording, incoming MIDI Pitch and Velocity are captured into the active pattern lanes.</p>
-
             <h3>Play Modes</h3>
             <ul>
               <li><strong>Gate</strong>: playback runs while a key is held and stops on note-off. New note updates
@@ -333,7 +310,6 @@
               <li><strong>Latch</strong>: key press starts latched playback that continues after key release. Additional
                 notes add layers; press the same note again to remove its layer or use Clear/Stop to end all.</li>
             </ul>
-
             <h3>Sync and Rate</h3>
             <ul>
               <li><strong>Sync</strong>: rate uses musical divisions (e.g., 1/16, 1/8T, 1/4), tied to the selected tempo
@@ -342,7 +318,6 @@
               <li><strong>Beat</strong>: selects the division when in Sync (e.g., 1/16, 1/16D, 1/8T). In No Sync, sets
                 the rate in ms.</li>
             </ul>
-
             <h3>Length and Direction</h3>
             <ul>
               <li><strong>Step</strong>: number of patterns to cycle through before wrap.</li>
@@ -356,21 +331,18 @@
                 </ul>
               </li>
             </ul>
-
             <h3>Randomize and Reset</h3>
             <ul>
               <li><strong>RAND</strong>: writes random values across the currently selected lane of the current channel.
               </li>
               <li><strong>RESET</strong>: resets the shown lane of the current channel to defaults.</li>
             </ul>
-
             <h3>Retrigger and Impose</h3>
             <ul>
               <li><strong>Retrigger</strong>: step retrigger behavior on MIDI events.</li>
               <li><strong>Impose</strong>: choose whether non-selected patterns inherit from the last selected or from
                 the current pattern.</li>
             </ul>
-
             <h3>Shift Modifiers</h3>
             <p>Holding <strong>Shift</strong> applies these controls to <strong>all channels</strong>:
               <strong>Play</strong>, <strong>Record</strong>, <strong>Retrig</strong>, <strong>Impose</strong>,
@@ -383,21 +355,18 @@
               <li><strong>RESET</strong> with Shift: resets <strong>all lanes</strong> of the <strong>current
                   channel</strong>.</li>
             </ul>
-
             <h3>All-Channels Recording Behavior</h3>
             <p>When <strong>ALL CHANNEL</strong> is enabled and recording is active, an incoming MIDI or touch event
               writes to the active channel’s pattern and advances the current pattern index by one for all sequencers
               whose Record is enabled.</p>
-
             <h3>Global Apply</h3>
             <p>With <strong>ALL CHANNEL</strong> checked, <strong>PLAY</strong> and <strong>RECORD</strong> affect all
               channels except the Master.</p>
-
             <h3>Master: Channel Jumper</h3>
             <p>In <strong>CHANNEL JUMPER</strong> mode, each Master pattern targets a different channel. The
               <strong>PLAY</strong> state is indicated in purple. In this mode, touchpad navigation does not produce
-              audio; only MIDI that drives the Master sequencer will play when <strong>PLAY</strong> is enabled.</p>
-
+              audio; only MIDI that drives the Master sequencer will play when <strong>PLAY</strong> is enabled.
+            </p>
             <h3>Menu</h3>
             <ul>
               <li><strong>Save</strong>: saves the current sequencer setup (patterns, lanes, and options) as a preset.
@@ -409,10 +378,6 @@
         </div>
       </section>
 
-
-
-
-
       <section id="glitch" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
@@ -422,7 +387,6 @@
             <h2>Glitch</h2>
             <p>Each channel includes its own Glitch engine, and there is also a Master Glitch. The engine provides four
               templates combining glitch and reverse actions. Glide with the mouse to morph between templates.</p>
-
             <h3>Per-Template Controls</h3>
             <ul>
               <li>Portamento</li>
@@ -432,29 +396,22 @@
               <li>Rand Beat</li>
               <li>Rand Pitch</li>
             </ul>
-
             <h3>Timing</h3>
             <ul>
               <li>Snap Beat: effect length follows pitch-induced speed changes and may drift from the grid.</li>
               <li>Snap to Beat: effect length stays locked to the beat grid regardless of pitch changes.</li>
             </ul>
-
-
             <h3>Automation</h3>
             <p>The template morph for glitch/reverse is automatable.</p>
-
             <h3>Preset and Routing</h3>
             <ul>
               <li>Import/Save</li>
               <li>Pre/Post Effects</li>
-              <div><img
-                style="margin-top: 20px;" src="images/guide/seq_menu.png" alt=""></div>
             </ul>
+            <div><img style="margin-top: 20px;" src="images/guide/seq_menu.png" alt="Glitch Menu"></div>
           </div>
         </div>
       </section>
-
-
 
       <section id="effects" class="guide-section">
         <div class="guide-row">
@@ -465,21 +422,17 @@
             <h2>Effects</h2>
             <p>Each channel and the Master include an effects rack. Available types: Delay, Reverb, Flanger, Chorus,
               Filter, Phaser, Robotizer/Whisperizer, Distortion.</p>
-
             <h3>Instances and Limits</h3>
             <p>You can load multiple instances of the same effect type. Up to 8 effects per channel.</p>
-
             <h3>Add, Remove, Reorder</h3>
             <ul>
               <li>Add: drag an effect from the bottom tray of the Effects tab into the rack.</li>
               <li>Remove: drag an effect module down into the bottom tray.</li>
               <li>Order: processing runs left to right. Drag modules to change their position in the chain.</li>
             </ul>
-
             <h3>Per-Channel vs Master</h3>
             <p>Channel racks process only their respective channel. The Master rack processes the overall plugin output.
             </p>
-
             <h3>Modulation and Automation</h3>
             <p>Effect parameters are mappable to internal modulation (LFOs, sequencer lanes, XY pads) and are available
               for host automation.</p>
@@ -494,34 +447,34 @@
           </div>
           <div class="guide-text">
             <h2>Presets</h2>
-      
             <h3>Library and First Launch</h3>
-            <p>On first launch the plugin populates the default presets into its library folder. Open it via the menu: Show Preset Folder. When you save presets, they are written to this library.</p>
-      
+            <p>On first launch the plugin populates the default presets into its library folder. Open it via the menu:
+              Show Preset Folder. When you save presets, they are written to this library.</p>
             <h3>Init Preset</h3>
             <p>Resets the plugin to a blank state: no samples loaded and all parameters at their defaults.</p>
-      
             <h3>Per-Channel Save/Load</h3>
-            <p>Save a single channel and load it into another channel. On load, a selection dialog opens so you can choose which components to apply: Sample, LFO Line, Effects, Sequencer, Glitch.</p>
-      
+            <p>Save a single channel and load it into another channel. On load, a selection dialog opens so you can
+              choose which components to apply: Sample, LFO Line, Effects, Sequencer, Glitch.</p>
             <h3>Copy/Paste Channel</h3>
-            <p>Copy Channel and Paste Channel perform the same transfer instantly without a file chooser, using a temporary internal preset. On paste, a selection dialog opens so you can choose which components to apply: Sample, LFO Line, Effects, Sequencer, Glitch.</p>
-            <div><img style="margin-left: 6px; margin-top: 16px;" src="images/guide/preset_load_dialog.png" alt="Channel Load/Paste Options Dialog"></div>
-      
+            <p>Copy Channel and Paste Channel perform the same transfer instantly without a file chooser, using a
+              temporary internal preset. On paste, a selection dialog opens so you can choose which components to apply:
+              Sample, LFO Line, Effects, Sequencer, Glitch.</p>
+            <img style="margin-left: 6px; margin-top: 16px;" src="images/guide/preset_load_dialog.png"
+              alt="Channel Load/Paste Options Dialog">
             <h3>Export and Import</h3>
             <ul>
-              <li>Export Preset: packages the preset together with all referenced audio files for use on another machine.</li>
+              <li>Export Preset: packages the preset together with all referenced audio files for use on another
+                machine.</li>
               <li>Export All Presets: exports the entire preset library as packages.</li>
               <li>Show Exported Presets: opens the folder containing exported packages.</li>
               <li>Import Presets: installs exported preset packages into the library.</li>
             </ul>
-      
             <h3>Load vs Import</h3>
-            <p>Load Preset reads a local preset that references audio files by path on this system. Import Preset installs a self-contained package that already includes the required audio files.</p>
+            <p>Load Preset reads a local preset that references audio files by path on this system. Import Preset
+              installs a self-contained package that already includes the required audio files.</p>
           </div>
         </div>
       </section>
-      
 
       <section id="modulation" class="guide-section">
         <div class="guide-row">
@@ -530,14 +483,12 @@
           </div>
           <div class="guide-text">
             <h2>Modulation</h2>
-
             <h3>Per-Channel Sources</h3>
             <ul>
               <li>LFO1, LFO2, LFO3</li>
               <li>LFO1+2 merge</li>
               <li>Sequencer CRV1, CRV2</li>
             </ul>
-
             <h3>MIDI Sources</h3>
             <ul>
               <li>Mod Wheel (CC1)</li>
@@ -546,51 +497,43 @@
               <li>Rand Note 1</li>
               <li>Rand Note 2</li>
             </ul>
-
             <h3>Master Sources</h3>
             <ul>
               <li>Master Sequencer CRV1, CRV2</li>
               <li>XY Pads: X1, X2, X3, X4 and Y1, Y2, Y3, Y4</li>
             </ul>
-
             <h3>Mod Learn and Assign</h3>
             <p>Click a modulation source to enter Mod Learn <img style="margin-left: 6px; margin-right: 6px;"
-                src="images/guide/mod_connect.png">. The target control shows a ring above the knob <img
-                style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob.png">. Drag over
-              the ring to set the modulation range.</p>
-
+                src="images/guide/mod_connect.png" alt="">. The target control shows a ring above the knob <img
+                style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob.png" alt="">. Drag over the ring
+              to set the modulation range.</p>
             <h3>Range and Polarity</h3>
             <p>Right-click the target knob to choose range behavior: positive only, negative only, or bipolar around the
-              current value.
+              current value.</p>
             <div style="margin-left: 0px; margin-top: 20px; align-content: center;"><img
-                src="images/guide/mod_disconnect_knob.png"></div>
-            </p>
-
+                src="images/guide/mod_disconnect_knob.png" alt="Range/Polarity"></div>
             <h3>Unassign</h3>
             <ul>
               <li>From the source menu (triangle): open the assignment list and choose Clear for a single target or
-                Clear All. <div style="margin-left: 0px; margin-top: 20px; align-content: center; "><img
-                    src="images/guide/mod_disconnect_learn.png"></div>
+                Clear All. <div style="margin-left: 0px; margin-top: 20px; align-content: center;"><img
+                    src="images/guide/mod_disconnect_learn.png" alt="Source Menu"></div>
               </li>
               <li>Right-click the target control: show all linked sources and choose Disconnect.</li>
               <li>While Mod Learn is active: set the modulation amount to 0% to remove the link.</li>
             </ul>
-
             <h3>Status Indicators</h3>
             <ul>
-              <li>Linked but source disabled: the ring above the knob is greyed out.<div><img
+              <li>Linked but source disabled: the ring above the knob is greyed out. <div><img
                     style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob_go.png" alt=""></div>
               </li>
               <li>Source linked: a lit status indicator appears next to the modulation source in the sources list/panel.
-                <div><img
-                  style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_connect.png" alt=""></div></li>
+                <div><img style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_connect.png" alt=""></div>
+              </li>
               <li>Mod Learn active: the ring and the selected range are illuminated.</li>
             </ul>
-
           </div>
         </div>
       </section>
-
 
       <section id="recorder" class="guide-section">
         <div class="guide-row">
@@ -599,35 +542,35 @@
           </div>
           <div class="guide-text">
             <h2>Recorder</h2>
-      
             <h3>Location and View</h3>
-            <p>The Recorder resides in the bottom panel of the plugin. Use the top-bar buttons or from main menu to switch the lower panel between MIDI Keyboard view and Recorder view. <div><img
-              style="margin-left: 6px; margin-top: 16px;" src="images/guide/record_switch.png" alt=""></div></p>
-      
+            <p>The Recorder resides in the bottom panel of the plugin. Use the top-bar buttons or from main menu to
+              switch the lower panel between MIDI Keyboard view and Recorder view.</p>
+            <div><img style="margin-left: 6px; margin-top: 16px;" src="images/guide/record_switch.png"
+                alt="Panel Switch"></div>
             <h3>Input Sources</h3>
             <ul>
               <li>Plugin mode: Internal (from the plugin) or Sidechain.</li>
-              <li>Standalone mode: Internal or External Source (audio interface). External input requires microphone permission.</li>
+              <li>Standalone mode: Internal or External Source (audio interface). External input requires microphone
+                permission.</li>
             </ul>
-      
             <h3>Auto Record</h3>
             <ul>
               <li>Auto: starts recording when the level crosses a Threshold (dB) or when a MIDI event arrives.</li>
               <li>Threshold: set the level that arms the recorder for Sidechain or External sources.</li>
             </ul>
-      
             <h3>Workflow</h3>
             <ul>
               <li>After recording, drag the take into a plugin channel or any target that accepts audio files.</li>
               <li>Sample rate follows the Host rate in plugin mode or the Standalone rate.</li>
-              <li>While playing, dragging over the waveform scrubs the playhead. While paused, you can drag the clip out to drop it elsewhere.</li>
+              <li>While playing, dragging over the waveform scrubs the playhead. While paused, you can drag the clip out
+                to drop it elsewhere.</li>
             </ul>
-      
             <h3>Export</h3>
             <p>Use Export to save the recorded take and name the file.</p>
           </div>
         </div>
       </section>
+
       <section id="menu" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
@@ -635,24 +578,23 @@
           </div>
           <div class="guide-text">
             <h2>Main Menu</h2>
-      
             <h3>Licensing and Updates</h3>
             <ul>
               <li><strong>About</strong>: version, build, and credits.</li>
-              <li><strong>Activate</strong> (if not activated): enter the license UUID received by email after purchase.</li>
+              <li><strong>Activate</strong> (if not activated): enter the license UUID received by email after purchase.
+              </li>
               <li><strong>Check for Update</strong>: checks for newer versions and offers to download if available.</li>
               <li><strong>Email My License</strong>: sends the current license details to your registered email.</li>
             </ul>
-      
             <h3>View and Layout</h3>
             <ul>
               <li><strong>Resize</strong>: scales the plugin UI.</li>
               <li><strong>Show/Hide Piano</strong>: toggles the MIDI keyboard in the bottom panel.</li>
               <li><strong>Show/Hide Recorder</strong>: toggles the Recorder in the bottom panel.</li>
-              <li><strong>Show/Hide BPM</strong>: shows the BPM control at the top-left. In plugin mode you can choose Host BPM or Internal BPM; in standalone BPM is internal.</li>
+              <li><strong>Show/Hide BPM</strong>: shows the BPM control at the top-left. In plugin mode you can choose
+                Host BPM or Internal BPM; in standalone BPM is internal.</li>
               <li><strong>Show/Hide CPU Meter</strong>: toggles the CPU usage meter in the top bar.</li>
             </ul>
-      
             <h3>Presets and Channels</h3>
             <ul>
               <li><strong>Init Preset</strong>: loads a blank state with no samples and default parameters.</li>
@@ -660,22 +602,22 @@
               <li><strong>Export Preset</strong>: packages the current preset including all referenced audio files.</li>
               <li><strong>Export All Presets</strong>: packages the entire preset library including audio files.</li>
               <li><strong>Save Current Channel</strong>: saves the selected channel as a channel preset.</li>
-              <li><strong>Import to Current Channel</strong>: opens a file chooser to load a saved channel preset into the selected channel.</li>
+              <li><strong>Import to Current Channel</strong>: opens a file chooser to load a saved channel preset into
+                the selected channel.</li>
               <li><strong>Copy Channel</strong>: copies the selected channel to an internal clipboard.</li>
               <li><strong>Paste Channel</strong>: pastes from the internal clipboard into the selected channel.</li>
             </ul>
-      
             <h3>Folders</h3>
             <ul>
               <li><strong>Show Preset Folder</strong>: opens the preset library location.</li>
               <li><strong>Show Exported Folder</strong>: opens the folder containing packaged presets.</li>
-              <li><strong>Show Processed Folder</strong>: opens the folder for audio rendered via Channel Editor Process.</li>
+              <li><strong>Show Processed Folder</strong>: opens the folder for audio rendered via Channel Editor
+                Process.</li>
               <li><strong>Show Sample Folder</strong>: opens the default samples location.</li>
             </ul>
           </div>
         </div>
       </section>
-      
     </main>
 
     <footer>
