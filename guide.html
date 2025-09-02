@@ -31,6 +31,8 @@
           <a href="#presets" class="nav-link">Presets</a>
           <a href="#modulation" class="nav-link">Modulation</a>
           <a href="#recorder" class="nav-link">Recorder</a>
+          <a href="#menu" class="nav-link">Main Menu</a>
+
         </nav>
       </div>
 
@@ -445,6 +447,8 @@
             <ul>
               <li>Import/Save</li>
               <li>Pre/Post Effects</li>
+              <div><img
+                style="margin-top: 20px;" src="images/guide/seq_menu.png" alt=""></div>
             </ul>
           </div>
         </div>
@@ -490,38 +494,34 @@
           </div>
           <div class="guide-text">
             <h2>Presets</h2>
-
+      
             <h3>Library and First Launch</h3>
-            <p>On first launch the plugin populates the default presets into its library folder. Open it via the menu:
-              Show Preset Folder. When you save presets, they are written to this library.</p>
-
+            <p>On first launch the plugin populates the default presets into its library folder. Open it via the menu: Show Preset Folder. When you save presets, they are written to this library.</p>
+      
             <h3>Init Preset</h3>
             <p>Resets the plugin to a blank state: no samples loaded and all parameters at their defaults.</p>
-
+      
             <h3>Per-Channel Save/Load</h3>
-            <p>Save a single channel and load it into another channel. On load you can choose what to apply: Sample, LFO
-              Line, Effects, Sequencer, Glitch.</p>
-
+            <p>Save a single channel and load it into another channel. On load, a selection dialog opens so you can choose which components to apply: Sample, LFO Line, Effects, Sequencer, Glitch.</p>
+      
             <h3>Copy/Paste Channel</h3>
-            <p>Copy Channel and Paste Channel perform the same transfer instantly without a file chooser. This uses a
-              temporary internal preset.</p>
-
+            <p>Copy Channel and Paste Channel perform the same transfer instantly without a file chooser, using a temporary internal preset. On paste, a selection dialog opens so you can choose which components to apply: Sample, LFO Line, Effects, Sequencer, Glitch.</p>
+            <div><img style="margin-left: 6px; margin-top: 16px;" src="images/guide/preset_load_dialog.png" alt="Channel Load/Paste Options Dialog"></div>
+      
             <h3>Export and Import</h3>
             <ul>
-              <li>Export Preset: packages the preset together with all referenced audio files for use on another
-                machine.</li>
+              <li>Export Preset: packages the preset together with all referenced audio files for use on another machine.</li>
               <li>Export All Presets: exports the entire preset library as packages.</li>
               <li>Show Exported Presets: opens the folder containing exported packages.</li>
               <li>Import Presets: installs exported preset packages into the library.</li>
             </ul>
-
+      
             <h3>Load vs Import</h3>
-            <p>Load Preset reads a local preset that references audio files by path on this system. Import Preset
-              installs a self-contained package that already includes the required audio files.</p>
+            <p>Load Preset reads a local preset that references audio files by path on this system. Import Preset installs a self-contained package that already includes the required audio files.</p>
           </div>
         </div>
       </section>
-
+      
 
       <section id="modulation" class="guide-section">
         <div class="guide-row">
@@ -625,6 +625,53 @@
       
             <h3>Export</h3>
             <p>Use Export to save the recorded take and name the file.</p>
+          </div>
+        </div>
+      </section>
+      <section id="menu" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-menu.png" alt="Main Menu">
+          </div>
+          <div class="guide-text">
+            <h2>Main Menu</h2>
+      
+            <h3>Licensing and Updates</h3>
+            <ul>
+              <li><strong>About</strong>: version, build, and credits.</li>
+              <li><strong>Activate</strong> (if not activated): enter the license UUID received by email after purchase.</li>
+              <li><strong>Check for Update</strong>: checks for newer versions and offers to download if available.</li>
+              <li><strong>Email My License</strong>: sends the current license details to your registered email.</li>
+            </ul>
+      
+            <h3>View and Layout</h3>
+            <ul>
+              <li><strong>Resize</strong>: scales the plugin UI.</li>
+              <li><strong>Show/Hide Piano</strong>: toggles the MIDI keyboard in the bottom panel.</li>
+              <li><strong>Show/Hide Recorder</strong>: toggles the Recorder in the bottom panel.</li>
+              <li><strong>Show/Hide BPM</strong>: shows the BPM control at the top-left. In plugin mode you can choose Host BPM or Internal BPM; in standalone BPM is internal.</li>
+              <li><strong>Show/Hide CPU Meter</strong>: toggles the CPU usage meter in the top bar.</li>
+            </ul>
+      
+            <h3>Presets and Channels</h3>
+            <ul>
+              <li><strong>Init Preset</strong>: loads a blank state with no samples and default parameters.</li>
+              <li><strong>Load Preset</strong>: opens the preset library folder and loads a local preset.</li>
+              <li><strong>Export Preset</strong>: packages the current preset including all referenced audio files.</li>
+              <li><strong>Export All Presets</strong>: packages the entire preset library including audio files.</li>
+              <li><strong>Save Current Channel</strong>: saves the selected channel as a channel preset.</li>
+              <li><strong>Import to Current Channel</strong>: opens a file chooser to load a saved channel preset into the selected channel.</li>
+              <li><strong>Copy Channel</strong>: copies the selected channel to an internal clipboard.</li>
+              <li><strong>Paste Channel</strong>: pastes from the internal clipboard into the selected channel.</li>
+            </ul>
+      
+            <h3>Folders</h3>
+            <ul>
+              <li><strong>Show Preset Folder</strong>: opens the preset library location.</li>
+              <li><strong>Show Exported Folder</strong>: opens the folder containing packaged presets.</li>
+              <li><strong>Show Processed Folder</strong>: opens the folder for audio rendered via Channel Editor Process.</li>
+              <li><strong>Show Sample Folder</strong>: opens the default samples location.</li>
+            </ul>
           </div>
         </div>
       </section>

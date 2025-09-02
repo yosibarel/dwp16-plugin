@@ -42,7 +42,7 @@
   
   .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
   }
   
@@ -285,6 +285,8 @@
   }
   
   footer {
+    margin-bottom: 32px;
+    margin-top: 32px;
     background-color: #1a1a21;
     padding: 20px 0;
     text-align: center;
@@ -440,6 +442,8 @@
     align-items: center;
   }
 
+  #menu .guide-row,
+
   #channel-editor .guide-row,
   #midi-modes .guide-row,
   #touchpad .guide-row,
@@ -449,6 +453,8 @@
   #glitch .guide-image,
 
   #recorder .guide-image,
+  
+  #menu .guide-image,
 
   #presets .guide-image,
   #effects .guide-image,
