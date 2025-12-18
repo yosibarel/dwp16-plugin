@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DWP-16 Plugin | 16-Channel Sampler for Music Production</title>
-    <meta name="description" content="DWP-16 is a powerful 16-channel sampler plugin featuring advanced sample manipulation, FM synthesis, sequencer, and modular effects. Try the demo now!">
-    <meta name="keywords" content="DWP-16, sampler plugin, VST plugin, music production, FM synthesis, sequencer, audio effects">
+    <meta name="description"
+        content="DWP-16 is a powerful 16-channel sampler plugin featuring advanced sample manipulation, FM synthesis, sequencer, and modular effects. Try the demo now!">
+    <meta name="keywords"
+        content="DWP-16, sampler plugin, VST plugin, music production, FM synthesis, sequencer, audio effects">
     <meta name="author" content="DWP-16 Team">
     <meta property="og:title" content="DWP-16 | 16-Channel Sampler Plugin for Music Producers">
-    <meta property="og:description" content="Enhance your music production with DWP-16. A feature-rich sampler plugin with sequencer, modular effects, and advanced sample manipulation.">
+    <meta property="og:description"
+        content="Enhance your music production with DWP-16. A feature-rich sampler plugin with sequencer, modular effects, and advanced sample manipulation.">
     <meta property="og:image" content="https://dwp-plugin.com/images/dwp16-preview.png">
     <meta property="og:url" content="https://dwp-plugin.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DWP-16 | 16-Channel Sampler Plugin">
-    <meta name="twitter:description" content="DWP-16 is a feature-packed sampler plugin with sequencer, modular effects, and FM synthesis. Try the demo today!">
+    <meta name="twitter:description"
+        content="DWP-16 is a feature-packed sampler plugin with sequencer, modular effects, and FM synthesis. Try the demo today!">
     <meta name="twitter:image" content="https://dwp-plugin.com/images/dwp16-preview.png">
     <script type="application/ld+json">
     {
@@ -39,12 +44,13 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KQHGHMQ9Q"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-9KQHGHMQ9Q');
+    gtag('config', 'G-9KQHGHMQ9Q');
 </script>
+
 <body>
     <div class="container">
         <!-- Header Section -->
@@ -54,32 +60,50 @@
                     <img src="ic_logo.png" alt="DWP-16 Logo" class="logo">
                     <h2 class="header-logo">DWP-16</h2>
                 </div>
-                <nav class="header-nav">
-                    <a href="guide.html" class="nav-link">How To Use</a>
-                    <a href="terms.html" class="nav-link">Terms of Service</a>
-                    <a href="privacy.html" class="nav-link">Privacy Policy</a>
-                </nav>
-            </div>
-            <div class="main-header">
-               <div>
-                    <h1>Welcome to DWP-16</h1>
-                        <p>Professional 16-channel sampler with advanced sequencing and effects.</p>
-                            <p class="formats-support" style="line-height: 1.6;">
-                                <strong>WIN:</strong> VST3 | Standalone <br>
-                                <strong>MAC:</strong> VST3 | Standalone | AAX | AU
-                            </p>
+
+                <div class="header-nav-wrap">
+                    <nav class="header-nav">
+                        <a href="guide.html" class="nav-link">How To Use</a>
+                        <a href="terms.html" class="nav-link">Terms of Service</a>
+                        <a href="privacy.html" class="nav-link">Privacy Policy</a>
+
+                        <div class="nav-item-dropdown">
+                            <button type="button" class="nav-dropdown-toggle">
+                                Products
+                                <span class="nav-dropdown-arrow"></span>
+                            </button>
+                            <div class="nav-dropdown-menu">
+                                <a href="index.html" class="active">DWP-16</a>
+                                <a href="nexora/index.html">Nexora</a>
+                            </div>
                         </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="main-header">
+                <div>
+                    <h1>Welcome to DWP-16</h1>
+                    <p>Professional 16-channel sampler with advanced sequencing and effects.</p>
+                    <p class="formats-support" style="line-height: 1.6;">
+                        <strong>WIN:</strong> VST3 | Standalone <br>
+                        <strong>MAC:</strong> VST3 | Standalone | AAX | AU
+                    </p>
+                </div>
                 <button onclick="window.location.href='download.html'">Download Now</button>
             </div>
-        </header>
 
+        </header>
         <!-- Features Section -->
         <section id="features" class="features">
             <div class="feature-row">
                 <div class="feature-text">
                     <h3>Advanced Multi-Channel Sampler</h3>
                     <p>
-                       DWP-16 offers 16 independent channels, each equipped with comprehensive sample manipulation tools. Shape your sound with precision using FM synthesis, pitch control, panning, and gain adjustments. Process samples on-the-fly with instant reload capability, and utilize features like loop points and reverse playback for creative sound design.
+                        DWP-16 offers 16 independent channels, each equipped with comprehensive sample manipulation
+                        tools. Shape your sound with precision using FM synthesis, pitch control, panning, and gain
+                        adjustments. Process samples on-the-fly with instant reload capability, and utilize features
+                        like loop points and reverse playback for creative sound design.
                     </p>
                 </div>
                 <div class="feature-image">
@@ -88,32 +112,43 @@
             </div>
             <div class="feature-rowr">
                 <div class="feature-text">
-                   <h3>Deep Sample Editing & Manipulation</h3>
-                       <p>
-                           Take control of your samples at the waveform level with precise editing tools. Fine-tune your sound using sample-accurate cutting and trimming, while the dynamic LFO line editor lets you draw custom modulation curves directly on the waveform. Create unique pitch variations and gain envelopes by drawing automation curves, allowing for complex sound design from a single sample. All changes can be instantly processed and reloaded, making sound design both intuitive and efficient.
-                       </p>
-               </div>
-               <div class="feature-image">
-                   <img src="images/ss4.png" alt="Sample Editing Capabilities">
-               </div>
+                    <h3>Deep Sample Editing & Manipulation</h3>
+                    <p>
+                        Take control of your samples at the waveform level with precise editing tools. Fine-tune your
+                        sound using sample-accurate cutting and trimming, while the dynamic LFO line editor lets you
+                        draw custom modulation curves directly on the waveform. Create unique pitch variations and gain
+                        envelopes by drawing automation curves, allowing for complex sound design from a single sample.
+                        All changes can be instantly processed and reloaded, making sound design both intuitive and
+                        efficient.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="images/ss4.png" alt="Sample Editing Capabilities">
+                </div>
             </div>
             <div class="feature-row">
                 <div class="feature-text">
                     <h3>Comprehensive Modulation and Effects</h3>
                     <p>
-                        Each channel comes equipped with 3 LFOs plus a combined LFO mode, alongside a professional effects suite including Robotizer, Distortion, Chorus, Phaser, Flanger, Filter, Delay, and Reverb. All effects can be modulated via sequencer, LFOs, and four XY control pads, providing ultimate control over your sound.     
+                        Each channel comes equipped with 3 LFOs plus a combined LFO mode, alongside a professional
+                        effects suite including Robotizer, Distortion, Chorus, Phaser, Flanger, Filter, Delay, and
+                        Reverb. All effects can be modulated via sequencer, LFOs, and four XY control pads, providing
+                        ultimate control over your sound.
                     </p>
                 </div>
                 <div class="feature-image">
                     <img src="images/screenshot2.png" alt="Built-in Effects">
                 </div>
             </div>
-             <div class="feature-rowr">
+            <div class="feature-rowr">
 
                 <div class="feature-text">
                     <h3>Powerful Per-Channel Sequencer</h3>
                     <p>
-                        Each channel features a sophisticated 32-pattern sequencer with deep modulation capabilities. Control velocity, pitch, and length parameters, plus two custom modulation curves per pattern. The integrated glitch engine allows for buffer manipulation with adjustable pitch, panning, portamento, and reverse options, opening up endless creative possibilities.            
+                        Each channel features a sophisticated 32-pattern sequencer with deep modulation capabilities.
+                        Control velocity, pitch, and length parameters, plus two custom modulation curves per pattern.
+                        The integrated glitch engine allows for buffer manipulation with adjustable pitch, panning,
+                        portamento, and reverse options, opening up endless creative possibilities.
                     </p>
                 </div>
                 <div class="feature-image">
@@ -125,7 +160,10 @@
                 <div class="feature-text">
                     <h3>Flexible Recorder</h3>
                     <p>
-                        In plugin mode, you can record directly from the plugin itself or from a sidechain input inside your DAW. In standalone mode, record from any external input and capture your performance instantly. Drag and drop your recordings into specific channels to integrate them seamlessly into your project.                    
+                        In plugin mode, you can record directly from the plugin itself or from a sidechain input inside
+                        your DAW. In standalone mode, record from any external input and capture your performance
+                        instantly. Drag and drop your recordings into specific channels to integrate them seamlessly
+                        into your project.
                     </p>
                 </div>
                 <div class="feature-image">
@@ -138,10 +176,14 @@
         <section id="demo" class="demo">
             <h2>Watch the Demo</h2>
             <div class="video-container">
-                <iframe width="400" height="225" src="https://www.youtube.com/embed/bJXU9s867ws?rel=0" frameborder="0" allowfullscreen></iframe>
-                <iframe width="400" height="225" src="https://www.youtube.com/embed/FQ0bMXgDMk0?rel=0" frameborder="0" allowfullscreen></iframe>
-                <iframe width="400" height="225" src="https://www.youtube.com/embed/3PtrUgElalE?rel=0" frameborder="0" allowfullscreen></iframe>
-                <iframe width="400" height="225" src="https://www.youtube.com/embed/7VQdV4gDjEM?rel=0" frameborder="0" allowfullscreen></iframe>
+                <iframe width="400" height="225" src="https://www.youtube.com/embed/bJXU9s867ws?rel=0" frameborder="0"
+                    allowfullscreen></iframe>
+                <iframe width="400" height="225" src="https://www.youtube.com/embed/FQ0bMXgDMk0?rel=0" frameborder="0"
+                    allowfullscreen></iframe>
+                <iframe width="400" height="225" src="https://www.youtube.com/embed/3PtrUgElalE?rel=0" frameborder="0"
+                    allowfullscreen></iframe>
+                <iframe width="400" height="225" src="https://www.youtube.com/embed/7VQdV4gDjEM?rel=0" frameborder="0"
+                    allowfullscreen></iframe>
             </div>
         </section>
 
@@ -149,14 +191,31 @@
         <!-- Download Section -->
         <section id="download">
             <h2>Download DWP-16</h2>
-                <button onclick="window.location.href='download.html'">Download Now</button>
+            <button onclick="window.location.href='download.html'">Download Now</button>
         </section>
 
         <!-- Contact Section -->
         <section id="contact">
             <h2>Contact Us</h2>
-            <p>If you have any questions, please email us at: <a href="mailto:dwp@dwp-plugin.com">dwp@dwp-plugin.com</a></p>
+            <p>If you have any questions, please email us at: <a href="mailto:dwp@dwp-plugin.com">dwp@dwp-plugin.com</a>
+            </p>
         </section>
     </div>
+
+    <script>
+        (function () {
+            var sel = document.getElementById('product-switch');
+            if (!sel) return;
+            sel.value = 'dwp16';
+            sel.addEventListener('change', function () {
+                if (sel.value === 'dwp16') {
+                    window.location.href = 'https://dwp-plugin.com/';
+                } else if (sel.value === 'nexora') {
+                    window.location.href = 'nexora/index.html';
+                }
+            });
+        })();
+    </script>
 </body>
+
 </html>

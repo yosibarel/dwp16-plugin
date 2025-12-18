@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Nexora Plugin</title>
+    <link rel="stylesheet" href="../style-privacy.css?v=1.2">
+    <link rel="icon" href="../ic_logo.png" type="image/png">
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script type="text/javascript">
+        Paddle.Initialize({
+            token: "live_e2340a100db3ddedd42f4e6006c"
+        });
+        Paddle.Setup({ vendor: 208730 });
+    </script>
+</head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9KQHGHMQ9Q"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9KQHGHMQ9Q');
+</script>
+
+<body>
+    <script>
+        function trackDownload(platform) {
+            if (typeof gtag === "function") {
+                gtag('event', 'downloadBinary', {
+                    'event_category': 'Download',
+                    'event_label': platform
+                });
+            }
+        }
+    </script>
+
+    <div class="container">
+        <header>
+            <h1>Download Nexora Plugin</h1>
+            <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
+        </header>
+
+        <section id="downloads">
+            <h2>Choose Your Platform <span
+                    style="font-size: 0.7em; color: #ffffff; font-weight: normal;">(v1.0.0)</span></h2>
+            <div class="download-buttons">
+                <button class="download-button"
+                    onclick="trackDownload('Windows'); window.location.href='https://github.com/yosibarel/nexora-plugin/releases/download/v1.0.0/Nexora_Win.zip'">
+                    <img src="../images/windows-icon.png" alt="Windows">
+                    <span>Download for Windows</span>
+                </button>
+                <button class="download-button"
+                    onclick="trackDownload('Mac'); window.location.href='https://github.com/yosibarel/nexora-plugin/releases/download/v1.0.0/Nexora_Mac.pkg'">
+                    <img src="../images/mac-icon.png" alt="Mac">
+                    <span>Download for Mac</span>
+                </button>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #ffffff;">
+                Formats: VST3, AU, AAX (no standalone).
+            </p>
+        </section>
+
+        <section id="purchase">
+            <h2>Upgrade to Full Version</h2>
+            <p>
+                Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.00</strong>.
+            </p>
+
+            <button class="purchase-button paddle_button" data-locale="en" data-items='[
+                    {
+                        "priceId": "pri_01kabyf9c2vs8rp8zb6qsehj0c","quantity": 1
+                    }
+                ]'>
+                Buy Now 49.00 USD
+            </button>
+        </section>
+    </div>
+</body>
+
+</html>
