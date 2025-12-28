@@ -25,6 +25,7 @@
 </script>
 
 <body>
+    <div class="bg"></div>
     <script>
         function trackDownload(platform) {
             if (typeof gtag === "function") {
@@ -47,19 +48,17 @@
                     style="font-size: 0.7em; color: #ffffff; font-weight: normal;">(v1.0.0)</span></h2>
             <div class="download-buttons">
                 <button class="download-button"
-                    onclick="trackDownload('Windows'); window.location.href='https://github.com/yosibarel/nexora-plugin/releases/download/v1.0.0/Nexora_Win.zip'">
+                    onclick="trackDownload('Windows'); window.location.href='https://github.com/yosibarel/Nexora/releases/download/v1.0.0/Nexora_Setup.zip'">
                     <img src="../images/windows-icon.png" alt="Windows">
                     <span>Download for Windows</span>
                 </button>
                 <button class="download-button"
-                    onclick="trackDownload('Mac'); window.location.href='https://github.com/yosibarel/nexora-plugin/releases/download/v1.0.0/Nexora_Mac.pkg'">
+                    onclick="trackDownload('Mac'); window.location.href='https://github.com/yosibarel/Nexora/releases/download/v1.0.0/NexoraInstaller.pkg'">
                     <img src="../images/mac-icon.png" alt="Mac">
                     <span>Download for Mac</span>
                 </button>
             </div>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #ffffff;">
-                Formats: VST3, AU, AAX (no standalone).
-            </p>
+
         </section>
 
         <section id="purchase">
@@ -77,6 +76,11 @@
             </button>
         </section>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.classList.add('page-loaded');
+        });
+    </script>
 </body>
 
 </html>

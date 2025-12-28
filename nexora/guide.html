@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <div class="bg"></div>
   <div class="container">
     <header>
       <div class="header-container header-top">
@@ -629,6 +630,22 @@
       </div>
     </footer>
   </div>
-</body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.body.classList.add('page-loaded');
+
+      var bg = document.querySelector('.bg');
+      if (!bg) return;
+
+      var strength = 0.1;
+      var maxMove = 1000;
+
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY || 0;
+        var move = Math.max(-maxMove, Math.min(maxMove, -y * strength));
+        bg.style.transform = 'translate3d(0,' + move + 'px,0)';
+      }, { passive: true });
+    });
+  </script>
 
 </html>

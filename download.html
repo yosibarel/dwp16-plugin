@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,24 +18,27 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9KQHGHMQ9Q"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-9KQHGHMQ9Q');
+    gtag('config', 'G-9KQHGHMQ9Q');
 </script>
+
 <body>
+    <div class="bg"></div>
+
     <script>
-    function trackDownload(platform) {
-        if (typeof gtag === "function") {
-            gtag('event', 'downloadBinary', {
-                'event_category': 'Download',
-                'event_label': platform
-            });
-        } else {
-            console.warn("gtag function not available.");
+        function trackDownload(platform) {
+            if (typeof gtag === "function") {
+                gtag('event', 'downloadBinary', {
+                    'event_category': 'Download',
+                    'event_label': platform
+                });
+            } else {
+                console.warn("gtag function not available.");
+            }
         }
-    }
     </script>
 
     <div class="container">
@@ -43,13 +47,16 @@
             <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
         </header>
         <section id="downloads">
-            <h2>Choose Your Platform <span style="font-size: 0.7em; color: #ffffff; font-weight: normal;">(v1.3.0)</span></h2>
+            <h2>Choose Your Platform <span
+                    style="font-size: 0.7em; color: #ffffff; font-weight: normal;">(v1.4.1)</span></h2>
             <div class="download-buttons">
-                <button class="download-button" onclick="trackDownload('Windows'); window.location.href='https://github.com/yosibarel/dwp16-plugin/releases/download/v1.3.0/DWP16_Setup.zip'">
+                <button class="download-button"
+                    onclick="trackDownload('Windows'); window.location.href='https://github.com/yosibarel/dwp16-plugin/releases/download/v1.4.1/DWP16_Setup.zip'">
                     <img src="images/windows-icon.png" alt="Windows">
                     <span>Download for Windows</span>
                 </button>
-                <button class="download-button" onclick="trackDownload('Mac'); window.location.href='https://github.com/yosibarel/dwp16-plugin/releases/download/v1.3.0/DWP16Installer.pkg'">
+                <button class="download-button"
+                    onclick="trackDownload('Mac'); window.location.href='https://github.com/yosibarel/dwp16-plugin/releases/download/v1.4.1/DWP16Installer.pkg'">
                     <img src="images/mac-icon.png" alt="Mac">
                     <span>Download for Mac</span>
                 </button>
@@ -60,10 +67,8 @@
             <p>
                 Unlock all features and enjoy unlimited access by purchasing a license for just <strong>$49.99</strong>.
             </p>
-            
-            <button class="purchase-button paddle_button"
-               data-locale="en"
-               data-items='[
+
+            <button class="purchase-button paddle_button" data-locale="en" data-items='[
                     {
                         "priceId": "pri_01jddhf723nrxmwcv70z19fkaq","quantity": 1
                     }
@@ -72,5 +77,25 @@
             </button>
         </section>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.classList.add('page-loaded');
+
+            var bg = document.querySelector('.bg');
+            if (!bg) return;
+
+            var strength = 0.1;
+            var maxMove = 1000;
+
+            window.addEventListener('scroll', function () {
+                var y = window.scrollY || 0;
+                var move = Math.max(-maxMove, Math.min(maxMove, -y * strength));
+                bg.style.transform = 'translate3d(0,' + move + 'px,0)';
+            }, { passive: true });
+        });
+    </script>
+
+
 </body>
+
 </html>

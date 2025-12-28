@@ -49,18 +49,107 @@
     gtag('js', new Date());
     gtag('config', 'G-9KQHGHMQ9Q');
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var imgs = document.querySelectorAll('.feature-image img, .guide-image img, img.zoomable');
+        if (!imgs.length) return;
+
+        var overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = '0';
+        overlay.style.background = 'rgba(0,0,0,0.85)';
+        overlay.style.display = 'none';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.zIndex = '9999';
+        overlay.style.padding = '20px';
+        overlay.style.cursor = 'zoom-out';
+
+        var big = document.createElement('img');
+        big.style.maxWidth = '95vw';
+        big.style.maxHeight = '95vh';
+        big.style.borderRadius = '10px';
+        big.style.boxShadow = '0 20px 60px rgba(0,0,0,0.6)';
+
+        overlay.appendChild(big);
+        document.body.appendChild(overlay);
+
+        var statePushed = false;
+
+        function isOpen() {
+            return overlay.style.display === 'flex';
+        }
+
+        function open(img) {
+            big.src = img.src;
+            big.alt = img.alt || '';
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            if (!statePushed) {
+                history.pushState({ lightbox: true }, '');
+                statePushed = true;
+            }
+        }
+
+        function close() {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+
+            if (statePushed) {
+                statePushed = false;
+                history.back();
+            }
+        }
+
+        overlay.addEventListener('click', function () {
+            close();
+        });
+
+        window.addEventListener('popstate', function () {
+            if (isOpen()) {
+                overlay.style.display = 'none';
+                document.body.style.overflow = '';
+                statePushed = false;
+                history.pushState({}, '');
+            }
+        });
+
+        window.addEventListener('keydown', function (e) {
+            if (!isOpen()) return;
+
+            if (e.key === 'Escape' || e.key === 'Backspace') {
+                e.preventDefault();
+                e.stopPropagation();
+                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                close();
+            }
+        }, true);
+
+        imgs.forEach(function (img) {
+            img.addEventListener('click', function () {
+                open(img);
+            });
+        });
+    });
+</script>
+
+
 
 <body>
+    <div class="bg"></div>
+
     <div class="container">
         <header>
             <div class="header-container">
-                <div class="logo-container">
+                <a href="index.html" class="logo-container">
                     <img src="../ic_logo.png" alt="Nexora Logo" class="logo">
                     <h2 class="header-logo">Nexora</h2>
-                </div>
+                </a>
+
                 <div class="header-nav-wrap">
                     <nav class="header-nav">
-                        <a href="guide.html" class="nav-link">How To Use</a>
+                        <a href="comingsoon.html" class="nav-link">How To Use</a>
                         <a href="terms.html" class="nav-link">Terms of Service</a>
                         <a href="privacy.html" class="nav-link">Privacy Policy</a>
 
@@ -79,35 +168,55 @@
                 </div>
             </div>
 
-            <div class="main-header">
-                <div>
-                    <h1>Welcome to Nexora</h1>
-                    <p>Multi-track glitch FX grid for drums, bass and full mixes.</p>
-                    <p class="formats-support" style="line-height: 1.6;">
-                        <strong>WIN:</strong> VST3<br>
-                        <strong>MAC:</strong> VST3 | AAX | AU
-                    </p>
-                </div>
-                <button onclick="window.location.href='download.html'">Download Now</button>
-            </div>
-        </header>
 
+        </header>
+        <div class="main-header">
+            <div>
+                <h1>Welcome to Nexora</h1>
+                <p>Multi-track glitch FX grid for drums, bass and full mixes.</p>
+                <p class="formats-support" style="line-height: 1.6;">
+                    <strong>WIN:</strong> VST3<br>
+                    <strong>MAC:</strong> VST3 | AAX | AU
+                </p>
+            </div>
+            <button onclick="window.location.href='download.html'">Download Now</button>
+        </div>
         <section id="features" class="features">
             <div class="feature-row">
                 <div class="feature-text">
                     <h3>Glitch Grid with 10 FX Tracks</h3>
                     <p>
-                        Nexora is built around a powerful FX grid where each row is an independent track. You get up to
-                        10 tracks, and every track can host up to 4 effects from a rich collection including step
-                        filter, distortion, chorus, phaser, flanger, filter, delay, reverb, repeat, reverse, pitch drop,
-                        gate, pan, shuffle, bitcrusher, ringmod, fracture, stretcher, rotary and comb. Draw patterns on
-                        the grid and let Nexora slice, glitch and reshape your audio in time.
+                        Nexora is built around a <strong>powerful, performance-oriented glitch grid</strong> where each
+                        row acts as
+                        an
+                        independent FX track. With <strong>up to 10 parallel tracks</strong>, you can sculpt complex
+                        rhythmic
+                        textures and
+                        evolving sound transformations in real time.
+                    </p>
+                    <p>
+                        Each track can host <strong>up to 4 effects</strong>, selected from a <strong>deep arsenal of 20
+                            creative
+                            FX</strong>,
+                        including step filter, distortion, chorus, phaser, flanger, filter, delay, reverb, repeat,
+                        reverse, pitch
+                        drop,
+                        gate, pan, shuffle, bitcrusher, ringmod, fracture, stretcher, rotary speaker, and comb
+                        filtering.
+                    </p>
+                    <p>
+                        Draw patterns on the grid and let Nexora <strong>slice, glitch, modulate, and reshape your
+                            audio</strong>
+                        with tight
+                        BPM-sync.
                     </p>
                 </div>
+
                 <div class="feature-image">
-                    <img src="images/screenshot6.png" alt="Nexora Grid Overview">
+                    <img src="images/ss15.png" alt="Nexora Grid Overview">
                 </div>
             </div>
+
 
             <div class="feature-rowr">
                 <div class="feature-text">
@@ -129,16 +238,29 @@
                 <div class="feature-text">
                     <h3>Flexible Play Modes and Step Engine</h3>
                     <p>
-                        Nexora’s grid supports up to 8 divisions and 8 beats, giving you a total of 64 steps that span
-                        two bars. Choose between four play modes: Parallel (process all active tracks together),
-                        Sequential (play one track per row then advance), Random Step (jump to a random track after a
-                        configurable number of steps from 1–32) and Mixdown mode for special routing. These modes let
-                        you move from tight rhythmic glitches to chaotic, evolving FX structures.
+                        Nexora’s grid supports up to <strong>8 divisions</strong> and <strong>8 beats</strong>, giving
+                        you a total of
+                        <strong>64 steps</strong> spanning two bars. The engine offers multiple playback modes:
+                        <strong>Parallel</strong>, <strong>Sequential</strong>, <strong>Random Step</strong>,
+                        <strong>Random
+                            Track</strong>,
+                        <strong>Selected Track</strong>, and <strong>Mixdown</strong>.
+                    </p>
+                    <p>
+                        In addition, Nexora allows <strong>manual snapshot switching on the master channel</strong>,
+                        letting you
+                        instantly
+                        switch between master snapshots during playback. This makes it easy to perform dramatic
+                        transitions, build
+                        drops,
+                        and reshape the entire FX structure in real time.
                     </p>
                 </div>
+
                 <div class="feature-image">
-                    <img src="images/screenshot8.png" alt="Nexora Play Modes">
+                    <img src="images/ss14.png" alt="Nexora Play Modes">
                 </div>
+
             </div>
 
             <div class="feature-rowr">
@@ -169,7 +291,7 @@
                     </p>
                 </div>
                 <div class="feature-image">
-                    <img src="images/screenshot5.png" alt="Nexora Mixing and Master FX">
+                    <img src="images/ss13.png" alt="Nexora Mixing and Master FX">
                 </div>
             </div>
 
@@ -190,20 +312,11 @@
             </div>
         </section>
 
-        <section id="demo" class="demo">
-            <h2>Watch the Demo</h2>
-            <div class="video-container">
-                <iframe width="400" height="225" src="https://www.youtube.com/embed/7VQdV4gDjEM?rel=0" frameborder="0"
-                    allowfullscreen></iframe>
-            </div>
-        </section>
 
-        <section id="download">
-            <h2>Download Nexora</h2>
-            <button onclick="window.location.href='download.html'">Download Now</button>
-        </section>
 
-        <section id="contact">
+
+
+        <section id="contact" class="contact">
             <h2>Contact Us</h2>
             <p>If you have any questions, please email us at:
                 <a href="mailto:dwp@dwp-plugin.com">dwp@dwp-plugin.com</a>
@@ -221,6 +334,24 @@
             });
         })();
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.classList.add('page-loaded');
+
+            var bg = document.querySelector('.bg');
+            if (!bg) return;
+
+            var strength = 0.1;
+            var maxMove = 1000;
+
+            window.addEventListener('scroll', function () {
+                var y = window.scrollY || 0;
+                var move = Math.max(-maxMove, Math.min(maxMove, -y * strength));
+                bg.style.transform = 'translate3d(0,' + move + 'px,0)';
+            }, { passive: true });
+        });
+    </script>
+
 </body>
 
 </html>
