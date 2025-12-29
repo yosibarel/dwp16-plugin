@@ -4,571 +4,493 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DWP-16 User Guide</title>
+  <title>NEXORA User Guide</title>
   <link rel="stylesheet" href="../style.css?v=1.6">
   <link rel="icon" href="../ic_logo.png" type="image/png">
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var imgs = document.querySelectorAll('.feature-image img, .guide-image img, img.zoomable');
+    if (!imgs.length) return;
+
+    var overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.inset = '0';
+    overlay.style.background = 'rgba(0,0,0,0.85)';
+    overlay.style.display = 'none';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = '9999';
+    overlay.style.padding = '20px';
+    overlay.style.cursor = 'zoom-out';
+
+    var big = document.createElement('img');
+    big.style.maxWidth = '95vw';
+    big.style.maxHeight = '95vh';
+    big.style.borderRadius = '10px';
+    big.style.boxShadow = '0 20px 60px rgba(0,0,0,0.6)';
+
+    overlay.appendChild(big);
+    document.body.appendChild(overlay);
+
+    var statePushed = false;
+
+    function isOpen() {
+      return overlay.style.display === 'flex';
+    }
+
+    function open(img) {
+      big.src = img.src;
+      big.alt = img.alt || '';
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      if (!statePushed) {
+        history.pushState({ lightbox: true }, '');
+        statePushed = true;
+      }
+    }
+
+    function close() {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+
+      if (statePushed) {
+        statePushed = false;
+        history.back();
+      }
+    }
+
+    overlay.addEventListener('click', function () {
+      close();
+    });
+
+    window.addEventListener('popstate', function () {
+      if (isOpen()) {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+        statePushed = false;
+        history.pushState({}, '');
+      }
+    });
+
+    window.addEventListener('keydown', function (e) {
+      if (!isOpen()) return;
+
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        close();
+      }
+    }, true);
+
+    imgs.forEach(function (img) {
+      img.addEventListener('click', function () {
+        open(img);
+      });
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var header = document.querySelector('header');
+    var scroller = document.querySelector('main.guide-main');
+    if (!header || !scroller) return;
+
+    var lastScroll = 0;
+    var threshold = 10;
+
+    scroller.addEventListener('scroll', function () {
+      var current = scroller.scrollTop;
+
+      if (Math.abs(current - lastScroll) < threshold) return;
+
+      if (current > lastScroll && current > 60) {
+        header.classList.add('header-hidden');
+      } else {
+        header.classList.remove('header-hidden');
+      }
+
+      lastScroll = current;
+    }, { passive: true });
+  });
+</script>
 
 <body>
   <div class="bg"></div>
   <div class="container">
     <header>
       <div class="header-container header-top">
-        <div class="logo-container">
-          <img src="../ic_logo.png" alt="DWP-16 Logo" class="logo">
-          <h2 class="header-logo">DWP-16</h2>
-        </div>
+        <a href="index.html" class="logo-container">
+          <img src="ic_logo.png" alt="Nexora Logo" class="logo">
+          <h2 class="header-logo">Nexora</h2>
+        </a>
         <nav class="header-nav">
           <a href="index.html" class="nav-link">Home</a>
           <a href="#installation" class="nav-link">Installation</a>
-          <a href="#touchpad" class="nav-link">Touchpad</a>
-          <a href="#channel" class="nav-link">Channel</a>
-          <a href="#file-loading" class="nav-link">Loading Files</a>
-          <a href="#channel-editor" class="nav-link">Channel Editor</a>
-          <a href="#midi-modes" class="nav-link">MIDI Input Modes</a>
-          <a href="#sequencer" class="nav-link">Sequencer</a>
-          <a href="#glitch" class="nav-link">Glitch</a>
-          <a href="#effects" class="nav-link">Effects</a>
-          <a href="#presets" class="nav-link">Presets</a>
-          <a href="#modulation" class="nav-link">Modulation</a>
-          <a href="#recorder" class="nav-link">Recorder</a>
+          <a href="#quick-start" class="nav-link">Quick Start</a>
+          <a href="#core-concepts" class="nav-link">Core Concepts</a>
+          <a href="#playback-modes" class="nav-link">Playback Modes</a>
+          <a href="#track-controls" class="nav-link">Tracks</a>
+          <a href="#grid-patterns" class="nav-link">Grid</a>
+          <a href="#fx-rack" class="nav-link">FX Rack</a>
+          <a href="#edit-vs-live" class="nav-link">Edit Mode</a>
+          <a href="#modifier-keys" class="nav-link">Modifier Keys</a>
+          <a href="#randomization" class="nav-link">Random & Locks</a>
+          <a href="#workflow-tips" class="nav-link">Workflow Tips</a>
           <a href="#menu" class="nav-link">Main Menu</a>
         </nav>
       </div>
 
-      <div class="main-header">
-        <div>
-          <h2>How to Use DWP-16</h2>
-          <p>Step-by-step visual guide. Replace the placeholder text and images with your content.</p>
-        </div>
-        <button onclick="window.location.href='download.html'">Download Now</button>
-      </div>
+
     </header>
 
     <main class="guide-main">
+      <div class="main-header">
+        <div>
+          <h2>How to Use NEXORA</h2>
+          <p>
+            Step-by-step visual guide. NEXORA is a grid-based sequencer multi-FX: draw patterns on the grid, trigger
+            effects in sync with your DAW BPM, and use Snapshots to recall complete parameter states per step.
+          </p>
+        </div>
+        <button onclick="window.location.href='download.html'">Download Now</button>
+      </div>
       <section id="installation" class="guide-section">
         <div class="guide-row onecol">
           <div class="guide-text">
             <h2>Installation</h2>
+
+            <div class="guide-image" style="margin-top: 14px;">
+              <img src="images/guide/placeholder-installation.png" alt="Installation">
+            </div>
+
             <h3>System Requirements</h3>
             <ul>
               <li>64-bit OS: Windows 10/11 or macOS 11+</li>
               <li>CPU: Intel/AMD x64 or Apple silicon</li>
-              <li>RAM: 4 GB+</li>
-              <li>Disk space: 200 MB+</li>
-              <li>64-bit DAW with VST3 support (Windows), VST3/AU/AAX (macOS)</li>
+              <li>RAM: 4 GB+ (8 GB recommended)</li>
+              <li>64-bit DAW supporting Nexora format (VST3 / AU / AAX if applicable)</li>
             </ul>
-            <h3>Windows (VST3, Standalone)</h3>
+
+            <h3>Windows (VST3)</h3>
             <ol>
               <li>Download and run the installer.</li>
               <li>Close your DAW before installing.</li>
-              <li>VST3: <code>C:\Program Files\Common Files\VST3\DWP-16.vst3</code></li>
-              <li>Standalone app: Start Menu entry</li>
-              <li>Open your DAW, rescan plugins, and insert DWP-16 on an instrument track.</li>
+              <li>VST3: <code>C:\Program Files\Common Files\VST3\Nexora.vst3</code></li>
+              <li>Open your DAW, rescan plugins, and insert Nexora on an audio track or bus.</li>
             </ol>
-            <h3>macOS (VST3, AU, AAX, Standalone)</h3>
+
+            <h3>macOS (VST3 / AU)</h3>
             <ol>
               <li>Download the .pkg and run it.</li>
               <li>Close your DAW before installing.</li>
-              <li>VST3: <code>/Library/Audio/Plug-Ins/VST3/DWP-16.vst3</code></li>
-              <li>AU: <code>/Library/Audio/Plug-Ins/Components/DWP-16.component</code></li>
-              <li>AAX: <code>/Library/Application Support/Avid/Audio/Plug-Ins/DWP-16.aaxplugin</code></li>
-              <li>Standalone: <code>/Applications/DWP-16.app</code></li>
-              <li>If blocked, open via right-click → Open or allow under Privacy & Security.</li>
+              <li>VST3: <code>/Library/Audio/Plug-Ins/VST3/Nexora.vst3</code></li>
+              <li>AU: <code>/Library/Audio/Plug-Ins/Components/Nexora.component</code></li>
+              <li>If blocked, open via right-click → Open or allow under Privacy &amp; Security.</li>
             </ol>
+
             <h3>Activation</h3>
-            <p>Open DWP-16, go to the registration panel, and enter your license key. Without activation, the plugin
-              runs in trial mode.</p>
-            <h3>Uninstall</h3>
-            <p>Windows: remove via Apps & Features. macOS: delete the plugin files and the app from the paths above.</p>
+            <p>Open Nexora, go to the registration panel, and enter your license key.</p>
+
             <h3>Troubleshooting</h3>
             <ul>
               <li>Rescan plugins from your DAW preferences.</li>
               <li>Confirm you installed the correct format for your DAW.</li>
               <li>Verify 64-bit mode and plugin folder paths.</li>
-              <li>On macOS, check Privacy & Security if blocked.</li>
+              <li>On macOS, check Privacy &amp; Security if blocked.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section id="touchpad" class="guide-section">
+      <section id="quick-start" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-touchpad.png" alt="Touchpad Matrix">
+            <img src="images/guide/placeholder-overview.png" alt="Nexora Overview">
           </div>
           <div class="guide-text">
-            <h2>Touchpad</h2>
-            <h3>Overview</h3>
-            <p>The touchpad is a matrix of cells, each cell represents a channel. Click and glide with the mouse to play
-              channels in sequence. The PAD-Q knob sets the time quantization for switching between channels (e.g.,
-              1/16, 1/8D, 1/4T).</p>
-            <h3>Glide Controls Pitch</h3>
-            <p>When Glide Controls Pitch is enabled, each touchpad cell uses its own channel as the pitch reference: at
-              the
-              cell’s center the offset is 0 semitones. Horizontal (X) movement maps −12…+12 semitones left→right, and
-              vertical (Y) movement maps −12…+12 top→bottom. Combined, the extremes yield up to ±24 semitones relative
-              to that channel cell (e.g., top-left −24, bottom-right +24).</p>
-
-            <h3>Automation</h3>
-            <p>Touch X/Y and Pitch X/Y are exposed as distinct automatable parameters.
-              Touch X/Y reports the raw pad position, while Pitch X/Y reports the pitch-mapped offsets
-              (±12 semitones per axis, ±24 corner to corner). Both can be recorded and edited via host automation.</p>
-
-            <h3>Follow</h3>
-            <p>When Follow is enabled from the touchpad menu, clicking a cell also focuses and displays that channel in
-              the main UI.</p>
-            <h3>One Shot</h3>
-            <p>When One Shot is enabled from the touchpad menu, a triggered channel plays once. When disabled, the
-              channel loops until the mouse pointer exits the pad or you release.</p>
-            <h3>Rename Channels</h3>
-            <p>Right-click a cell and choose Rename, or press Ctrl and left-click to rename the channel. While the name
-              field is focused, press Tab to jump to the next channel.</p>
-
-          </div>
-        </div>
-      </section>
-
-      <section id="channel" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-channel.png" alt="Channel Controls">
-          </div>
-          <div class="guide-text">
-            <h2>Channel Controls</h2>
-            <h3>Core Controls</h3>
-            <ul>
-              <li>Gain: sets the output level of the channel.</li>
-              <li>Pan: places the channel in the stereo field.</li>
-              <li>Release: tail length after note off.</li>
-            </ul>
-            <h3>Playback and Pitch</h3>
-            <ul>
-              <li>Pitch: transpose the sample.</li>
-              <li>Pitch - floating point: choose Continuous (floating) or Semitone steps.</li>
-              <li>Portamento: time-based glide between notes.</li>
-              <li>Loop: play the defined region in a loop.</li>
-              <li>Reverse: play the sample backwards.</li>
-              <li>Retrigger: restart sample/envelope on each new note.</li>
-              <li>Pitch Bend: responds to MIDI Pitch Bend for expressive control.</li>
-            </ul>
-            <h3>FM Synthesis</h3>
-            <p>Enable the built-in FM oscillator to modulate the sample. Adjust the FM amount to add harmonic motion and
-              metallic textures.</p>
-            <h3>Sequencing and Modulation</h3>
-            <ul>
-              <li>Per-channel Sequencer: pattern-based control for rhythm and parameters.</li>
-              <li>LFOs: three LFOs per channel for time-varying modulation.</li>
-              <li>LFO 1+2 Merge: combined mode for richer movement using LFO1 and LFO2 together.</li>
-            </ul>
-            <h3>Glitch</h3>
-            <p>Per-channel Glitch effect for stutters, reverses, and buffer manipulations to create aggressive rhythmic
-              artifacts.</p>
-            <h3>Multi-Channel Edit</h3>
-            <p>Hold Shift while adjusting a control to apply the same parameter change to all channels.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="file-loading" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-files.png" alt="Loading Files">
-          </div>
-          <div class="guide-text">
-            <h2>Loading Files</h2>
-            <h3>Methods</h3>
+            <h2>Quick Start (1 minute)</h2>
             <ol>
-              <li>Multi-file drop on the Touchpad: select multiple audio files and drop them on a touchpad cell. Files
-                are assigned to channels starting from the drop target upward.</li>
-              <li>Drag to Channel: drop an audio file directly onto a channel’s waveform area to replace its sample.
-              </li>
-              <li>Import: click Import in the player to open a file chooser and select a file from disk.</li>
+              <li>Insert <strong>Nexora</strong> on an audio track or bus.</li>
+              <li>Press play in your DAW so Nexora receives <strong>Host BPM</strong>.</li>
+              <li>Choose a <strong>Playback Mode</strong> (start with <strong>Parallel</strong>).</li>
+              <li>Set <strong>Beats</strong> and <strong>Division</strong>, then draw a simple pattern on the grid.</li>
+              <li>Open the track’s <strong>FX Rack</strong> and add one effect.</li>
+              <li>Tweak parameters and listen.</li>
+              <li>Use <strong>Snapshots</strong> to make the pattern evolve step-by-step.</li>
             </ol>
-            <h3>Supported Formats</h3>
-            <p>macOS</p>
-            <ul>
-              <li>.wav, .mp3, .aif, .aiff, .aifc, .flac, .ogg, .aac, .m4a, .mp4, .caf</li>
-            </ul>
-            <p>Windows</p>
-            <ul>
-              <li>.wav, .mp3, .aif, .aiff, .aifc, .flac, .ogg, .aac, .m4a, .mp4, .wma, .asf</li>
-            </ul>
-            <h3>Notes</h3>
-            <ul>
-              <li>Audio tracks in .mp4 and .m4a are supported.</li>
-              <li>If a file is not supported, the load will be rejected.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="channel-editor" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-channel-editor.png" alt="Channel Editor">
-            <img src="images/guide/placeholder-channel-editor2.png" alt="Channel Editor">
-          </div>
-          <div class="guide-text">
-            <h2>Channel Editor (Ch#)</h2>
-            <h3>LFO Line for Pitch and Gain</h3>
-            <p>The editor provides two modulation lanes: LFO Pitch and LFO Gain. Use the mode switcher to choose which
-              lane you are editing. The lane you select drives pitch or gain over time for the current channel.</p>
-            <h3>Editing Basics</h3>
-            <ul>
-              <li>Add control points: double-click to create a control point on the curve. Drag points to reshape the
-                modulation. Segments between points interpolate smoothly.</li>
-              <li>Select region: hold Ctrl and drag over the waveform area to select a range.</li>
-              <li>Loop selection: set loop in/out points with single-sample resolution.</li>
-              <li>Delete: press Del to remove selected points or the selected region.</li>
-              <li>Insert shape: right-click inside a selection to insert a predefined shape such as Sine, Saw, Square,
-                or Triangle. The shape is fitted to the selected range.</li>
-            </ul>
-            <h3>Transform Tools</h3>
-            <p>After inserting or selecting a range, on-canvas controls appear for quick transforms:</p>
-            <ul>
-              <li>Move: shift the selection in time or offset its level.</li>
-              <li>Multiply: scale the amplitude of the modulation.</li>
-              <li>Compress/Expand: time-scale the selection to contract or stretch its duration.</li>
-            </ul>
-            <h3>Process to Sample</h3>
-            <p>From the editor menu you can render the current channel to audio: the sample is processed through the
-              channel parameters and the specified number of loop iterations, and the resulting audio is reloaded into
-              the channel.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="midi-modes" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-midi.png" alt="MIDI Input Modes">
-          </div>
-          <div class="guide-text">
-            <h2>MIDI Input Modes</h2>
-            <h3>Modes</h3>
-            <ul>
-              <li><strong>Drum Map</strong>: each MIDI note triggers a different channel. Use this to play multiple
-                channels from the keyboard.</li>
-              <li><strong>Channel</strong>: the keyboard plays the currently selected channel at the incoming pitch.
-              </li>
-              <li><strong>Touchpad</strong>: incoming MIDI notes set the pitch and velocity but do not emit note-on by
-                themselves. Sound is produced only when you click/drag on the touchpad, using the last received MIDI
-                note as the pitch.</li>
-              <li><strong>Map Note</strong>: map specific notes to specific channels via the Note Mapping table.</li>
-              <li><strong>Active Seq</strong>: plays channels whose per-channel sequencers are active (in Play),
-                ignoring
-                channels that are in Record.</li>
-            </ul>
-            <h3>MIDI Section Controls</h3>
-            <ul>
-              <li><strong>Center</strong>: defines the reference note, default C4. Transposition is measured relative to
-                this note.</li>
-              <li><strong>Pad-Q</strong>: touchpad glide quantize. Sets the musical division that governs how fast the
-                touchpad steps between channels while gliding (e.g., 1/16, 1/8, 1/4).</li>
-              <li><strong>M-Pitch</strong>: master pitch offset applied to the current mode, in semitones.</li>
-              <li><strong>Vel</strong>: velocity influence percentage. At 0% the engine uses a fixed velocity of 127 and
-                ignores incoming MIDI velocity.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="sequencer" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-sequencer.png" alt="Sequencer">
-          </div>
-          <div class="guide-text">
-            <h2>Sequencer</h2>
-            <h3>Structure</h3>
-            <p>Per-channel sequencer with 32 patterns. Each pattern provides lanes for <strong>VEL</strong>,
-              <strong>PITCH</strong>, <strong>PAN</strong>, <strong>LEN</strong>, <strong>CRV1</strong>, and
-              <strong>CRV2</strong>. The Master sequencer adds a <strong>CH</strong> lane. <strong>CRV1</strong> and
-              <strong>CRV2</strong> are free modulation lanes assignable to parameters.
+            <p>
+              Recommended first workflow: start with one track → one effect → simple grid pattern → then add snapshots
+              and randomization.
             </p>
-            <h3>Pattern Operations</h3>
-            <ul>
-              <li><strong>ALT + click a pattern</strong>: broadcast the clicked pattern’s content to all 32 patterns of
-                the current channel.</li>
-              <li><strong>&gt;&gt;</strong> and <strong>&lt;&lt;</strong>: shift all pattern values right/left with
-                wrap-around.</li>
-              <li><strong>COPY</strong> and <strong>PASTE</strong>: duplicate a sequencer setup to another channel.</li>
-            </ul>
-            <h3>Recording from MIDI</h3>
-            <p>During recording, incoming MIDI Pitch and Velocity are captured into the active pattern lanes.</p>
-            <h3>Play Modes</h3>
-            <ul>
-              <li><strong>Gate</strong>: playback runs while a key is held and stops on note-off. New note updates
-                pitch; with Retrig enabled it restarts the step/envelope, otherwise plays legato.</li>
-              <li><strong>Hold Mono</strong>: playback continues while any key is held. Mono, last-note priority; new
-                notes update pitch (Retrig on/off as above). Stops when the last key is released.</li>
-              <li><strong>Hold Poly</strong>: each held note adds a voice/layer; releasing that note removes its layer.
-                Multiple notes can run simultaneously.</li>
-              <li><strong>Toggle Mono</strong>: first key press toggles playback on, next press (any key) toggles off.
-                Single voice; additional notes while on change pitch (Retrig behavior applies).</li>
-              <li><strong>Toggle Poly</strong>: each key press toggles that note’s layer on/off, allowing stacked layers
-                that persist without holding keys.</li>
-              <li><strong>Latch</strong>: key press starts latched playback that continues after key release. Additional
-                notes add layers; press the same note again to remove its layer or use Clear/Stop to end all.</li>
-            </ul>
-            <h3>Sync and Rate</h3>
-            <ul>
-              <li><strong>Sync</strong>: rate uses musical divisions (e.g., 1/16, 1/8T, 1/4), tied to the selected tempo
-                source (Host BPM or Internal BPM).</li>
-              <li><strong>No Sync</strong>: rate is time in milliseconds.</li>
-              <li><strong>Beat</strong>: selects the division when in Sync (e.g., 1/16, 1/16D, 1/8T). In No Sync, sets
-                the rate in ms.</li>
-            </ul>
-            <h3>Length and Direction</h3>
-            <ul>
-              <li><strong>Step</strong>: number of patterns to cycle through before wrap.</li>
-              <li><strong>Direction</strong>:
-                <ul>
-                  <li><strong>Forward</strong></li>
-                  <li><strong>Back</strong></li>
-                  <li><strong>For&Back 1</strong>: ping-pong with endpoints repeated.</li>
-                  <li><strong>For&Back 2</strong>: ping-pong without repeating endpoints.</li>
-                  <li><strong>Rand</strong>: jumps to a random pattern on each hop, clocked by Sync/No-Sync rate.</li>
-                </ul>
-              </li>
-            </ul>
-            <h3>Randomize and Reset</h3>
-            <ul>
-              <li><strong>RAND</strong>: writes random values across the currently selected lane of the current channel.
-              </li>
-              <li><strong>RESET</strong>: resets the shown lane of the current channel to defaults.</li>
-            </ul>
-            <h3>Retrigger and Impose</h3>
-            <ul>
-              <li><strong>Retrigger</strong>: step retrigger behavior on MIDI events.</li>
-              <li><strong>Impose</strong>: choose whether non-selected patterns inherit from the last selected or from
-                the current pattern.</li>
-            </ul>
-            <h3>Shift Modifiers</h3>
-            <p>Holding <strong>Shift</strong> applies these controls to <strong>all channels</strong>:
-              <strong>Play</strong>, <strong>Record</strong>, <strong>Retrig</strong>, <strong>Impose</strong>,
-              <strong>Sync</strong>, <strong>Beat</strong>, <strong>Step</strong>, <strong>Direction</strong>,
-              <strong>&gt;&gt;/&lt;&lt;</strong>, <strong>Play Mode</strong>.
+          </div>
+        </div>
+      </section>
+
+      <section id="core-concepts" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-concepts.png" alt="Core Concepts">
+          </div>
+          <div class="guide-text">
+            <h2>Core Concepts</h2>
+
+            <h3>Tracks</h3>
+            <p>Each track is a separate FX lane. Tracks can be reordered and played differently depending on Playback
+              Mode.</p>
+
+            <h3>Grid Patterns</h3>
+            <p>The grid is your performance timeline. Patterns trigger actions and recall snapshots in sync with the
+              host.</p>
+
+            <h3>Snapshots</h3>
+            <p>
+              Snapshots store parameter states per effect. Patterns can recall snapshots so one sequence can produce
+              many
+              different sounds without drawing automation.
             </p>
-            <ul>
-              <li><strong>RAND</strong> with Shift: randomizes <strong>all lanes</strong> of the <strong>current
-                  channel</strong>.</li>
-              <li><strong>RESET</strong> with Shift: resets <strong>all lanes</strong> of the <strong>current
-                  channel</strong>.</li>
-            </ul>
-            <h3>All-Channels Recording Behavior</h3>
-            <p>When <strong>ALL CHANNEL</strong> is enabled and recording is active, an incoming MIDI or touch event
-              writes to the active channel’s pattern and advances the current pattern index by one for all sequencers
-              whose Record is enabled.</p>
-            <h3>Global Apply</h3>
-            <p>With <strong>ALL CHANNEL</strong> checked, <strong>PLAY</strong> and <strong>RECORD</strong> affect all
-              channels except the Master.</p>
-            <h3>Master: Channel Jumper</h3>
-            <p>In <strong>CHANNEL JUMPER</strong> mode, each Master pattern targets a different channel. The
-              <strong>PLAY</strong> state is indicated in purple. In this mode, touchpad navigation does not produce
-              audio; only MIDI that drives the Master sequencer will play when <strong>PLAY</strong> is enabled.
+
+            <h3>Performance Workflow</h3>
+            <p>
+              Nexora is designed for fast performance and sound design: build patterns, switch snapshots, tweak while
+              playing, and capture changes in real time.
             </p>
-            <h3>Menu</h3>
+          </div>
+        </div>
+      </section>
+
+      <section id="playback-modes" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-playback-modes.png" alt="Playback Modes">
+          </div>
+          <div class="guide-text">
+            <h2>Playback Modes</h2>
             <ul>
-              <li><strong>Save</strong>: saves the current sequencer setup (patterns, lanes, and options) as a preset.
-              </li>
-              <li><strong>Import</strong>: loads a saved sequencer preset into the current channel.</li>
-              <li><strong>Reset All Ch Seq</strong>: resets sequencers for all channels.</li>
+              <li><strong>Parallel</strong>: All active tracks run together for layered glitch textures.</li>
+              <li><strong>Sequential</strong>: Tracks play one after another for evolving builds and fills.</li>
+              <li><strong>Random Step</strong>: Randomly chooses steps for unpredictable movement.</li>
+              <li><strong>Random Track</strong>: Randomly chooses which track is triggered/featured.</li>
+              <li><strong>Selected Track</strong>: Only the selected track responds (focused sound design).</li>
+              <li><strong>Mixdown</strong>: Uses Nexora as a unified performance engine for macro transitions.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section id="glitch" class="guide-section">
+      <section id="track-controls" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-glitch.png" alt="Glitch">
+            <img src="images/guide/placeholder-track-controls.png" alt="Track Controls">
           </div>
           <div class="guide-text">
-            <h2>Glitch</h2>
-            <p>Each channel includes its own Glitch engine, and there is also a Master Glitch. The engine provides four
-              templates combining glitch and reverse actions. Glide with the mouse to morph between templates.</p>
-            <h3>Per-Template Controls</h3>
-            <ul>
-              <li>Portamento</li>
-              <li>Pitch</li>
-              <li>Len</li>
-              <li>Beat</li>
-              <li>Rand Beat</li>
-              <li>Rand Pitch</li>
-            </ul>
-            <h3>Timing</h3>
-            <ul>
-              <li>Snap Beat: effect length follows pitch-induced speed changes and may drift from the grid.</li>
-              <li>Snap to Beat: effect length stays locked to the beat grid regardless of pitch changes.</li>
-            </ul>
-            <h3>Automation</h3>
-            <p>The template morph for glitch/reverse is automatable.</p>
-            <h3>Preset and Routing</h3>
-            <ul>
-              <li>Import/Save</li>
-              <li>Pre/Post Effects</li>
-            </ul>
-            <div><img style="margin-top: 20px;" src="images/guide/seq_menu.png" alt="Glitch Menu"></div>
-          </div>
-        </div>
-      </section>
+            <h2>Track Controls</h2>
 
-      <section id="effects" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-effects.png" alt="Effects Rack">
-          </div>
-          <div class="guide-text">
-            <h2>Effects</h2>
-            <p>Each channel and the Master include an effects rack. Available types: Delay, Reverb, Flanger, Chorus,
-              Filter, Phaser, Robotizer/Whisperizer, Distortion.</p>
-            <h3>Instances and Limits</h3>
-            <p>You can load multiple instances of the same effect type. Up to 8 effects per channel.</p>
-            <h3>Add, Remove, Reorder</h3>
-            <ul>
-              <li>Add: drag an effect from the bottom tray of the Effects tab into the rack.</li>
-              <li>Remove: drag an effect module down into the bottom tray.</li>
-              <li>Order: processing runs left to right. Drag modules to change their position in the chain.</li>
-            </ul>
-            <h3>Per-Channel vs Master</h3>
-            <p>Channel racks process only their respective channel. The Master rack processes the overall plugin output.
+            <h3>Reordering Tracks</h3>
+            <p>
+              Each track has a two-bar drag handle. Drag up/down to change track order.
+              Track order matters for modes like <strong>Parallel</strong>, <strong>Sequential</strong>, and more.
             </p>
-            <h3>Modulation and Automation</h3>
-            <p>Effect parameters are mappable to internal modulation (LFOs, sequencer lanes, XY pads) and are available
-              for host automation.</p>
-          </div>
-        </div>
-      </section>
 
-      <section id="presets" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-presets.png" alt="Presets">
-          </div>
-          <div class="guide-text">
-            <h2>Presets</h2>
-            <h3>Library and First Launch</h3>
-            <p>On first launch the plugin populates the default presets into its library folder. Open it via the menu:
-              Show Preset Folder. When you save presets, they are written to this library.</p>
-            <h3>Init Preset</h3>
-            <p>Resets the plugin to a blank state: no samples loaded and all parameters at their defaults.</p>
-            <h3>Per-Channel Save/Load</h3>
-            <p>Save a single channel and load it into another channel. On load, a selection dialog opens so you can
-              choose which components to apply: Sample, LFO Line, Effects, Sequencer, Glitch.</p>
-            <h3>Copy/Paste Channel</h3>
-            <p>Copy Channel and Paste Channel perform the same transfer instantly without a file chooser, using a
-              temporary internal preset. On paste, a selection dialog opens so you can choose which components to apply:
-              Sample, LFO Line, Effects, Sequencer, Glitch.</p>
-            <img style="margin-left: 6px; margin-top: 16px;" src="images/guide/preset_load_dialog.png"
-              alt="Channel Load/Paste Options Dialog">
-            <h3>Export and Import</h3>
-            <ul>
-              <li>Export Preset: packages the preset together with all referenced audio files for use on another
-                machine.</li>
-              <li>Export All Presets: exports the entire preset library as packages.</li>
-              <li>Show Exported Presets: opens the folder containing exported packages.</li>
-              <li>Import Presets: installs exported preset packages into the library.</li>
-            </ul>
-            <h3>Load vs Import</h3>
-            <p>Load Preset reads a local preset that references audio files by path on this system. Import Preset
-              installs a self-contained package that already includes the required audio files.</p>
-          </div>
-        </div>
-      </section>
+            <h3>FX Button</h3>
+            <p>Click <strong>FX</strong> to open the FX Rack for that track.</p>
 
-      <section id="modulation" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-modulation.png" alt="Modulation">
-          </div>
-          <div class="guide-text">
-            <h2>Modulation</h2>
-            <h3>Per-Channel Sources</h3>
+            <h3>Track Name (3 modes)</h3>
             <ul>
-              <li>LFO1, LFO2, LFO3</li>
-              <li>LFO1+2 merge</li>
-              <li>Sequencer CRV1, CRV2</li>
+              <li><strong>Custom</strong>: user editable name.</li>
+              <li><strong>First Effect Name</strong>: shows the first effect in the track rack.</li>
+              <li><strong>Last Effect Name</strong>: shows the last effect in the track rack.</li>
             </ul>
-            <h3>MIDI Sources</h3>
+
+            <h3>Mute / Solo</h3>
             <ul>
-              <li>Mod Wheel (CC1)</li>
-              <li>Note</li>
-              <li>Velocity</li>
-              <li>Rand Note 1</li>
-              <li>Rand Note 2</li>
+              <li><strong>M</strong>: mutes the effects output of that track.</li>
+              <li><strong>S</strong>: solos that track (audible when it is being processed).</li>
+              <li>Hold <strong>Ctrl</strong> to select multiple solo tracks.</li>
             </ul>
-            <h3>Master Sources</h3>
+
+            <h3>Track Color</h3>
+            <p>Click the color dot to open the palette and set the track color.</p>
+
+            <h3>Lock / Random / Clear (Track)</h3>
             <ul>
-              <li>Master Sequencer CRV1, CRV2</li>
-              <li>XY Pads: X1, X2, X3, X4 and Y1, Y2, Y3, Y4</li>
-            </ul>
-            <h3>Mod Learn and Assign</h3>
-            <p>Click a modulation source to enter Mod Learn <img style="margin-left: 6px; margin-right: 6px;"
-                src="images/guide/mod_connect.png" alt="">. The target control shows a ring above the knob <img
-                style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob.png" alt="">. Drag over the ring
-              to set the modulation range.</p>
-            <h3>Range and Polarity</h3>
-            <p>Right-click the target knob to choose range behavior: positive only, negative only, or bipolar around the
-              current value.</p>
-            <div style="margin-left: 0px; margin-top: 20px; align-content: center;"><img
-                src="images/guide/mod_disconnect_knob.png" alt="Range/Polarity"></div>
-            <h3>Unassign</h3>
-            <ul>
-              <li>From the source menu (triangle): open the assignment list and choose Clear for a single target or
-                Clear All. <div style="margin-left: 0px; margin-top: 20px; align-content: center;"><img
-                    src="images/guide/mod_disconnect_learn.png" alt="Source Menu"></div>
-              </li>
-              <li>Right-click the target control: show all linked sources and choose Disconnect.</li>
-              <li>While Mod Learn is active: set the modulation amount to 0% to remove the link.</li>
-            </ul>
-            <h3>Status Indicators</h3>
-            <ul>
-              <li>Linked but source disabled: the ring above the knob is greyed out. <div><img
-                    style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob_go.png" alt=""></div>
-              </li>
-              <li>Source linked: a lit status indicator appears next to the modulation source in the sources list/panel.
-                <div><img style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_connect.png" alt=""></div>
-              </li>
-              <li>Mod Learn active: the ring and the selected range are illuminated.</li>
+              <li><strong>Lock</strong>: locks the track grid for Randomization (see Randomization &amp; Locks).</li>
+              <li><strong>Random</strong>: randomizes only the track grid patterns and their snapshot assignments.</li>
+              <li><strong>CLR</strong>: clears all patterns on that track.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section id="recorder" class="guide-section">
+      <section id="grid-patterns" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-recorder.png" alt="Recorder">
+            <img src="images/guide/placeholder-grid.png" alt="Grid Patterns">
           </div>
           <div class="guide-text">
-            <h2>Recorder</h2>
-            <h3>Location and View</h3>
-            <p>The Recorder resides in the bottom panel of the plugin. Use the top-bar buttons or from main menu to
-              switch the lower panel between MIDI Keyboard view and Recorder view.</p>
-            <div><img style="margin-left: 6px; margin-top: 16px;" src="images/guide/record_switch.png"
-                alt="Panel Switch"></div>
-            <h3>Input Sources</h3>
+            <h2>Drawing &amp; Editing Patterns</h2>
+
+            <h3>Create, Move, Resize</h3>
             <ul>
-              <li>Plugin mode: Internal (from the plugin) or Sidechain.</li>
-              <li>Standalone mode: Internal or External Source (audio interface). External input requires microphone
-                permission.</li>
+              <li>Draw patterns on the grid.</li>
+              <li>Drag to move patterns to a new position.</li>
+              <li>Stretch patterns to change their length.</li>
             </ul>
-            <h3>Auto Record</h3>
+
+            <h3>Change a Pattern’s Snapshot</h3>
+            <p>Hover a pattern and drag the mouse up/down to change which snapshot it triggers.</p>
+
+            <h3>Slice a Pattern</h3>
+            <p>Hold <strong>Alt</strong> and click a pattern to slice/cut it into step-sized segments.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="fx-rack" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-fx-rack.png" alt="FX Rack">
+          </div>
+          <div class="guide-text">
+            <h2>FX Rack &amp; Snapshots</h2>
+
+            <h3>FX Rack</h3>
+            <p>
+              Each track has an FX Rack (effect chain). Build your chain and shape how the track sounds.
+              Snapshots allow step-by-step parameter recall for evolving sequences.
+            </p>
+
+            <h3>Snapshots</h3>
+            <p>
+              Snapshots store multiple parameter states per effect. Grid patterns can recall snapshots so each step can
+              have a different sound.
+            </p>
+
+            <h3>What You Can Do Fast</h3>
             <ul>
-              <li>Auto: starts recording when the level crosses a Threshold (dB) or when a MIDI event arrives.</li>
-              <li>Threshold: set the level that arms the recorder for Sidechain or External sources.</li>
+              <li>Design multiple snapshot states for one effect.</li>
+              <li>Assign snapshots to patterns and let the grid recall them.</li>
+              <li>Tweak during playback and capture changes musically.</li>
             </ul>
-            <h3>Workflow</h3>
+          </div>
+        </div>
+      </section>
+
+      <section id="edit-vs-live" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-edit-mode.png" alt="Edit Mode">
+          </div>
+          <div class="guide-text">
+            <h2>Edit Mode vs Live Recording</h2>
+
+            <p>
+              The FX Rack <strong>EDIT</strong> mode changes how snapshots behave and how parameter changes are
+              captured.
+            </p>
+
+            <h3>EDIT ON (Snapshot Editing)</h3>
             <ul>
-              <li>After recording, drag the take into a plugin channel or any target that accepts audio files.</li>
-              <li>Sample rate follows the Host rate in plugin mode or the Standalone rate.</li>
-              <li>While playing, dragging over the waveform scrubs the playhead. While paused, you can drag the clip out
-                to drop it elsewhere.</li>
+              <li>Snapshots are not driven by the grid while editing.</li>
+              <li>Select a snapshot slot and tweak parameters.</li>
+              <li>Your changes are stored only in the selected snapshot.</li>
             </ul>
-            <h3>Export</h3>
-            <p>Use Export to save the recorded take and name the file.</p>
+
+            <h3>EDIT OFF (Live Performance / Recording)</h3>
+            <ul>
+              <li>The grid continues to recall snapshots during playback.</li>
+              <li>If you tweak parameters while the DAW is playing, Nexora records your changes in real time.</li>
+              <li>The value you changed becomes part of the active snapshot state during playback.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="modifier-keys" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-modifier-keys.png" alt="Modifier Keys">
+          </div>
+          <div class="guide-text">
+            <h2>Modifier Keys</h2>
+
+            <h3>Shift = Apply to All Snapshots</h3>
+            <p>
+              Hold <strong>Shift</strong> while changing a parameter to apply that parameter change across
+              <strong>all snapshots</strong> of the current effect.
+            </p>
+
+            <h3>Alt = Reset to Default</h3>
+            <p>
+              Hold <strong>Alt</strong> while changing/clicking a parameter to reset it to its <strong>default
+                value</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="randomization" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-random-locks.png" alt="Randomization & Locks">
+          </div>
+          <div class="guide-text">
+            <h2>Randomization &amp; Locks</h2>
+
+            <p>
+              Locking affects <strong>Randomization only</strong>. For anything other than Random, locks have no effect.
+            </p>
+
+            <h3>Track Lock</h3>
+            <p>Locks the track grid content so Randomization will not change:</p>
+            <ul>
+              <li>Patterns (grid shapes)</li>
+              <li>Snapshot assignments inside patterns</li>
+            </ul>
+
+            <h3>FX Rack Lock</h3>
+            <p>Locks the effect chain in the rack so Randomization will not change the rack’s effects.</p>
+
+            <h3>Effect Lock</h3>
+            <p>Locks the parameters of a single effect so Randomization will not change those parameters.</p>
+            <ul>
+              <li>Exception: <strong>Bypass</strong> can still be randomized.</li>
+            </ul>
+
+            <h3>Smart Bypass Randomization</h3>
+            <p>
+              Bypass randomization is musical. If a track contains only one effect, Nexora avoids randomizing Bypass in
+              a way
+              that would make the whole track effectively do nothing.
+            </p>
+
+            <h3>Parameters Excluded from Random</h3>
+            <p>
+              Some parameters do not receive Random changes (for example <strong>Mix</strong>).
+              You can still manually set them, store them per snapshot, and automate them — they are simply excluded
+              from Randomization.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow-tips" class="guide-section">
+        <div class="guide-row">
+          <div class="guide-image">
+            <img src="images/guide/placeholder-workflow.png" alt="Workflow Tips">
+          </div>
+          <div class="guide-text">
+            <h2>Workflow Tips</h2>
+            <ul>
+              <li>Start simple: 1 track + 1 effect + a short grid pattern.</li>
+              <li>Use Snapshots to add variation instead of drawing more patterns.</li>
+              <li>Use Parallel for dense textures, Sequential for evolving fills.</li>
+              <li>Use Random to generate ideas, then lock what you like and randomize the rest.</li>
+              <li>Use EDIT ON for precise snapshot design; use EDIT OFF to perform and capture changes during playback.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -580,46 +502,31 @@
           </div>
           <div class="guide-text">
             <h2>Main Menu</h2>
+
             <h3>Licensing and Updates</h3>
             <ul>
               <li><strong>About</strong>: version, build, and credits.</li>
-              <li><strong>Activate</strong> (if not activated): enter the license UUID received by email after purchase.
-              </li>
+              <li><strong>Activate</strong>: enter your license key.</li>
               <li><strong>Check for Update</strong>: checks for newer versions and offers to download if available.</li>
-              <li><strong>Email My License</strong>: sends the current license details to your registered email.</li>
             </ul>
+
             <h3>View and Layout</h3>
             <ul>
               <li><strong>Resize</strong>: scales the plugin UI.</li>
-              <li><strong>Show/Hide Piano</strong>: toggles the MIDI keyboard in the bottom panel.</li>
-              <li><strong>Show/Hide Recorder</strong>: toggles the Recorder in the bottom panel.</li>
-              <li><strong>Show/Hide BPM</strong>: shows the BPM control at the top-left. In plugin mode you can choose
-                Host BPM or Internal BPM; in standalone BPM is internal.</li>
-              <li><strong>Show/Hide CPU Meter</strong>: toggles the CPU usage meter in the top bar.</li>
+              <li><strong>Show/Hide Panels</strong>: toggle visibility of main panels as needed.</li>
             </ul>
-            <h3>Presets and Channels</h3>
+
+            <h3>Presets</h3>
             <ul>
-              <li><strong>Init Preset</strong>: loads a blank state with no samples and default parameters.</li>
-              <li><strong>Load Preset</strong>: opens the preset library folder and loads a local preset.</li>
-              <li><strong>Export Preset</strong>: packages the current preset including all referenced audio files.</li>
-              <li><strong>Export All Presets</strong>: packages the entire preset library including audio files.</li>
-              <li><strong>Save Current Channel</strong>: saves the selected channel as a channel preset.</li>
-              <li><strong>Import to Current Channel</strong>: opens a file chooser to load a saved channel preset into
-                the selected channel.</li>
-              <li><strong>Copy Channel</strong>: copies the selected channel to an internal clipboard.</li>
-              <li><strong>Paste Channel</strong>: pastes from the internal clipboard into the selected channel.</li>
-            </ul>
-            <h3>Folders</h3>
-            <ul>
+              <li><strong>Init Preset</strong>: loads a clean default state.</li>
+              <li><strong>Load Preset</strong>: loads a preset from your library.</li>
+              <li><strong>Save Preset</strong>: saves the current state as a preset.</li>
               <li><strong>Show Preset Folder</strong>: opens the preset library location.</li>
-              <li><strong>Show Exported Folder</strong>: opens the folder containing packaged presets.</li>
-              <li><strong>Show Processed Folder</strong>: opens the folder for audio rendered via Channel Editor
-                Process.</li>
-              <li><strong>Show Sample Folder</strong>: opens the default samples location.</li>
             </ul>
           </div>
         </div>
       </section>
+
     </main>
 
     <footer>
@@ -630,6 +537,7 @@
       </div>
     </footer>
   </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('page-loaded');
