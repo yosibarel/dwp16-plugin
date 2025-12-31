@@ -607,6 +607,13 @@ img.zoomable:active {
   transform: scale(1.01);
 }
 
+.header-nav .nav-link.active {
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+  font-weight: 800;
+  opacity: 1;
+}
 
 /* MOBILE */
 

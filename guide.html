@@ -10,114 +10,181 @@
 </head>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    var scroller = document.querySelector('main.guide-main');
+    var useScroller = scroller && (scroller.scrollHeight > scroller.clientHeight + 2);
+    var scrollTarget = useScroller ? scroller : window;
+
     var imgs = document.querySelectorAll('.feature-image img, .guide-image img, img.zoomable');
-    if (!imgs.length) return;
-
-    var overlay = document.createElement('div');
-    overlay.style.position = 'fixed';
-    overlay.style.inset = '0';
-    overlay.style.background = 'rgba(0,0,0,0.85)';
-    overlay.style.display = 'none';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.zIndex = '9999';
-    overlay.style.padding = '20px';
-    overlay.style.cursor = 'zoom-out';
-
-    var big = document.createElement('img');
-    big.style.maxWidth = '95vw';
-    big.style.maxHeight = '95vh';
-    big.style.borderRadius = '10px';
-    big.style.boxShadow = '0 20px 60px rgba(0,0,0,0.6)';
-
-    overlay.appendChild(big);
-    document.body.appendChild(overlay);
-
-    var statePushed = false;
-
-    function isOpen() {
-      return overlay.style.display === 'flex';
-    }
-
-    function open(img) {
-      big.src = img.src;
-      big.alt = img.alt || '';
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-
-      if (!statePushed) {
-        history.pushState({ lightbox: true }, '');
-        statePushed = true;
-      }
-    }
-
-    function close() {
+    if (imgs.length) {
+      var overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.inset = '0';
+      overlay.style.background = 'rgba(0,0,0,0.85)';
       overlay.style.display = 'none';
-      document.body.style.overflow = '';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = '9999';
+      overlay.style.padding = '20px';
+      overlay.style.cursor = 'zoom-out';
 
-      if (statePushed) {
-        statePushed = false;
-        history.back();
+      var big = document.createElement('img');
+      big.style.maxWidth = '95vw';
+      big.style.maxHeight = '95vh';
+      big.style.borderRadius = '10px';
+      big.style.boxShadow = '0 20px 60px rgba(0,0,0,0.6)';
+
+      overlay.appendChild(big);
+      document.body.appendChild(overlay);
+
+      var statePushed = false;
+
+      function isOpen() {
+        return overlay.style.display === 'flex';
       }
-    }
 
-    overlay.addEventListener('click', function () {
-      close();
-    });
+      function open(img) {
+        big.src = img.src;
+        big.alt = img.alt || '';
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
 
-    window.addEventListener('popstate', function () {
-      if (isOpen()) {
+        if (!statePushed) {
+          history.pushState({ lightbox: true }, '');
+          statePushed = true;
+        }
+      }
+
+      function close() {
         overlay.style.display = 'none';
         document.body.style.overflow = '';
-        statePushed = false;
-        history.pushState({}, '');
+
+        if (statePushed) {
+          statePushed = false;
+          history.back();
+        }
       }
-    });
 
-    window.addEventListener('keydown', function (e) {
-      if (!isOpen()) return;
-
-      if (e.key === 'Escape' || e.key === 'Backspace') {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+      overlay.addEventListener('click', function () {
         close();
-      }
-    }, true);
-
-    imgs.forEach(function (img) {
-      img.addEventListener('click', function () {
-        open(img);
       });
-    });
-  });
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
+
+      window.addEventListener('popstate', function () {
+        if (isOpen()) {
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+          statePushed = false;
+          history.pushState({}, '');
+        }
+      });
+
+      window.addEventListener('keydown', function (e) {
+        if (!isOpen()) return;
+
+        if (e.key === 'Escape' || e.key === 'Backspace') {
+          e.preventDefault();
+          e.stopPropagation();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          close();
+        }
+      }, true);
+
+      imgs.forEach(function (img) {
+        img.addEventListener('click', function () {
+          open(img);
+        });
+      });
+    }
+
     var header = document.querySelector('header');
-    var scroller = document.querySelector('main.guide-main');
-    if (!header || !scroller) return;
+    if (header) {
+      var lastScroll = 0;
+      var threshold = 10;
 
-    var lastScroll = 0;
-    var threshold = 10;
-
-    scroller.addEventListener('scroll', function () {
-      var current = scroller.scrollTop;
-
-      if (Math.abs(current - lastScroll) < threshold) return;
-
-      if (current > lastScroll && current > 60) {
-        header.classList.add('header-hidden');
-      } else {
-        header.classList.remove('header-hidden');
+      function getScrollTop() {
+        return useScroller ? scroller.scrollTop : (window.scrollY || 0);
       }
 
-      lastScroll = current;
-    }, { passive: true });
+      scrollTarget.addEventListener('scroll', function () {
+        var current = getScrollTop();
+
+        if (Math.abs(current - lastScroll) < threshold) return;
+
+        if (current > lastScroll && current > 60) {
+          header.classList.add('header-hidden');
+        } else {
+          header.classList.remove('header-hidden');
+        }
+
+        lastScroll = current;
+      }, { passive: true });
+    }
+
+    var nav = document.querySelector('nav.header-nav');
+    if (nav) {
+      var links = Array.prototype.slice.call(nav.querySelectorAll('a.nav-link[href^="#"]'));
+      var pairs = [];
+
+      links.forEach(function (a) {
+        var id = (a.getAttribute('href') || '').slice(1);
+        if (!id) return;
+        var sec = document.getElementById(id);
+        if (sec) pairs.push({ a: a, sec: sec, id: id });
+      });
+
+      function setActiveById(id) {
+        links.forEach(function (x) { x.classList.remove('active'); });
+        for (var i = 0; i < pairs.length; i++) {
+          if (pairs[i].id === id) {
+            pairs[i].a.classList.add('active');
+            break;
+          }
+        }
+      }
+
+      function setActiveByEl(a) {
+        links.forEach(function (x) { x.classList.remove('active'); });
+        if (a) a.classList.add('active');
+      }
+
+      function updateActive() {
+        if (!pairs.length) return;
+
+        var anchor = 140;
+        var best = null;
+        var bestDist = Infinity;
+
+        for (var i = 0; i < pairs.length; i++) {
+          var r = pairs[i].sec.getBoundingClientRect();
+          var dist = Math.abs(r.top - anchor);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = pairs[i];
+          }
+        }
+
+        if (best) setActiveByEl(best.a);
+      }
+
+      scrollTarget.addEventListener('scroll', updateActive, { passive: true });
+      window.addEventListener('resize', updateActive);
+      window.addEventListener('hashchange', function () {
+        var id = (location.hash || '').slice(1);
+        if (id) setActiveById(id);
+        setTimeout(updateActive, 0);
+      });
+
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          var id = (a.getAttribute('href') || '').slice(1);
+          if (id) setActiveById(id);
+          setTimeout(updateActive, 0);
+        });
+      });
+
+      setTimeout(updateActive, 0);
+    }
   });
 </script>
-
-
 
 <body>
   <div class="bg"></div>
@@ -637,9 +704,11 @@
               <li>XY Pads: X1, X2, X3, X4 and Y1, Y2, Y3, Y4</li>
             </ul>
             <h3>Mod Learn and Assign</h3>
-            <p>Click a modulation source to enter Mod Learn <img style="margin-left: 6px; margin-right: 6px;"
-                src="images/guide/mod_connect.png" alt="">. The target control shows a ring above the knob <img
-                style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob.png" alt="">. Drag over the
+            <p>Click a modulation source to enter Mod Learn <img
+                style="margin-left: 6px; margin-right: 6px;  vertical-align:-18px;" src="images/guide/mod_connect.png"
+                alt="">. The target control shows a ring above the knob <img
+                style="margin-left: 6px; margin-right: 6px; vertical-align:-28px;" src="images/guide/mod_knob.png"
+                alt="">. Drag over the
               ring
               to set the modulation range.</p>
             <h3>Range and Polarity</h3>

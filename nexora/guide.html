@@ -4,118 +4,189 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXORA User Guide</title>
+  <title>Nexora User Guide</title>
   <link rel="stylesheet" href="../style.css?v=1.6">
   <link rel="icon" href="../ic_logo.png" type="image/png">
-</head>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var imgs = document.querySelectorAll('.feature-image img, .guide-image img, img.zoomable');
-    if (!imgs.length) return;
 
-    var overlay = document.createElement('div');
-    overlay.style.position = 'fixed';
-    overlay.style.inset = '0';
-    overlay.style.background = 'rgba(0,0,0,0.85)';
-    overlay.style.display = 'none';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.zIndex = '9999';
-    overlay.style.padding = '20px';
-    overlay.style.cursor = 'zoom-out';
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var scroller = document.querySelector('main.guide-main');
+      var useScroller = scroller && (scroller.scrollHeight > scroller.clientHeight + 2);
+      var scrollTarget = useScroller ? scroller : window;
 
-    var big = document.createElement('img');
-    big.style.maxWidth = '95vw';
-    big.style.maxHeight = '95vh';
-    big.style.borderRadius = '10px';
-    big.style.boxShadow = '0 20px 60px rgba(0,0,0,0.6)';
-
-    overlay.appendChild(big);
-    document.body.appendChild(overlay);
-
-    var statePushed = false;
-
-    function isOpen() {
-      return overlay.style.display === 'flex';
-    }
-
-    function open(img) {
-      big.src = img.src;
-      big.alt = img.alt || '';
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-
-      if (!statePushed) {
-        history.pushState({ lightbox: true }, '');
-        statePushed = true;
-      }
-    }
-
-    function close() {
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
-
-      if (statePushed) {
-        statePushed = false;
-        history.back();
-      }
-    }
-
-    overlay.addEventListener('click', function () {
-      close();
-    });
-
-    window.addEventListener('popstate', function () {
-      if (isOpen()) {
+      var imgs = document.querySelectorAll('.feature-image img, .guide-image img, img.zoomable');
+      if (imgs.length) {
+        var overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = '0';
+        overlay.style.background = 'rgba(0,0,0,0.85)';
         overlay.style.display = 'none';
-        document.body.style.overflow = '';
-        statePushed = false;
-        history.pushState({}, '');
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.zIndex = '9999';
+        overlay.style.padding = '20px';
+        overlay.style.cursor = 'zoom-out';
+
+        var big = document.createElement('img');
+        big.style.maxWidth = '95vw';
+        big.style.maxHeight = '95vh';
+        big.style.borderRadius = '10px';
+        big.style.boxShadow = '0 20px 60px rgba(0,0,0,0.6)';
+
+        overlay.appendChild(big);
+        document.body.appendChild(overlay);
+
+        var statePushed = false;
+
+        function isOpen() {
+          return overlay.style.display === 'flex';
+        }
+
+        function open(img) {
+          big.src = img.src;
+          big.alt = img.alt || '';
+          overlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+
+          if (!statePushed) {
+            history.pushState({ lightbox: true }, '');
+            statePushed = true;
+          }
+        }
+
+        function close() {
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+
+          if (statePushed) {
+            statePushed = false;
+            history.back();
+          }
+        }
+
+        overlay.addEventListener('click', function () {
+          close();
+        });
+
+        window.addEventListener('popstate', function () {
+          if (isOpen()) {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+            statePushed = false;
+            history.pushState({}, '');
+          }
+        });
+
+        window.addEventListener('keydown', function (e) {
+          if (!isOpen()) return;
+
+          if (e.key === 'Escape' || e.key === 'Backspace') {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            close();
+          }
+        }, true);
+
+        imgs.forEach(function (img) {
+          img.addEventListener('click', function () {
+            open(img);
+          });
+        });
+      }
+
+      var header = document.querySelector('header');
+      if (header) {
+        var lastScroll = 0;
+        var threshold = 10;
+
+        function getScrollTop() {
+          return useScroller ? scroller.scrollTop : (window.scrollY || 0);
+        }
+
+        scrollTarget.addEventListener('scroll', function () {
+          var current = getScrollTop();
+
+          if (Math.abs(current - lastScroll) < threshold) return;
+
+          if (current > lastScroll && current > 60) {
+            header.classList.add('header-hidden');
+          } else {
+            header.classList.remove('header-hidden');
+          }
+
+          lastScroll = current;
+        }, { passive: true });
+      }
+
+      var nav = document.querySelector('nav.header-nav');
+      if (nav) {
+        var links = Array.prototype.slice.call(nav.querySelectorAll('a.nav-link[href^="#"]'));
+        var pairs = [];
+
+        links.forEach(function (a) {
+          var id = (a.getAttribute('href') || '').slice(1);
+          if (!id) return;
+          var sec = document.getElementById(id);
+          if (sec) pairs.push({ a: a, sec: sec, id: id });
+        });
+
+        function setActiveById(id) {
+          links.forEach(function (x) { x.classList.remove('active'); });
+          for (var i = 0; i < pairs.length; i++) {
+            if (pairs[i].id === id) {
+              pairs[i].a.classList.add('active');
+              break;
+            }
+          }
+        }
+
+        function setActiveByEl(a) {
+          links.forEach(function (x) { x.classList.remove('active'); });
+          if (a) a.classList.add('active');
+        }
+
+        function updateActive() {
+          if (!pairs.length) return;
+
+          var anchor = 140;
+          var best = null;
+          var bestDist = Infinity;
+
+          for (var i = 0; i < pairs.length; i++) {
+            var r = pairs[i].sec.getBoundingClientRect();
+            var dist = Math.abs(r.top - anchor);
+            if (dist < bestDist) {
+              bestDist = dist;
+              best = pairs[i];
+            }
+          }
+
+          if (best) setActiveByEl(best.a);
+        }
+
+        scrollTarget.addEventListener('scroll', updateActive, { passive: true });
+        window.addEventListener('resize', updateActive);
+        window.addEventListener('hashchange', function () {
+          var id = (location.hash || '').slice(1);
+          if (id) setActiveById(id);
+          setTimeout(updateActive, 0);
+        });
+
+        links.forEach(function (a) {
+          a.addEventListener('click', function () {
+            var id = (a.getAttribute('href') || '').slice(1);
+            if (id) setActiveById(id);
+            setTimeout(updateActive, 0);
+          });
+        });
+
+        setTimeout(updateActive, 0);
       }
     });
+  </script>
 
-    window.addEventListener('keydown', function (e) {
-      if (!isOpen()) return;
-
-      if (e.key === 'Escape' || e.key === 'Backspace') {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-        close();
-      }
-    }, true);
-
-    imgs.forEach(function (img) {
-      img.addEventListener('click', function () {
-        open(img);
-      });
-    });
-  });
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var header = document.querySelector('header');
-    var scroller = document.querySelector('main.guide-main');
-    if (!header || !scroller) return;
-
-    var lastScroll = 0;
-    var threshold = 10;
-
-    scroller.addEventListener('scroll', function () {
-      var current = scroller.scrollTop;
-
-      if (Math.abs(current - lastScroll) < threshold) return;
-
-      if (current > lastScroll && current > 60) {
-        header.classList.add('header-hidden');
-      } else {
-        header.classList.remove('header-hidden');
-      }
-
-      lastScroll = current;
-    }, { passive: true });
-  });
-</script>
+</head>
 
 <body>
   <div class="bg"></div>
@@ -126,45 +197,37 @@
           <img src="ic_logo.png" alt="Nexora Logo" class="logo">
           <h2 class="header-logo">Nexora</h2>
         </a>
+
         <nav class="header-nav">
-          <a href="index.html" class="nav-link">Home</a>
           <a href="#installation" class="nav-link">Installation</a>
-          <a href="#quick-start" class="nav-link">Quick Start</a>
+          <a href="#top-bar" class="nav-link">Top Bar</a>
           <a href="#core-concepts" class="nav-link">Core Concepts</a>
-          <a href="#playback-modes" class="nav-link">Playback Modes</a>
+          <a href="#playback-modes" class="nav-link">Playback</a>
           <a href="#track-controls" class="nav-link">Tracks</a>
           <a href="#grid-patterns" class="nav-link">Grid</a>
-          <a href="#fx-rack" class="nav-link">FX Rack</a>
-          <a href="#edit-vs-live" class="nav-link">Edit Mode</a>
-          <a href="#modifier-keys" class="nav-link">Modifier Keys</a>
-          <a href="#randomization" class="nav-link">Random & Locks</a>
-          <a href="#workflow-tips" class="nav-link">Workflow Tips</a>
-          <a href="#menu" class="nav-link">Main Menu</a>
+          <a href="#fx-rack" class="nav-link">FX & Snapshots</a>
+          <a href="#random-config" class="nav-link">Random</a>
+          <a href="#automatable-control" class="nav-link">Automation</a>
+          <a href="#menu" class="nav-link">Menu</a>
+          <a href="#recorder" class="nav-link">Recorder</a>
+          <a href="#trial" class="nav-link">Trial Version</a>
         </nav>
       </div>
-
-
     </header>
 
     <main class="guide-main">
       <div class="main-header">
         <div>
-          <h2>How to Use NEXORA</h2>
-          <p>
-            Step-by-step visual guide. NEXORA is a grid-based sequencer multi-FX: draw patterns on the grid, trigger
-            effects in sync with your DAW BPM, and use Snapshots to recall complete parameter states per step.
-          </p>
+          <h2>How to Use Nexora</h2>
+          <p>Step-by-step visual guide.</p>
         </div>
         <button onclick="window.location.href='download.html'">Download Now</button>
       </div>
+
       <section id="installation" class="guide-section">
         <div class="guide-row onecol">
           <div class="guide-text">
             <h2>Installation</h2>
-
-            <div class="guide-image" style="margin-top: 14px;">
-              <img src="images/guide/placeholder-installation.png" alt="Installation">
-            </div>
 
             <h3>System Requirements</h3>
             <ul>
@@ -192,7 +255,14 @@
             </ol>
 
             <h3>Activation</h3>
-            <p>Open Nexora, go to the registration panel, and enter your license key.</p>
+            <p>
+              Open Nexora, open the <strong>Main Menu</strong>
+              <a href="#menu">
+                <img class="zoomable" src="images/guide/menubtn.png" alt=""
+                  style="margin-left:6px; vertical-align:-10px;">
+              </a>
+              , select <strong>Activate</strong>, then enter your license key.
+            </p>
 
             <h3>Troubleshooting</h3>
             <ul>
@@ -205,41 +275,115 @@
         </div>
       </section>
 
-      <section id="quick-start" class="guide-section">
+      <section id="top-bar" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-overview.png" alt="Nexora Overview">
+            <img src="images/guide/topbar.png" alt="Top Bar" style="margin-top: 100px;">
           </div>
           <div class="guide-text">
-            <h2>Quick Start (1 minute)</h2>
-            <ol>
-              <li>Insert <strong>Nexora</strong> on an audio track or bus.</li>
-              <li>Press play in your DAW so Nexora receives <strong>Host BPM</strong>.</li>
-              <li>Choose a <strong>Playback Mode</strong> (start with <strong>Parallel</strong>).</li>
-              <li>Set <strong>Beats</strong> and <strong>Division</strong>, then draw a simple pattern on the grid.</li>
-              <li>Open the track’s <strong>FX Rack</strong> and add one effect.</li>
-              <li>Tweak parameters and listen.</li>
-              <li>Use <strong>Snapshots</strong> to make the pattern evolve step-by-step.</li>
-            </ol>
+            <h2>Top Bar</h2>
+
+            <h3>Rec <img class="zoomable" src="images/guide/tb1.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-8px;">
+            </h3>
+            <p>Shows/hides the Recorder view at the bottom.</p>
+
+            <h3>Color Dot <img class="zoomable" src="images/guide/tb2.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-8px;"></h3>
             <p>
-              Recommended first workflow: start with one track → one effect → simple grid pattern → then add snapshots
-              and randomization.
+              Opens the global color palette for the plugin theme and all tracks.
+              Track-specific color is set from the track itself.
+            </p>
+
+            <h3>Random (Dice) <img class="zoomable" src="images/guide/tb3.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-8px;"></h3>
+            <p>Randomizes the entire plugin based on the current <strong>Random Config</strong> settings.</p>
+
+            <h3>Playback Mode <img class="zoomable" src="images/guide/tb4.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-10px;"></h3>
+            <p>Selects the playback mode (Parallel, Sequential, Random Step, Random Track, Selected Track, Mixdown,
+              etc.).</p>
+
+            <h3>Jump Step <img class="zoomable" src="images/guide/tb5.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-12px;"></h3>
+            <p>Applies only to <strong>Random Step</strong> mode.</p>
+
+            <h3>Save / Save As <img class="zoomable" src="images/guide/tb6.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-16px;"></h3>
+            <p>Saves the current state or saves as a new preset.</p>
+
+            <h3>Preset Name + Arrows <img class="zoomable" src="images/guide/tb7.png" alt="Playback Modes"
+                style="margin-left: 4px; vertical-align:-10px;"></h3>
+            <p>Shows the current preset name and steps through presets.</p>
+
+            <h3>
+              Menu Button
+              <a href="#menu">
+                <img class="zoomable" src="images/guide/menubtn.png" alt="Menu Button"
+                  style="margin-left:4px; vertical-align:-10px;">
+              </a>
+            </h3>
+            <p>Opens the Main Menu.</p>
+
+
+            <h3>Tracks <img class="zoomable" src="images/guide/tb8.png" alt="Playback Modes"
+                style="margin-left: 8px; vertical-align:-12px;"></h3>
+            <p>Sets the number of active tracks (1–10).</p>
+
+            <h3>Div / Beat<img class="zoomable" src="images/guide/tb9.png" alt="Playback Modes"
+                style="margin-left: 14px; vertical-align:-10px;"></h3>
+            <p>Grid setup: Division and number of Beats.</p>
+
+            <h3>Second Row Buttons<img class="zoomable" src="images/guide/tb10.png" alt="Playback Modes"
+                style="margin-left: 6px; vertical-align:-10px;"></h3>
+            <ul>
+              <li><strong>RND CONFIG</strong>: opens the Random Config panel.</li>
+              <li><strong>CLEAR</strong>: clears the grid patterns.</li>
+              <li><strong>INIT</strong>: resets everything (including the grid), like loading a clean init preset.</li>
+              <li><strong>FX</strong>: shows/hides the Master FX Rack.</li>
+            </ul>
+
+            <h3>Master Snapshot<img class="zoomable" src="images/guide/sss1.png" alt="Playback Modes"
+                style="margin-left: 14px; vertical-align:-10px;"> (automatable)</h3>
+            <p>
+              Selects the active Master Snapshot.
+              Master snapshot switching is controlled via the Master Snapshot control.
+            </p>
+
+            <h3>Track Selection<img class="zoomable" src="images/guide/sss2.png" alt="Playback Modes"
+                style="margin-left: 14px; vertical-align:-10px;"> (automatable)</h3>
+            <p>
+              Selects the current track (mainly used for <strong>Selected Track</strong> playback mode).
+              Right-click a track number to toggle that track’s FX Rack. If a non-master rack is currently shown,
+              selecting a track makes it the active track.
+            </p>
+
+            <h3>Master PAN / MIX / GAIN<img class="zoomable" src="images/guide/sss3.png" alt="Playback Modes"
+                style="margin-left: 14px; vertical-align:-24px;"> (automatable)
+            </h3>
+            <p>
+              <strong>PAN</strong> sets stereo processing focus. It does not mute a side; it controls how much
+              processing
+              is applied per channel. <strong>MIX</strong> is master mix. <strong>GAIN</strong> is master gain.
             </p>
           </div>
         </div>
       </section>
 
+
       <section id="core-concepts" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-concepts.png" alt="Core Concepts">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss7.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
             <h2>Core Concepts</h2>
 
             <h3>Tracks</h3>
-            <p>Each track is a separate FX lane. Tracks can be reordered and played differently depending on Playback
-              Mode.</p>
+            <p>
+              Each track is a separate FX lane. Tracks can be reordered and played differently depending on Playback
+              Mode.
+            </p>
 
             <h3>Grid Patterns</h3>
             <p>The grid is your performance timeline. Patterns trigger actions and recall snapshots in sync with the
@@ -248,42 +392,52 @@
             <h3>Snapshots</h3>
             <p>
               Snapshots store parameter states per effect. Patterns can recall snapshots so one sequence can produce
-              many
-              different sounds without drawing automation.
+              many different sounds without drawing automation.
             </p>
 
-            <h3>Performance Workflow</h3>
+            <h3>Master FX Rack &amp; Master Snapshots</h3>
             <p>
-              Nexora is designed for fast performance and sound design: build patterns, switch snapshots, tweak while
-              playing, and capture changes in real time.
+              Nexora also includes a <strong>Master FX Rack</strong>. You can edit Master snapshots the same way as
+              track
+              snapshots, but Master snapshot switching is performed via the <strong>Master Snapshot</strong> control.
+              <img class="zoomable" src="images/guide/sss1.png" alt="Playback Modes"
+                style="margin-left: 12px;  vertical-align:-10px;">
+            </p>
+            <p>
+              Switch Master snapshots by <strong>clicking</strong> a Master snapshot or by <strong>dragging</strong> to
+              move between snapshots. This lets you perform instant global transitions and reshape the entire FX
+              structure
+              in real time.
             </p>
           </div>
         </div>
       </section>
 
       <section id="playback-modes" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-playback-modes.png" alt="Playback Modes">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss1.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
             <h2>Playback Modes</h2>
-            <ul>
-              <li><strong>Parallel</strong>: All active tracks run together for layered glitch textures.</li>
-              <li><strong>Sequential</strong>: Tracks play one after another for evolving builds and fills.</li>
-              <li><strong>Random Step</strong>: Randomly chooses steps for unpredictable movement.</li>
-              <li><strong>Random Track</strong>: Randomly chooses which track is triggered/featured.</li>
-              <li><strong>Selected Track</strong>: Only the selected track responds (focused sound design).</li>
-              <li><strong>Mixdown</strong>: Uses Nexora as a unified performance engine for macro transitions.</li>
-            </ul>
+            <div>
+              <p><strong>Parallel</strong>: All active tracks run together for layered glitch textures.</p>
+              <p><strong>Sequential</strong>: Tracks play one after another for evolving builds and fills.</p>
+              <p><strong>Random Step</strong>: Randomly chooses steps for unpredictable movement (<strong>Jump
+                  Step</strong>).</p>
+              <p><strong>Random Track</strong>: Randomly chooses which track is triggered/featured.</p>
+              <p><strong>Selected Track</strong>: Only the selected track responds (focused sound design).</p>
+              <p><strong>Mixdown</strong>: Uses Nexora as a unified performance engine for macro transitions.</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="track-controls" class="guide-section">
         <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-track-controls.png" alt="Track Controls">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss2.png" alt="Playback Modes" style="display:block; margin:90px auto 280px;">
+            <img src="images/guide/ss10.png" alt="Playback Modes" style="display:block; margin:0 auto 200px;">
           </div>
           <div class="guide-text">
             <h2>Track Controls</h2>
@@ -295,13 +449,27 @@
             </p>
 
             <h3>FX Button</h3>
-            <p>Click <strong>FX</strong> to open the FX Rack for that track.</p>
+            <p>Click <strong>FX</strong> to open the FX Rack for that track. Click it again to close.</p>
+            <p>
+              You can also open/close the track FX Rack from the <strong>Select Track</strong> control:
+              <strong>right-click</strong> the selected track to toggle the rack.
+              <img src="images/guide/sss2.png" alt="Playback Modes" style=" margin-top: 8px;">
+            </p>
 
-            <h3>Track Name (3 modes)</h3>
+            <h3>Track Name Souece (3 modes)</h3>
+            <p>
+              Select the track name mode from the track <strong>Menu</strong>:
+              <a href="#menu">
+                <img class="zoomable" src="images/guide/menubtn.png" alt=""
+                  style="margin-left:6px; margin-right:6px; vertical-align:-10px;">
+              </a>
+
+            </p>
+
             <ul>
-              <li><strong>Custom</strong>: user editable name.</li>
-              <li><strong>First Effect Name</strong>: shows the first effect in the track rack.</li>
-              <li><strong>Last Effect Name</strong>: shows the last effect in the track rack.</li>
+              <li><strong>Custom Name</strong>: user editable name.</li>
+              <li><strong>From First Effect Name</strong>: shows the first effect in the track rack.</li>
+              <li><strong>From Last Effect Name</strong>: shows the last effect in the track rack.</li>
             </ul>
 
             <h3>Mute / Solo</h3>
@@ -325,18 +493,22 @@
       </section>
 
       <section id="grid-patterns" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-grid.png" alt="Grid Patterns">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss3.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
             <h2>Drawing &amp; Editing Patterns</h2>
 
             <h3>Create, Move, Resize</h3>
             <ul>
-              <li>Draw patterns on the grid.</li>
-              <li>Drag to move patterns to a new position.</li>
-              <li>Stretch patterns to change their length.</li>
+              <li><strong>Create:</strong> Click once on the grid to place a pattern. You can keep the mouse button
+                pressed and drag to define the initial length in one gesture.</li>
+              <li><strong>Resize:</strong> After a pattern is created, drag its <strong>right edge</strong> to stretch
+                or shrink the length.</li>
+              <li><strong>Move:</strong> Click and drag the pattern <strong>left/right</strong> to reposition it on the
+                timeline.</li>
+              <li><strong>Delete:</strong> Double-click a pattern to remove it.</li>
             </ul>
 
             <h3>Change a Pattern’s Snapshot</h3>
@@ -349,9 +521,9 @@
       </section>
 
       <section id="fx-rack" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-fx-rack.png" alt="FX Rack">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss4.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
             <h2>FX Rack &amp; Snapshots</h2>
@@ -379,9 +551,9 @@
       </section>
 
       <section id="edit-vs-live" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-edit-mode.png" alt="Edit Mode">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ed1.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
             <h2>Edit Mode vs Live Recording</h2>
@@ -391,17 +563,40 @@
               captured.
             </p>
 
-            <h3>EDIT ON (Snapshot Editing)</h3>
+            <h3>Edit ON (Snapshot Editing) <img class="zoomable" src="images/guide/edon.png" alt="Playback Modes"
+                style="margin-left:2px; vertical-align: -5px;  height: 22px;"></h3>
             <ul>
               <li>Snapshots are not driven by the grid while editing.</li>
               <li>Select a snapshot slot and tweak parameters.</li>
               <li>Your changes are stored only in the selected snapshot.</li>
+              <li>
+                When a track is in <strong>Edit</strong> mode and the FX Rack is not currently shown, the grid is
+                highlighted with
+                an
+                <strong>Editing</strong> label.
+                <img class="zoomable" src="images/guide/ed3.png" alt="Playback Modes"
+                  style="margin-left:2px; vertical-align: -6px;  height: 22px;">
+
+              </li>
+              <li>
+                Double-click the highlighted <strong>Editing</strong> area to exit Edit mode.
+              </li>
+              <li>
+                A small <strong>e</strong> indicator <img class="zoomable" src="images/guide/ed2.png"
+                  alt="Playback Modes" style="margin-left:2px; vertical-align: -18px;  "> also appears above the track’s
+                <strong>FX</strong> button.
+                Clicking it exits Edit mode.
+              </li>
             </ul>
 
-            <h3>EDIT OFF (Live Performance / Recording)</h3>
+
+            <h3>Edit OFF (Live Performance / Recording) <img class="zoomable" src="images/guide/edoff.png"
+                alt="Playback Modes" style="margin-left:2px; vertical-align: -5px;  height: 22px;"></h3>
             <ul>
               <li>The grid continues to recall snapshots during playback.</li>
-              <li>If you tweak parameters while the DAW is playing, Nexora records your changes in real time.</li>
+              <li>Nexora runs even when the DAW is not playing, using a local internal timer.</li>
+              <li>When the DAW is playing, timing and transport are driven by the host (DAW).</li>
+              <li>If you tweak parameters while the sequence is running, Nexora records your changes in real time.</li>
               <li>The value you changed becomes part of the active snapshot state during playback.</li>
             </ul>
           </div>
@@ -409,32 +604,159 @@
       </section>
 
       <section id="modifier-keys" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-modifier-keys.png" alt="Modifier Keys">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss6.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
-            <h2>Modifier Keys</h2>
+            <h2>Effects &amp; Controls</h2>
 
-            <h3>Shift = Apply to All Snapshots</h3>
             <p>
-              Hold <strong>Shift</strong> while changing a parameter to apply that parameter change across
-              <strong>all snapshots</strong> of the current effect.
+              Nexora includes a library of <strong>20 effects</strong>. Each track supports up to <strong>4
+                effects</strong>
+              in its FX Rack.
             </p>
 
-            <h3>Alt = Reset to Default</h3>
+            <h3>Adding Effects</h3>
             <p>
-              Hold <strong>Alt</strong> while changing/clicking a parameter to reset it to its <strong>default
-                value</strong>.
+              Add an effect by <strong>dragging</strong> it from the effects list (bottom panel) into the track’s FX
+              Rack.
+            </p>
+
+            <div><img class="zoomable" src="images/guide/ss16.png" alt="Playback Modes"
+                style="margin-left:6px; margin-right:6px; vertical-align:-10px; height: 50px;">
+            </div>
+
+            <h3>Effect Slot Controls</h3>
+            <p>Each effect in the rack includes the following controls:</p>
+            <ul>
+              <li><strong>Bypass</strong>: toggles the effect on/off.<img class="zoomable" src="images/guide/fx1.png"
+                  alt="Playback Modes" style="margin-left: 6px; vertical-align:-5px;"></li>
+              <li><strong>Lock</strong>: protects the effect from Randomization.<img class="zoomable"
+                  src="images/guide/fx2.png" alt="Playback Modes" style="margin-left: 6px; vertical-align:-5px;"></li>
+              <li><strong>Drag Handle</strong> (hamburger): drag to reorder effects.<img class="zoomable"
+                  src="images/guide/fx3.png" alt="Playback Modes" style="margin-left: 6px; vertical-align:-5px;"></li>
+              <li><strong>Remove by Drag</strong>: drag an effect to the bottom area to remove it from the rack.<img
+                  class="zoomable" src="images/guide/fx3.png" alt="Playback Modes"
+                  style="margin-left: 6px; vertical-align:-5px;"></li>
+              <li><strong>X</strong>: removes the effect from the rack.<img class="zoomable" src="images/guide/fx4.png"
+                  alt="Playback Modes" style="margin-left: 6px; vertical-align:-4px;"></li>
+              <li><strong>C</strong>: copies the parameters of the <strong>current snapshot</strong>.<img
+                  class="zoomable" src="images/guide/fx6.png" alt="Playback Modes"
+                  style="margin-left: 6px; vertical-align:-4px;"></li>
+              <li><strong>P</strong>: pastes copied parameters into the <strong>current snapshot</strong> (disabled
+                until copied).
+                <img class="zoomable" src="images/guide/fx7.png" alt="Playback Modes"
+                  style="margin-left: 6px; vertical-align:-4px;">
+              </li>
+              <li><strong>Random</strong>: randomizes effect parameters (see behavior below).<img class="zoomable"
+                  src="images/guide/fx8.png" alt="Playback Modes" style="margin-left: 6px; vertical-align:-8px;"></li>
+              <li><strong>S</strong>: copies the current snapshot parameters to <strong>all snapshots</strong> of that
+                effect.<img class="zoomable" src="images/guide/fx9.png" alt="Playback Modes"
+                  style="margin-left: 6px; vertical-align:-4px;"></li>
+            </ul>
+
+
+            <h3>Effect Random Behavior (All Snapshots Switch)</h3>
+            <p>
+              The effect <strong>Random</strong> button behavior depends on the rack switch <strong>All
+                Snapshots</strong>:
+            </p>
+            <ul>
+              <li><strong>All Snapshots = ON</strong>: randomizes the effect across <strong>all 8 snapshots</strong>.
+              </li>
+              <li><strong>All Snapshots = OFF</strong>: randomizes only the <strong>current snapshot</strong>.</li>
+            </ul>
+
+            <div class="image-placeholder">
+              <img class="zoomable" src="images/guide/allss.png" style="margin-top: 10px;" alt="Playback Modes">
+            </div>
+
+            <h3>Modifier Keys</h3>
+            <p>
+              <strong>Shift</strong>: When adjusting a parameter, hold <strong>Shift</strong> to apply the change to
+              <strong>all snapshots</strong> of the current effect. This works with any control interaction (mouse drag,
+              knob/slider changes, etc.).
+            </p>
+            <p>
+              <strong>Alt</strong>: When adjusting a parameter, hold <strong>Alt</strong> to reset it to its
+              <strong>default value</strong>. This works with any control interaction (mouse click/drag, knob/slider
+              changes, etc.).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="random-config" class="guide-section">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss9.png" alt="Playback Modes">
+          </div>
+          <div class="guide-text">
+            <h2>Random Config</h2>
+
+            <p>
+              The Random Config panel lets you control exactly what Nexora is allowed to randomize: effects, rack size,
+              snapshots, and grid content.
+            </p>
+
+
+            <h3>With FX</h3>
+            <p>
+              Enables effect randomization. When <strong>With FX</strong> is enabled, Nexora can build or modify the FX
+              Rack
+              according to the settings below.
+            </p>
+
+            <h3>Effect Selection</h3>
+            <p>
+              Choose which effects are allowed during randomization. The effect list works like a set of checkboxes:
+              only the selected effects can be used when <strong>With FX</strong> is enabled.
+            </p>
+
+
+            <h3>Max FX in Track (1–4)</h3>
+            <p>
+              Sets the <strong>maximum</strong> number of effects per track that Random may produce. For example, if set
+              to
+              <strong>4</strong>, Random can still generate 1–4 effects; this value is only an upper limit.
+            </p>
+
+            <h3>With FX Snapshots</h3>
+            <p>Controls snapshot randomization inside effects:</p>
+            <ul>
+              <li><strong>ON</strong>: Randomizes the effect across <strong>all snapshots</strong> (up to 8 snapshots
+                per effect).</li>
+              <li><strong>OFF</strong>: Randomizes only the <strong>current snapshot</strong>.</li>
+            </ul>
+
+            <h3>With Grid Snapshots</h3>
+            <p>
+              Randomizes the <strong>snapshot assignments</strong> used by patterns on the grid (which snapshot each
+              pattern triggers).
+            </p>
+
+            <h3>With Grid</h3>
+            <p>
+              Resets and randomizes the <strong>grid patterns</strong> themselves. Use this when you want Random to
+              generate
+              new grid content, not just new snapshot assignments.
+            </p>
+
+            <h3>Fill Grid</h3>
+            <p>
+              Sets how dense the randomized grid should be. Higher values create more patterns; lower values create
+              sparser,
+              more rhythmic space. This is an intensity/density percentage for how much of the grid is filled.
             </p>
           </div>
         </div>
       </section>
 
       <section id="randomization" class="guide-section">
-        <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-random-locks.png" alt="Randomization & Locks">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/ss8.png" alt="Playback Modes">
           </div>
           <div class="guide-text">
             <h2>Randomization &amp; Locks</h2>
@@ -476,21 +798,48 @@
         </div>
       </section>
 
-      <section id="workflow-tips" class="guide-section">
+      <section id="automatable-control" class="guide-section">
         <div class="guide-row">
-          <div class="guide-image">
-            <img src="images/guide/placeholder-workflow.png" alt="Workflow Tips">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/sss1.png" alt="Playback Modes" style="display:block; margin:50px auto 24px;">
+            <img src="images/guide/sss2.png" alt="Playback Modes" style="display:block; margin:0 auto 30px;">
+            <img src="images/guide/sss3.png" alt="Playback Modes" style="display:block; margin:0 auto 30px;">
+            <img src="images/guide/sss4.png" alt="Playback Modes" style="display:block; margin:0 auto;">
           </div>
+
           <div class="guide-text">
-            <h2>Workflow Tips</h2>
+            <h2>Automatable Control</h2>
+
+            <p>
+              Nexora supports host automation for key performance controls. You can record automation in your DAW and
+              refine it in the automation lanes for precise transitions and movement.
+            </p>
+
+
+            <h3>Master Controls</h3>
             <ul>
-              <li>Start simple: 1 track + 1 effect + a short grid pattern.</li>
-              <li>Use Snapshots to add variation instead of drawing more patterns.</li>
-              <li>Use Parallel for dense textures, Sequential for evolving fills.</li>
-              <li>Use Random to generate ideas, then lock what you like and randomize the rest.</li>
-              <li>Use EDIT ON for precise snapshot design; use EDIT OFF to perform and capture changes during playback.
-              </li>
+              <li><strong>Master Pan</strong></li>
+              <li><strong>Master Mix</strong></li>
+              <li><strong>Master Gain</strong></li>
+              <li><strong>Master Snapshot</strong></li>
             </ul>
+
+            <h3>All Tracks Controls</h3>
+            <ul>
+              <li><strong>All Tracks Pan</strong> – offsets the Pan value for every track (each track still has its own
+                Pan).</li>
+              <li><strong>All Tracks Mix</strong> – offsets the Mix value for every track (each track still has its own
+                Mix).</li>
+              <li><strong>All Tracks Gain</strong> – offsets the Gain value for every track (each track still has its
+                own Gain).</li>
+            </ul>
+
+            <h3>Selected Track Controls</h3>
+            <ul>
+              <li><strong>Selected Track</strong> – automates track selection for focused editing and performance.</li>
+            </ul>
+
+            <p>Tip: Automate <strong>Master Snapshot</strong> for fast global transitions.</p>
           </div>
         </div>
       </section>
@@ -498,31 +847,155 @@
       <section id="menu" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-menu.png" alt="Main Menu">
+            <img src="images/guide/mm.png" alt="Main Menu">
           </div>
-          <div class="guide-text">
-            <h2>Main Menu</h2>
 
-            <h3>Licensing and Updates</h3>
+          <div class="guide-text">
+            <h2>Main Menu <img class="zoomable" src="images/guide/menubtn.png"
+                style="margin-left:6px;  vertical-align:-12px;" alt="Main Menu">
+            </h2>
+
+
+
+            <h3>Trial / Activation</h3>
             <ul>
-              <li><strong>About</strong>: version, build, and credits.</li>
-              <li><strong>Activate</strong>: enter your license key.</li>
-              <li><strong>Check for Update</strong>: checks for newer versions and offers to download if available.</li>
+              <li><strong>Activate</strong>: (Trial only) enter your license key to unlock the full version.</li>
             </ul>
 
-            <h3>View and Layout</h3>
+            <h3>About &amp; Updates</h3>
             <ul>
-              <li><strong>Resize</strong>: scales the plugin UI.</li>
-              <li><strong>Show/Hide Panels</strong>: toggle visibility of main panels as needed.</li>
+              <li><strong>About</strong>: version, build, and credits.</li>
+              <li><strong>Check for Updates</strong>: checks for a newer version and offers to download if available.
+              </li>
+              <li><strong>Email My License</strong>: (Full version only) sends your license information to your email.
+              </li>
+            </ul>
+
+            <h3>View &amp; Layout</h3>
+            <ul>
+              <li>
+                <strong>Resize</strong> scales the plugin UI.
+                <img class="zoomable" src="images/guide/resize.png" alt="Playback Modes"
+                  style="margin-left:6px; vertical-align:-70px;">
+              </li>
+            </ul>
+
+            <h3>Track Options</h3>
+            <ul>
+              <li>
+                <strong>Track Name Source</strong>: selects how track names are displayed (Custom / First Effect / Last
+                Effect).
+                <img class="zoomable" src="images/guide/ss10.png" alt="Playback Modes"
+                  style=" margin:16; margin-left:6px; height:70px; vertical-align:-60px;">
+              </li>
             </ul>
 
             <h3>Presets</h3>
             <ul>
               <li><strong>Init Preset</strong>: loads a clean default state.</li>
               <li><strong>Load Preset</strong>: loads a preset from your library.</li>
-              <li><strong>Save Preset</strong>: saves the current state as a preset.</li>
               <li><strong>Show Preset Folder</strong>: opens the preset library location.</li>
             </ul>
+
+            <h3>Recorder</h3>
+            <ul>
+              <li><strong>Show Recorded Folder</strong>: opens the folder where recordings are saved.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="recorder" class="guide-section">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/recorder2.png" alt="Recorder">
+          </div>
+
+          <div class="guide-text">
+            <h2>Recorder</h2>
+
+            <h3>Location and View</h3>
+            <p>
+              The Recorder is located in the bottom panel. Use the <strong>REC</strong> button <img class="zoomable"
+                src="images/guide/tb1.png" alt="Playback Modes"
+                style="margin-left: 2px; margin-right: 4px; vertical-align:-8px;">on the
+              top-left of the
+              Top Bar to
+              show or hide the Recorder view.
+            </p>
+            <p>
+              While recording, the Recorder view cannot be hidden — the <strong>REC</strong> button is disabled until
+              recording
+              stops.
+            </p>
+
+
+
+
+            <h3>Auto Record button <img class="zoomable" src="images/guide/rec6.png" alt="Playback Modes"
+                style="margin-left: 2px; margin-right: 4px; vertical-align:-8px;"></h3>
+            <ul>
+              <li><strong>Auto</strong>: starts recording when sound is detected (level crosses the Threshold).</li>
+              <li><strong>Threshold</strong>: sets the detection level (dB) that arms the recorder.<img class="zoomable"
+                  src="images/guide/rec7.png" alt="Playback Modes"
+                  style="margin-left: 10px; margin-right: 4px; vertical-align:-14px;"></li>
+            </ul>
+
+            <h3>Waveform Interaction</h3>
+            <ul>
+              <li>While playing, drag on the waveform to change the playback position and continue playing from there.
+              </li>
+              <li>When not playing and not recording, you can drag the recorded file out to drop it elsewhere.</li>
+            </ul>
+
+            <h3>Export <img class="zoomable" src="images/guide/rec5.png" alt="Playback Modes"
+                style="margin-left: 6px; margin-right: 4px; vertical-align:-6px;"></h3>
+            <p>
+              Click <strong>Export</strong> to save the recorded take into the <strong>Recorded Folder</strong>.
+              You can open it from the Main Menu:<a href="#menu"> <img class="zoomable" src="images/guide/menubtn.png"
+                  style="margin-left:6px;  vertical-align:-10px;" alt="Main Menu"></a> <strong>Show Recorded
+                Folder</strong>.
+            </p>
+            <ul>
+              <li><strong>Windows</strong>: <code>%USERPROFILE%\Documents\Nexora\Recorded</code></li>
+              <li><strong>macOS</strong>: <code>~/Documents/Nexora/Recorded</code></li>
+            </ul>
+
+          </div>
+        </div>
+      </section>
+      <section id="trial" class="guide-section">
+        <div class="guide-row" style="align-items:center;">
+          <div class="guide-image" style="text-align:center;">
+            <img src="images/guide/acivate.png" alt="Trial Version">
+          </div>
+
+          <div class="guide-text">
+            <h2>Trial Version</h2>
+
+            <p>
+              Nexora can be used in Trial mode to evaluate the workflow and sound before purchasing a license.
+            </p>
+
+            <h3>Limitations</h3>
+            <ul>
+              <li><strong>No session saving</strong> (presets/projects cannot be saved in Trial).</li>
+              <li><strong>Session time limit</strong>: each session is limited to <strong>20 minutes</strong>.<img
+                  class="zoomable" src="images/guide/trial.png" alt="Playback Modes"
+                  style=" margin:16; margin-left:6px;  vertical-align:-12px;"></li>
+              <li>
+                <strong>Recorder limitation</strong>: playback includes a brief silence every <strong>4
+                  seconds</strong>.
+              </li>
+            </ul>
+
+            <h3>Unlock Full Version</h3>
+            <p>
+              Open the <strong>Main Menu</strong><a href="#menu"> <img class="zoomable" src="images/guide/menubtn.png"
+                  style="margin-left:6px;  vertical-align:-12px;" alt="Main Menu"></a>, choose <strong>Activate</strong>
+              (Trial only), and enter your license
+              key.
+            </p>
+
           </div>
         </div>
       </section>
@@ -555,5 +1028,6 @@
       }, { passive: true });
     });
   </script>
+</body>
 
 </html>
