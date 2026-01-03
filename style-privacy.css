@@ -218,6 +218,29 @@ button:active,
    white-space: nowrap;
 }
 
+.license-note {
+   margin-top: 22px;
+   padding: 12px 14px;
+   border-radius: 10px;
+   background: rgba(255, 255, 255, 0.06);
+   border: 1px solid rgba(255, 255, 255, 0.12);
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+   font-size: 0.95rem;
+   line-height: 1.5;
+}
+
+
+.license-note strong {
+   color: #4de6fd;
+   font-weight: 700;
+}
+
+.license-note-inline {
+   margin-left: 22px;
+   font-size: 0.95rem;
+   opacity: 0.95;
+}
+
 @media (max-width: 768px) {
    body {
       padding: 10px;
