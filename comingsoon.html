@@ -68,7 +68,9 @@
 </head>
 
 <body>
-    <div class="bg"></div>
+    <div class="bg">
+        <div class="bg-layer"></div>
+    </div>
     <div class="coming-soon-container">
         <h1>Coming Soon</h1>
         <p>The DWP-16 plugin is almost here! We're working hard to deliver the ultimate audio production experience.</p>
@@ -81,17 +83,38 @@
         document.addEventListener('DOMContentLoaded', function () {
             document.body.classList.add('page-loaded');
 
-            var bg = document.querySelector('.bg');
-            if (!bg) return;
+            var layer = document.querySelector('.bg-layer');
+            if (!layer) return;
 
-            var strength = 0.1;
-            var maxMove = 1000;
+            var maxMove = 300;
+            var ticking = false;
 
-            window.addEventListener('scroll', function () {
-                var y = window.scrollY || 0;
-                var move = Math.max(-maxMove, Math.min(maxMove, -y * strength));
-                bg.style.transform = 'translate3d(0,' + move + 'px,0)';
-            }, { passive: true });
+            function clamp(v, a, b) {
+                return v < a ? a : (v > b ? b : v);
+            }
+
+            function update() {
+                var doc = document.documentElement;
+                var y = window.scrollY || doc.scrollTop || 0;
+                var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+                var t = clamp(y / maxScroll, 0, 1);
+
+                var move = -t * maxMove;
+                layer.style.transform = 'translate3d(0,' + move + 'px,0)';
+            }
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    update();
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', update, { passive: true });
+            update();
         });
     </script>
 </body>

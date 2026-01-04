@@ -188,8 +188,10 @@
 
 </head>
 
-<body>
-  <div class="bg"></div>
+<body class="guide-page">
+  <div class="bg">
+    <div class="bg-layer"></div>
+  </div>
   <div class="container">
     <header>
       <div class="header-container header-top">
@@ -197,7 +199,9 @@
           <img src="ic_logo.png" alt="Nexora Logo" class="logo">
           <h2 class="header-logo">Nexora</h2>
         </a>
-
+        <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
         <nav class="header-nav">
           <a href="#installation" class="nav-link">Installation</a>
           <a href="#top-bar" class="nav-link">Top Bar</a>
@@ -214,6 +218,7 @@
         </nav>
       </div>
     </header>
+    <div class="nav-overlay"></div>
 
     <main class="guide-main">
       <div class="main-header">
@@ -221,7 +226,7 @@
           <h2>How to Use Nexora</h2>
           <p>Step-by-step visual guide.</p>
         </div>
-        <button onclick="window.location.href='download.html'">Download Now</button>
+        <button onclick="window.location.href='download.html'">Go To Download</button>
       </div>
 
       <section id="installation" class="guide-section">
@@ -456,7 +461,7 @@
               <img src="images/guide/sss2.png" alt="Playback Modes" style=" margin-top: 8px;">
             </p>
 
-            <h3>Track Name Souece (3 modes)</h3>
+            <h3>Track Name Source (3 modes)</h3>
             <p>
               Select the track name mode from the track <strong>Menu</strong>:
               <a href="#menu">
@@ -905,8 +910,8 @@
         </div>
       </section>
       <section id="recorder" class="guide-section">
-        <div class="guide-row" style="align-items:center;">
-          <div class="guide-image" style="text-align:center;">
+        <div class="guide-row">
+          <div class="guide-image">
             <img src="images/recorder2.png" alt="Recorder">
           </div>
 
@@ -915,29 +920,28 @@
 
             <h3>Location and View</h3>
             <p>
-              The Recorder is located in the bottom panel. Use the <strong>REC</strong> button <img class="zoomable"
-                src="images/guide/tb1.png" alt="Playback Modes"
-                style="margin-left: 2px; margin-right: 4px; vertical-align:-8px;">on the
-              top-left of the
-              Top Bar to
-              show or hide the Recorder view.
+              The Recorder is located in the bottom panel. Use the <strong>REC</strong> button
+              <img class="zoomable" src="images/guide/tb1.png" alt="REC Button"
+                style="margin-left: 2px; margin-right: 4px; vertical-align:-8px;">
+              on the top-left of the Top Bar to show or hide the Recorder view.
             </p>
             <p>
               While recording, the Recorder view cannot be hidden — the <strong>REC</strong> button is disabled until
-              recording
-              stops.
+              recording stops.
             </p>
 
-
-
-
-            <h3>Auto Record button <img class="zoomable" src="images/guide/rec6.png" alt="Playback Modes"
-                style="margin-left: 2px; margin-right: 4px; vertical-align:-8px;"></h3>
+            <h3>
+              Auto Record button
+              <img class="zoomable" src="images/guide/rec6.png" alt="Auto Record"
+                style="margin-left: 6px; margin-right: 4px; vertical-align:-8px;">
+            </h3>
             <ul>
               <li><strong>Auto</strong>: starts recording when sound is detected (level crosses the Threshold).</li>
-              <li><strong>Threshold</strong>: sets the detection level (dB) that arms the recorder.<img class="zoomable"
-                  src="images/guide/rec7.png" alt="Playback Modes"
-                  style="margin-left: 10px; margin-right: 4px; vertical-align:-14px;"></li>
+              <li>
+                <strong>Threshold</strong>: sets the detection level (dB) that arms the recorder.
+                <img class="zoomable" src="images/guide/rec7.png" alt="Threshold"
+                  style="margin-left: 10px; margin-right: 4px; vertical-align:-14px;">
+              </li>
             </ul>
 
             <h3>Waveform Interaction</h3>
@@ -947,22 +951,28 @@
               <li>When not playing and not recording, you can drag the recorded file out to drop it elsewhere.</li>
             </ul>
 
-            <h3>Export <img class="zoomable" src="images/guide/rec5.png" alt="Playback Modes"
-                style="margin-left: 6px; margin-right: 4px; vertical-align:-6px;"></h3>
+            <h3>
+              Export
+              <img class="zoomable" src="images/guide/rec5.png" alt="Export"
+                style="margin-left: 6px; margin-right: 4px; vertical-align:-6px;">
+            </h3>
             <p>
               Click <strong>Export</strong> to save the recorded take into the <strong>Recorded Folder</strong>.
-              You can open it from the Main Menu:<a href="#menu"> <img class="zoomable" src="images/guide/menubtn.png"
-                  style="margin-left:6px;  vertical-align:-10px;" alt="Main Menu"></a> <strong>Show Recorded
-                Folder</strong>.
+              You can open it from the Main Menu:
+              <a href="#menu">
+                <img class="zoomable" src="images/guide/menubtn.png" alt="Main Menu"
+                  style="margin-left:6px; vertical-align:-10px;">
+              </a>
+              <strong>Show Recorded Folder</strong>.
             </p>
             <ul>
               <li><strong>Windows</strong>: <code>%USERPROFILE%\Documents\Nexora\Recorded</code></li>
               <li><strong>macOS</strong>: <code>~/Documents/Nexora/Recorded</code></li>
             </ul>
-
           </div>
         </div>
       </section>
+
       <section id="trial" class="guide-section">
         <div class="guide-row" style="align-items:center;">
           <div class="guide-image" style="text-align:center;">
@@ -1015,19 +1025,80 @@
     document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('page-loaded');
 
-      var bg = document.querySelector('.bg');
-      if (!bg) return;
+      var layer = document.querySelector('.bg-layer');
+      if (!layer) return;
 
-      var strength = 0.1;
-      var maxMove = 1000;
+      var maxMove = 300;
+      var ticking = false;
 
-      window.addEventListener('scroll', function () {
-        var y = window.scrollY || 0;
-        var move = Math.max(-maxMove, Math.min(maxMove, -y * strength));
-        bg.style.transform = 'translate3d(0,' + move + 'px,0)';
-      }, { passive: true });
+      function clamp(v, a, b) {
+        return v < a ? a : (v > b ? b : v);
+      }
+
+      function update() {
+        var doc = document.documentElement;
+        var y = window.scrollY || doc.scrollTop || 0;
+        var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+        var t = clamp(y / maxScroll, 0, 1);
+
+        var move = -t * maxMove;
+        layer.style.transform = 'translate3d(0,' + move + 'px,0)';
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          update();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!document.body.classList.contains('guide-page')) return;
+
+      var btn = document.querySelector('.nav-burger');
+      var nav = document.querySelector('.header-nav');
+      var overlay = document.querySelector('.nav-overlay');
+      if (!btn || !nav || !overlay) return;
+
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        overlay.classList.toggle('is-open', open);
+        btn.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      btn.addEventListener('click', function () {
+        setOpen(!nav.classList.contains('is-open'));
+      });
+
+      overlay.addEventListener('click', function () {
+        setOpen(false);
+      });
+
+      nav.addEventListener('click', function (e) {
+        if (e.target && e.target.classList && e.target.classList.contains('nav-link')) {
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    });
+  </script>
+
+
+
+
 </body>
 
 </html>

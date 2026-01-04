@@ -24,16 +24,23 @@ body {
 
 .bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 200vh;
+  inset: 0;
   z-index: -1;
-  background-image: url("images/background.png");
+  overflow: hidden;
+}
+
+.bg-layer {
+  position: absolute;
+  left: 0;
+  top: -40vh;
+  width: 100%;
+  height: 180vh;
+  background-image: url("images/background2.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 0%;
   transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 body.page-loaded {
@@ -492,6 +499,12 @@ footer {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.guide-text p,
+.guide-text li {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .guide-text {
   flex: 1;
   padding: 20px;
@@ -615,8 +628,36 @@ img.zoomable:active {
   opacity: 1;
 }
 
-/* MOBILE */
+.nav-burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px;
+}
 
+.nav-burger span {
+  display: block;
+  height: 2px;
+  margin: 6px 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+
+
+body.guide-page .nav-burger {
+  max-width: none;
+}
+
+img {
+  max-width: 100% !important;
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
   body {
     padding-top: 10px;
@@ -739,8 +780,111 @@ img.zoomable:active {
   .guide-text {
     text-align: left;
   }
-}
 
-img {
-  max-width: 100% !important;
+  body.guide-page header {
+    position: sticky;
+    top: 0;
+    z-index: 3000;
+  }
+
+  body.guide-page .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 3001;
+  }
+
+  body.guide-page .nav-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.guide-page .header-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(86vw, 340px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 12px;
+    background: rgba(26, 26, 33, 0.98);
+    border-left: 1px solid rgba(255, 255, 255, 0.10);
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.25s ease;
+    z-index: 3002;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    pointer-events: none;
+  }
+
+  body.guide-page .header-nav.is-open {
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+  }
+
+  body.guide-page .header-nav .nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 10px;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  body.guide-page .header-nav .nav-link:active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  body.guide-page .nav-burger {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    flex: 0 0 auto;
+    max-width: none;
+    z-index: 3003;
+  }
+
+  body.guide-page .nav-burger span {
+    display: block;
+    height: 2px;
+    margin: 6px 0;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  body.guide-page .header-container.header-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%;
+  }
+
+  body.guide-page header {
+    position: sticky;
+    top: 0;
+    z-index: 3000;
+  }
+
+  body.guide-page .nav-overlay {
+    z-index: 2990;
+  }
+
+  body.guide-page .header-nav {
+    z-index: 3010;
+  }
+
+  body.guide-page .nav-burger {
+    z-index: 3020;
+  }
 }

@@ -25,7 +25,9 @@
 </script>
 
 <body>
-    <div class="bg"></div>
+    <div class="bg">
+        <div class="bg-layer"></div>
+    </div>
     <script>
         function trackDownload(platform) {
             if (typeof gtag === "function") {
@@ -37,8 +39,13 @@
         }
     </script>
 
+
     <div class="container">
-        <header>
+        <header class="topbar" style="display: block;">
+            <a href="index.html" class="logo-container">
+                <img src="ic_logo.png" alt="Nexora Logo" class="logo">
+                <h2 class="header-logo">Nexora</h2>
+            </a>
             <h1>Download Nexora Plugin</h1>
             <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
 

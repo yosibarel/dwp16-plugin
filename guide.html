@@ -186,9 +186,10 @@
   });
 </script>
 
-<body>
-  <div class="bg"></div>
-
+<body class="guide-page">
+  <div class="bg">
+    <div class="bg-layer"></div>
+  </div>
   <div class="container">
     <header>
 
@@ -197,6 +198,9 @@
           <img src="ic_logo.png" alt="DWP-16 Logo" class="logo">
           <h2 class="header-logo">DWP-16</h2>
         </a>
+        <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
         <nav class="header-nav">
           <a href="#installation" class="nav-link">Installation</a>
           <a href="#touchpad" class="nav-link">Touchpad</a>
@@ -216,6 +220,7 @@
 
 
     </header>
+    <div class="nav-overlay"></div>
 
     <main class="guide-main">
       <div class="main-header">
@@ -223,7 +228,7 @@
           <h2>How to Use DWP-16</h2>
           <p>Step-by-step visual guide.</p>
         </div>
-        <button onclick="window.location.href='download.html'">Download Now</button>
+        <button onclick="window.location.href='download.html'">Go To Download</button>
       </div>
       <section id="installation" class="guide-section">
         <div class="guide-row onecol">
@@ -843,19 +848,77 @@
     document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('page-loaded');
 
-      var bg = document.querySelector('.bg');
-      if (!bg) return;
+      var layer = document.querySelector('.bg-layer');
+      if (!layer) return;
 
-      var strength = 0.05;
-      var maxMove = 1024;
+      var maxMove = 300;
+      var ticking = false;
 
-      window.addEventListener('scroll', function () {
-        var y = window.scrollY || 0;
-        var move = Math.max(-maxMove, Math.min(maxMove, -y * strength));
-        bg.style.transform = 'translate3d(0,' + move + 'px,0)';
-      }, { passive: true });
+      function clamp(v, a, b) {
+        return v < a ? a : (v > b ? b : v);
+      }
+
+      function update() {
+        var doc = document.documentElement;
+        var y = window.scrollY || doc.scrollTop || 0;
+        var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+        var t = clamp(y / maxScroll, 0, 1);
+
+        var move = -t * maxMove;
+        layer.style.transform = 'translate3d(0,' + move + 'px,0)';
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          update();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!document.body.classList.contains('guide-page')) return;
+
+      var btn = document.querySelector('.nav-burger');
+      var nav = document.querySelector('.header-nav');
+      var overlay = document.querySelector('.nav-overlay');
+      if (!btn || !nav || !overlay) return;
+
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        overlay.classList.toggle('is-open', open);
+        btn.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.documentElement.style.overflow = open ? 'hidden' : '';
+      }
+
+      btn.addEventListener('click', function () {
+        setOpen(!nav.classList.contains('is-open'));
+      });
+
+      overlay.addEventListener('click', function () {
+        setOpen(false);
+      });
+
+      nav.addEventListener('click', function (e) {
+        if (e.target && e.target.classList && e.target.classList.contains('nav-link')) {
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    });
+  </script>
+
 
 </body>
 
