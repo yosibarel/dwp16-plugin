@@ -124,6 +124,12 @@ p {
   font-size: 1.4rem;
 }
 
+.coming-soon-brand {
+  width: fit-content;
+  margin: 24px 20px 0;
+  color: #fff;
+}
+
 .header-nav-wrap {
   position: relative;
   flex: 1 1 auto;
@@ -347,6 +353,39 @@ button:active {
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.product-image-placeholder {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 1px solid rgba(77, 230, 253, 0.35);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(77, 230, 253, 0.08), rgba(26, 26, 33, 0.3)),
+    #23232b;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.empty-page-state {
+  min-height: 42vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-page-state p {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 /* DEMO / DOWNLOAD / CONTACT */
@@ -721,6 +760,10 @@ img {
 
   .feature-image {
     margin-bottom: 10px;
+  }
+
+  .product-image-placeholder {
+    min-height: 210px;
   }
 
   #demo {

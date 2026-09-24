@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequencer | Creative 32-Step MIDI Sequencer Plugin</title>
+    <meta name="description"
+        content="Sequencer is a flexible 32-step MIDI sequencer plugin for building melodies, rhythms, modulation and evolving patterns inside your DAW.">
+    <meta name="keywords"
+        content="Sequencer, MIDI sequencer, step sequencer, VST3, Max for Live, music production, MIDI plugin">
+    <meta name="author" content="DWP Plugin">
+    <meta property="og:title" content="Sequencer | Creative 32-Step MIDI Sequencer">
+    <meta property="og:description"
+        content="Create expressive MIDI patterns with pitch, velocity, gate, timing, pan and four control lanes.">
+    <meta property="og:url" content="https://dwp-plugin.com/sequencer/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sequencer | Creative 32-Step MIDI Sequencer">
+    <meta name="twitter:description"
+        content="A focused MIDI sequencer for expressive patterns, modulation and live performance.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Sequencer",
+        "description": "A creative 32-step MIDI sequencer plugin for melodies, rhythms, modulation and evolving patterns.",
+        "url": "https://dwp-plugin.com/sequencer/",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Windows, macOS"
+    }
+    </script>
+    <link rel="stylesheet" href="../style.css?v=1.7">
+    <link rel="icon" href="../ic_logo.png" type="image/png">
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9KQHGHMQ9Q"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-9KQHGHMQ9Q');
+</script>
+
+<body>
+    <div class="bg">
+        <div class="bg-layer"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-container">
+                <a href="index.html" class="logo-container">
+                    <img src="../ic_logo.png" alt="Sequencer Logo" class="logo">
+                    <h2 class="header-logo">Sequencer</h2>
+                </a>
+
+                <div class="header-nav-wrap">
+                    <nav class="header-nav">
+                        <a href="guide.html" class="nav-link">How To Use</a>
+                        <a href="terms.html" class="nav-link">Terms of Service</a>
+                        <a href="privacy.html" class="nav-link">Privacy Policy</a>
+
+                        <div class="nav-item-dropdown">
+                            <button type="button" class="nav-dropdown-toggle">
+                                Products
+                                <span class="nav-dropdown-arrow"></span>
+                            </button>
+                            <div class="nav-dropdown-menu">
+                                <a href="../index.html" class="product-link">DWP-16</a>
+                                <a href="../nexora/index.html" class="product-link">Nexora</a>
+                                <a href="index.html" class="product-link active">Sequencer</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-header">
+            <div>
+                <h1>Welcome to Sequencer</h1>
+                <p>Expressive 32-step MIDI sequencing for patterns that move.</p>
+                <p class="formats-support" style="line-height: 1.6;">
+                    <strong>WIN:</strong> VST3 | Max for Live<br>
+                    <strong>MAC:</strong> VST3 | Max for Live
+                </p>
+            </div>
+            <button onclick="window.location.href='download.html'">Go To Download</button>
+        </div>
+
+        <section id="features" class="features">
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>Sequencer — Creative MIDI Sequencing</h3>
+                    <p>
+                        Turn simple MIDI input into expressive, evolving performances with a focused 32-step
+                        sequencer built for fast musical experimentation. Shape every step with independent pitch,
+                        velocity, gate, pan, rate and four control lanes, then define exactly how the pattern moves
+                        using flexible playback, retrigger and timing modes.
+                    </p>
+                    <p>
+                        Randomize, reset and shift pattern data in seconds, or refine each gesture with dedicated
+                        undo and redo. Host-synchronized and free timing options make Sequencer equally effective for
+                        tightly arranged productions, generative ideas and live performance. Available as a VST3
+                        MIDI effect for macOS and Windows.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="images/plugin.png" alt="Sequencer VST3 MIDI plugin interface">
+                </div>
+            </div>
+
+            <div class="feature-rowr">
+                <div class="feature-text">
+                    <h3>Max for Live — Direct Ableton Live Control</h3>
+                    <p>
+                        The included Max for Live device brings Sequencer into an Ableton Live MIDI chain while
+                        keeping the full editing experience in the plugin window. Place it before an instrument,
+                        open Sequencer from the device, and build patterns without leaving your Live set.
+                    </p>
+                    <p>
+                        Four dedicated control mappings let CTRL 1–4 animate parameters in the next instrument or
+                        effect, turning each sequence into a complete performance. Map a lane with Ableton Live's
+                        familiar parameter workflow, then use amount and offset controls to define its movement while
+                        note, velocity, pitch-bend, modulation and other MIDI data continue through the chain.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="images/max.png" alt="Sequencer Max for Live device in Ableton Live">
+                </div>
+            </div>
+
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, please email us at:
+                <a href="mailto:dwp@dwp-plugin.com">dwp@dwp-plugin.com</a>
+            </p>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.body.classList.add('page-loaded');
+
+            var layer = document.querySelector('.bg-layer');
+            if (!layer) return;
+
+            var maxMove = 300;
+            var ticking = false;
+
+            function clamp(v, a, b) {
+                return v < a ? a : (v > b ? b : v);
+            }
+
+            function update() {
+                var doc = document.documentElement;
+                var y = window.scrollY || doc.scrollTop || 0;
+                var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+                var move = -clamp(y / maxScroll, 0, 1) * maxMove;
+                layer.style.transform = 'translate3d(0,' + move + 'px,0)';
+            }
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    update();
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', update, { passive: true });
+            update();
+        });
+    </script>
+</body>
+
+</html>
