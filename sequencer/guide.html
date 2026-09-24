@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sequencer User Guide | Coming Soon</title>
-    <meta name="description" content="The official Sequencer user guide is coming soon.">
-    <link rel="stylesheet" href="../style.css?v=1.7">
+    <title>Sequencer User Guide</title>
+    <meta name="description" content="Learn how to install and use the Sequencer VST3 plugin and Max for Live device.">
+    <link rel="stylesheet" href="../style.css?v=2.1">
     <link rel="icon" href="../ic_logo.png" type="image/png">
 </head>
 
@@ -23,20 +23,1047 @@
 
         <div class="main-header">
             <div>
-                <h1>Coming Soon</h1>
-                <p>The complete Sequencer user guide is on the way.</p>
+                <h1>Sequencer User Guide</h1>
+                <p>Installation, pattern creation, MIDI routing and performance controls.</p>
             </div>
         </div>
 
-        <main class="features empty-page-state">
-            <div>
-                <h2>How To Use Sequencer</h2>
-                <p>
-                    We are preparing a clear, detailed guide covering setup, pattern creation,
-                    playback modes, MIDI routing, control mapping and the Max for Live workflow.
-                    Please check back soon.
-                </p>
-            </div>
+        <nav class="guide-toc" aria-labelledby="guide-contents-title">
+            <h2 id="guide-contents-title">Table of Contents</h2>
+            <ol>
+                <li><a href="#installation">Installation and Architecture Support</a></li>
+                <li><a href="#quick-start">Quick Start and Signal Flow</a></li>
+                <li><a href="#interface">Interface Overview</a></li>
+                <li><a href="#pattern-editor">Pattern Editor</a></li>
+                <li><a href="#pattern-sections">Pitch, Velocity, Gate, Pan, Rate and CTRL Lanes</a></li>
+                <li><a href="#timing">Timing, Direction, Start and Step</a></li>
+                <li><a href="#play-modes">Play Modes, Retrigger and Impose</a></li>
+                <li><a href="#midi-recording">MIDI Input and Pattern Recording</a></li>
+                <li><a href="#control-mapping">CTRL Mapping, Amount, Offset and Pan</a></li>
+                <li><a href="#max-for-live">Max for Live Workflow</a></li>
+                <li><a href="#presets">Presets, Copy and Paste</a></li>
+                <li><a href="#shortcuts">Modifier Keys, DAW Undo/Redo and Ableton Keyboard Focus</a></li>
+                <li><a href="#trial-activation">Trial and Activation</a></li>
+            </ol>
+        </nav>
+
+        <main class="guide-main">
+            <section id="installation" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>1. Installation and Architecture Support</h2>
+                        <p>
+                            Sequencer is a MIDI-effect plugin. The main plugin is installed as VST3; there is no
+                            standalone application. The optional Max for Live device opens and controls the same VST3
+                            inside Ableton Live, so the VST3 is always required even when Max for Live is selected.
+                        </p>
+
+                        <div class="guide-support-table-wrap">
+                            <table class="guide-support-table">
+                                <thead>
+                                    <tr>
+                                        <th>Platform</th>
+                                        <th>Machine architecture</th>
+                                        <th>Plugin format</th>
+                                        <th>Max for Live</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>macOS</td>
+                                        <td>Apple Silicon (arm64) and Intel (x86_64), Universal binary</td>
+                                        <td>VST3 — required</td>
+                                        <td>Optional</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Windows</td>
+                                        <td>64-bit Intel and AMD (x64)</td>
+                                        <td>VST3 — required</td>
+                                        <td>Optional</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Before installation</h3>
+                        <ul>
+                            <li>Close your DAW before running the installer.</li>
+                            <li>Install the Max for Live component only if you use Ableton Live with Max for Live.</li>
+                            <li>The Max device does not replace the VST3; it hosts the VST3 and therefore depends on it.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Install on macOS</h3>
+                        <ol>
+                            <li>Download and open <code>Sequencer-macOS.pkg</code>.</li>
+                            <li>Continue to the component-selection screen.</li>
+                            <li>Keep <strong>VST3 Plugin (Required)</strong> selected.</li>
+                            <li>Leave <strong>Max for Live Device</strong> selected if you want Ableton integration, or deselect it otherwise.</li>
+                            <li>Complete the administrator-authorized installation, then restart or rescan your DAW.</li>
+                        </ol>
+                        <p>The VST3 is installed in <code>/Library/Audio/Plug-Ins/VST3/</code>. When selected, the Max device is installed in <code>~/Music/Ableton/User Library/Presets/MIDI Effects/Max MIDI Effect/</code>.</p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Install on Windows</h3>
+                        <ol>
+                            <li>Download and extract <code>Sequencer_Setup.zip</code>.</li>
+                            <li>Run <code>Sequencer_Setup.exe</code>.</li>
+                            <li>The required VST3 component remains enabled automatically.</li>
+                            <li>Select the optional Max for Live device only when you need Ableton integration.</li>
+                            <li>Finish installation, then restart or rescan your DAW.</li>
+                        </ol>
+                        <p>The VST3 is installed in the system Common Files VST3 directory. When selected, the Max device is installed in <code>Documents\Ableton\User Library\Presets\MIDI Effects\Max MIDI Effect\</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quick-start" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>2. Quick Start and Signal Flow</h2>
+                        <p>
+                            Sequencer receives MIDI notes, transforms them through the active pattern and sends the
+                            resulting MIDI to the next instrument. It does not generate audio, so an instrument must
+                            receive its MIDI output.
+                        </p>
+
+                        <h3>Use the VST3 in a compatible DAW</h3>
+                        <ol>
+                            <li>Create a MIDI or instrument track and load the Sequencer VST3.</li>
+                            <li>Place an instrument after Sequencer when the DAW supports MIDI effects in a device chain. In hosts that use separate tracks, route Sequencer’s MIDI output to the instrument track.</li>
+                            <li>Enable <strong>Play</strong> in Sequencer.</li>
+                            <li>Send a MIDI note to the plugin. The selected play mode determines whether the pattern plays while the note is held, toggles, latches or responds polyphonically.</li>
+                            <li>Select <strong>Pitch</strong> and draw step values in the pattern editor.</li>
+                            <li>Select <strong>Velocity</strong>, <strong>Gate</strong> or <strong>Rate</strong> to shape the performance further.</li>
+                            <li>Enable <strong>Sync</strong> and choose a Beat value when you want the sequence locked to the DAW timeline.</li>
+                        </ol>
+
+                        <h3>Use Sequencer in Ableton Live</h3>
+                        <ol>
+                            <li>Create a MIDI track.</li>
+                            <li>Place the <strong>Sequencer Max for Live</strong> device before the target instrument.</li>
+                            <li>Press <strong>Open Sequencer</strong> on the Max device to open the VST3 editor.</li>
+                            <li>Enable Play, send a MIDI note and draw the pattern in the plugin window.</li>
+                            <li>The Max device passes Sequencer’s generated MIDI to the next instrument in the chain.</li>
+                        </ol>
+
+                        <h3>Signal flow</h3>
+                        <p><strong>Compatible VST3 host:</strong> MIDI input → Sequencer VST3 → instrument → audio output.</p>
+                        <p><strong>Ableton Live:</strong> MIDI input → Sequencer Max for Live device/VST3 → next instrument → audio output.</p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-flow-diagram" aria-label="Sequencer MIDI signal flow examples">
+                        <div class="guide-flow-path">
+                            <h3>Compatible VST3 host</h3>
+                            <div class="guide-flow-chain">
+                                <span class="guide-flow-node">MIDI Input</span>
+                                <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                                <span class="guide-flow-node guide-flow-node-accent">Sequencer VST3</span>
+                                <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                                <span class="guide-flow-node">Instrument</span>
+                            </div>
+                        </div>
+                        <div class="guide-flow-path">
+                            <h3>Ableton Live</h3>
+                            <div class="guide-flow-chain">
+                                <span class="guide-flow-node">MIDI Input</span>
+                                <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                                <span class="guide-flow-node guide-flow-node-accent">Sequencer Max for Live<small>Hosts the VST3</small></span>
+                                <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                                <span class="guide-flow-node">Next Instrument</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="interface" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>3. Interface Overview</h2>
+                        <p>
+                            Sequencer keeps playback, pattern editing and performance controls in one window. The
+                            large editor on the right shows the selected lane across 32 steps, while the controls on
+                            the left define how the pattern starts, advances and responds to incoming MIDI.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <figure class="guide-image guide-interface-image">
+                        <img src="images/plugin.png" alt="Sequencer VST3 interface showing its transport, pattern editor, section selector, timing controls and preset bar">
+                        <figcaption>The Sequencer VST3 interface with a pitch pattern loaded.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Top bar</h3>
+                        <p>
+                            Choose the play mode, save and browse presets, move to the previous or next preset, open
+                            the main menu and select the MIDI Center note from the controls across the top.
+                        </p>
+
+                        <h3>Playback and pattern actions</h3>
+                        <p>
+                            Play enables sequence output and Record captures incoming MIDI into the pattern. The shift
+                            buttons move the pattern, while Rand and Reset modify the selected lane. Retrigger and
+                            Impose determine how new notes interact with a sequence already in progress.
+                        </p>
+
+                        <h3>Section selector and CTRL shaping</h3>
+                        <p>
+                            Select Pitch, Velocity, Gate, Pan, Rate or CTRL 1–4 to decide what the pattern editor
+                            displays. When a CTRL lane is selected, the Amount and Offset controls shape its outgoing
+                            values.
+                        </p>
+
+                        <h3>Timing and movement</h3>
+                        <p>
+                            Sync and Beat/Time control the timing source and step duration. Direction selects the
+                            playback order, while Start and Step define the starting position and movement through the
+                            pattern.
+                        </p>
+
+                        <h3>Pattern editor</h3>
+                        <p>
+                            The two 16-step rows form one 32-step pattern. Drag inside a step to edit the selected
+                            lane, and use the trigger row to enable or disable individual steps. The small triangle
+                            marks the selected starting step.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="pattern-editor" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>4. Pattern Editor</h2>
+                        <p>
+                            A pattern contains 32 steps, displayed as two rows of 16. Each step combines an on/off
+                            trigger with the value of the currently selected section. This lets the same 32-step
+                            pattern control pitch, velocity, gate, pan, rate and all four CTRL lanes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <figure class="guide-image guide-detail-image">
+                        <img src="images/pattern-editor.png" alt="The complete 32-step pattern editor displayed as two rows of 16 steps">
+                        <figcaption>The complete 32-step editor: steps 1–16 on top and steps 17–32 below.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Edit step values</h3>
+                        <p>
+                            First select the section you want to edit, then click or drag vertically inside the value
+                            area of a step. The line and value label update to show the new setting. Drag across
+                            multiple steps to draw a continuous pattern in one gesture.
+                        </p>
+
+                        <h3>Enable and disable steps</h3>
+                        <p>
+                            Use the trigger strip at the top of each step to include or remove that step from
+                            playback. A lit trigger is active; a dark trigger is disabled. Disabled steps remain part
+                            of the pattern but do not generate a sequenced note.
+                        </p>
+
+                        <h3>Choose the starting step</h3>
+                        <p>
+                            The small triangle at the left edge of a step marks the current Start position. Change it
+                            with the Start control, and Sequencer will begin from that position when the pattern is
+                            started or restarted.
+                        </p>
+
+                        <h3>Edit the complete lane with Alt/Option</h3>
+                        <p>
+                            Hold <strong>Alt</strong> on Windows or <strong>Option</strong> on macOS while changing a
+                            step to apply the change across all 32 steps in the currently selected section. On the
+                            trigger strip, the first clicked step determines the result: clicking an inactive trigger
+                            activates every trigger, while clicking an active trigger disables every trigger.
+                        </p>
+
+                        <p>
+                            A drag from mouse-down to mouse-up is treated as one edit for Undo and Redo, even when the
+                            gesture changes multiple steps.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="pattern-sections" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>5. Pitch, Velocity, Gate, Pan, Rate and CTRL Lanes</h2>
+                        <p>
+                            Every lane stores its own value for each of the 32 steps. Select a lane to display and
+                            edit it without changing the values stored in the other lanes. The illuminated indicator
+                            shows which lane is currently visible in the pattern editor.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-lane-layout">
+                    <figure class="guide-image guide-lane-selector-image">
+                        <img src="images/pattern-sections.png" alt="Sequencer section selector with Pitch, Velocity, Gate, Pan, Rate and four CTRL lanes">
+                        <figcaption>Select the lane you want to edit.</figcaption>
+                    </figure>
+
+                    <div class="guide-lane-descriptions">
+                        <article>
+                            <h3>Pitch</h3>
+                            <p>
+                                Transposes each generated note in semitones. Choose the editing range from
+                                <strong>Pitch Range</strong> in the main menu: −12 to +12, −24 to +24, 0 to +12,
+                                0 to +24 or 0 to +15. Notes recorded outside the selected range are folded by
+                                octaves so their pitch class remains inside the visible range.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Velocity</h3>
+                            <p>
+                                Sets the note strength for every step on a displayed 0–100 scale, which is converted
+                                to the MIDI velocity range of 0–127. When
+                                <strong>Vel: From MIDI</strong> is enabled, the incoming note velocity scales the
+                                value stored in this lane.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Gate</h3>
+                            <p>
+                                Controls how long the generated note remains on within its step. Lower values create
+                                short, detached notes; higher values hold the note for more of the step duration.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Pan</h3>
+                            <p>
+                                Stores a left-to-right position for each step. When <strong>Send Pan (CC 10)</strong>
+                                is enabled in the main menu, Sequencer sends these values to the next MIDI device or
+                                instrument. Disable Send Pan when you want the destination’s pan control to remain
+                                independent.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Rate</h3>
+                            <p>
+                                Changes the duration of individual steps relative to the main Beat or Time setting.
+                                Values include straight, dotted and triplet divisions from 4/1 through 1/64. This can
+                                create patterns whose rhythm changes from one step to the next.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>CTRL 1–4</h3>
+                            <p>
+                                Provide four independent 0–100 control lanes for parameter movement. They send MIDI
+                                CC 110–113 and can be mapped to controls in the next instrument or effect with MIDI
+                                Learn. Selecting a CTRL lane also enables its Amount and Offset knobs.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Randomize and reset</h3>
+                        <p>
+                            Rand and Reset normally affect only the selected lane. Hold <strong>Shift</strong> while
+                            pressing either button to apply the action to every lane, including the trigger pattern.
+                            The affected lane indicators briefly highlight to confirm the scope of the action.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="timing" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>6. Timing, Direction, Start and Step</h2>
+                        <p>
+                            These controls define the sequence clock, playback order and active section of the
+                            32-step pattern. Drag a knob vertically to change it; its current value appears while the
+                            pointer is over the control.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-control-layout">
+                    <figure class="guide-image guide-timing-image">
+                        <img src="images/timing-controls.png" alt="Sequencer Sync, Beat, Direction, Start and Step controls">
+                        <figcaption>With Sync enabled, Beat sets the host-relative base duration.</figcaption>
+                    </figure>
+
+                    <div class="guide-control-descriptions">
+                        <article>
+                            <h3>Sync</h3>
+                            <p>
+                                Enable Sync to follow the DAW tempo and timeline. Sequencer uses the host PPQ position
+                                when the host provides it, with its internal sample scheduler as a fallback. Disable
+                                Sync to use a fixed time in milliseconds instead.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Beat or Time</h3>
+                            <p>
+                                In Sync mode, the upper-left knob is <strong>Beat</strong> and selects a musical
+                                division from 4/1 through 1/64, including dotted and triplet values. With Sync off,
+                                the same position becomes <strong>Time</strong> and sets the base step duration from
+                                10 to 2000 ms. Values in the Rate lane scale this base duration per step.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Direction</h3>
+                            <p>The Direction knob provides five playback orders:</p>
+                            <ul>
+                                <li><strong>frw</strong> — move forward through the active steps.</li>
+                                <li><strong>rev</strong> — move backward through the active steps.</li>
+                                <li><strong>f-b1</strong> — move forward and backward, repeating the end steps when the direction changes.</li>
+                                <li><strong>f-b2</strong> — move forward and backward without repeating the end steps.</li>
+                                <li><strong>rand</strong> — choose an active step at random.</li>
+                            </ul>
+                        </article>
+
+                        <article>
+                            <h3>Start</h3>
+                            <p>
+                                Chooses the first step of the active sequence from 1 to 32. The small triangle in the
+                                pattern editor marks this position. Changing Start also prepares playback to restart
+                                from the selected step.
+                            </p>
+                        </article>
+
+                        <article>
+                            <h3>Step</h3>
+                            <p>
+                                Sets the active sequence length from 1 to 32 steps. The length begins at Start and
+                                wraps past step 32 when necessary. Steps outside this active range appear dimmed and
+                                are skipped during playback.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <p>
+                            <strong>Tip:</strong> Hold <strong>Alt</strong> on Windows or <strong>Option</strong> on
+                            macOS and click a knob to return it to its default value.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="play-modes" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>7. Play Modes, Retrigger and Impose</h2>
+                        <p>
+                            Play Mode controls how incoming notes start, select and stop the sequence. Retrigger
+                            decides when a new note returns playback to the Start step, while Impose controls whether
+                            automation is sent on steps whose note trigger is disabled.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-control-images">
+                    <figure class="guide-control-card guide-play-mode-card">
+                        <img src="images/play-mode-menu.png" alt="Sequencer Play Mode menu showing Gate, Hold Mono, Hold Poly, Toggle Mono, Toggle Poly and Latch">
+                        <figcaption>Play Mode</figcaption>
+                    </figure>
+                    <figure class="guide-control-card guide-retrigger-card">
+                        <img src="images/retrigger.png" alt="Sequencer Retrigger knob">
+                        <figcaption>Retrigger</figcaption>
+                    </figure>
+                    <figure class="guide-control-card guide-impose-card">
+                        <img src="images/impose.png" alt="Sequencer Impose option">
+                        <figcaption>Impose</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Play Modes</h3>
+                        <ul>
+                            <li><strong>Gate</strong> — the most recently pressed note starts the sequence, and releasing it stops playback.</li>
+                            <li><strong>Hold Mono</strong> — the latest note replaces the previous note and the sequence continues after the key is released.</li>
+                            <li><strong>Hold Poly</strong> — held notes are stored and used in turn as the sequence advances. Releasing a note removes it; playback stops after all notes are released.</li>
+                            <li><strong>Toggle Mono</strong> — press a note to start it. Press the active note again to stop, or press a different note to replace it.</li>
+                            <li><strong>Toggle Poly</strong> — each note press toggles that note into or out of the active group. Sequencer cycles through the enabled notes and stops when the group is empty.</li>
+                            <li><strong>Latch</strong> — the first note press starts and latches the sequence; the next note press stops it. Key release does not stop playback.</li>
+                        </ul>
+                        <p>The main Play button must be enabled before incoming notes can activate any Play Mode.</p>
+
+                        <h3>Retrigger</h3>
+                        <p>Drag the Retrigger knob to choose how another Note On affects an active sequence:</p>
+                        <ul>
+                            <li><strong>off</strong> — incoming notes do not restart the pattern; playback continues from its current position.</li>
+                            <li><strong>step</strong> — restart from the selected Start position on the next scheduled step boundary.</li>
+                            <li><strong>now</strong> — restart from Start immediately at the incoming note’s sample position.</li>
+                        </ul>
+                        <p>
+                            Step is the smooth default for tempo-based playback because it changes the note while
+                            preserving the current step boundary. Now is useful when every key press must begin the
+                            pattern immediately.
+                        </p>
+
+                        <h3>Impose</h3>
+                        <p>
+                            Normally, a step with its trigger disabled sends no note and no pattern automation.
+                            Enable Impose to continue sending Pan and CTRL 1–4 values on those disabled note steps.
+                            Impose does not turn the note trigger back on; it lets the control lanes continue moving
+                            the destination while the note pattern contains rests.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="midi-recording" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>8. MIDI Input and Pattern Recording</h2>
+                        <p>
+                            Record captures incoming note pitch and velocity directly into consecutive pattern steps.
+                            Pitch From MIDI, Velocity From MIDI and MIDI Center then determine how incoming notes are
+                            combined with the recorded pattern during normal playback.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <figure class="guide-image guide-detail-image">
+                        <img src="images/midi-recording.png" alt="Sequencer recording MIDI into the Velocity lane with Pitch From MIDI, Velocity From MIDI and MIDI Center controls visible">
+                        <figcaption>Record is active while incoming notes populate consecutive pattern steps.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Record a pattern</h3>
+                        <ol>
+                            <li>Set Start and Step to choose the part of the 32-step pattern you want to record.</li>
+                            <li>Press <strong>Record</strong>. Sequencer automatically enables Play if it is off.</li>
+                            <li>Play notes from a MIDI keyboard, MIDI clip or other routed MIDI source.</li>
+                            <li>Each Note On writes its pitch and velocity into the current step, enables that step’s trigger and advances to the next active step.</li>
+                            <li>After the final active step, recording wraps back to Start.</li>
+                            <li>Press Record again to finish. Turning Play off also stops recording.</li>
+                        </ol>
+                        <p>
+                            While Record is enabled, the pattern itself does not generate sequenced notes. Incoming
+                            notes pass to the next instrument so you can hear what you are recording.
+                        </p>
+
+                        <h3>Recorded pitch and the selected Pitch Range</h3>
+                        <p>
+                            Recorded pitches are stored as offsets from C4 (MIDI note 60). If an incoming note falls
+                            outside the selected Pitch Range, Sequencer moves it by complete octaves until the same
+                            pitch class fits inside the range. For example, +13 becomes +1 in a 0 to +12 range instead
+                            of being clamped to +12.
+                        </p>
+
+                        <h3>Pitch From MIDI</h3>
+                        <p>
+                            When enabled, the incoming note’s distance from C4 (MIDI note 60) is added to MIDI Center and the Pitch
+                            lane value. This lets the same pattern transpose with the notes you play. When disabled,
+                            incoming notes only activate the selected Play Mode; output pitch comes from MIDI Center
+                            plus the Pitch lane.
+                        </p>
+
+                        <h3>Velocity From MIDI</h3>
+                        <p>
+                            When enabled, incoming note velocity scales the value stored in the Velocity lane. When
+                            disabled, the Velocity lane alone determines the output velocity.
+                        </p>
+
+                        <h3>MIDI Center</h3>
+                        <p>
+                            The knob in the top bar sets the output base note. Its default is C4 (MIDI note 60).
+                            Change it to transpose the entire generated sequence without editing every Pitch step.
+                            MIDI Center is stored with the preset.
+                        </p>
+
+                        <h3>MIDI pass-through</h3>
+                        <p>
+                            With Play off, Sequencer behaves like a bypassed MIDI effect and passes incoming MIDI to
+                            the next device. With Play on, incoming Note On and Note Off messages drive the sequencer
+                            instead of being duplicated at its output. Other MIDI—including pitch bend, modulation,
+                            sustain and aftertouch—continues downstream. Sequencer replaces only the CC messages it
+                            owns: CTRL 1–4 use CC 110–113, and Pan uses CC 10 when Send Pan is enabled.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="control-mapping" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>9. CTRL Mapping, Amount, Offset and Pan</h2>
+                        <p>
+                            CTRL 1–4 turn a pattern into four independent automation lanes. Each lane sends a MIDI CC
+                            value on every active step, allowing Sequencer to animate parameters in the next instrument
+                            or effect. Pan provides a separate lane using the standard Pan controller, CC 10.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <figure class="guide-image guide-detail-image">
+                        <img src="images/control-mapping.png" alt="CTRL 2 selected with Amount and Offset controls and the Send MIDI CC 111 context menu open">
+                        <figcaption>Right-click a CTRL lane and send its CC while the destination is waiting for MIDI Learn.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Controller assignments</h3>
+                        <div class="guide-support-table-wrap">
+                            <table class="guide-support-table">
+                                <thead>
+                                    <tr>
+                                        <th>Lane</th>
+                                        <th>MIDI controller</th>
+                                        <th>Output range</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Pan</td><td>CC 10</td><td>0–127</td></tr>
+                                    <tr><td>CTRL 1</td><td>CC 110</td><td>0–127</td></tr>
+                                    <tr><td>CTRL 2</td><td>CC 111</td><td>0–127</td></tr>
+                                    <tr><td>CTRL 3</td><td>CC 112</td><td>0–127</td></tr>
+                                    <tr><td>CTRL 4</td><td>CC 113</td><td>0–127</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Map a parameter with MIDI Learn</h3>
+                        <ol>
+                            <li>Place the destination instrument or MIDI-controlled effect after Sequencer.</li>
+                            <li>Enable MIDI Learn on the destination parameter.</li>
+                            <li>Right-click <strong>Pan</strong> or <strong>CTRL 1–4</strong> in Sequencer.</li>
+                            <li>Select <strong>Send MIDI CC</strong>. Sequencer sends that lane’s controller once at full value so the destination can learn it.</li>
+                            <li>Exit MIDI Learn, select the lane and draw the desired 32-step control pattern.</li>
+                        </ol>
+                        <p>
+                            The learned assignment belongs to the destination instrument, effect or DAW. Some plugins
+                            store MIDI Learn assignments inside each of their own presets, so changing the destination
+                            preset may remove the mapping.
+                        </p>
+
+                        <h3>Amount and Offset</h3>
+                        <p>
+                            Select CTRL 1, 2, 3 or 4 to enable the Amount and Offset knobs. Each CTRL lane remembers
+                            its own pair of settings.
+                        </p>
+                        <ul>
+                            <li><strong>Amount</strong> scales the pattern from 0% to 100%. At 100%, the lane uses its full drawn range; at 50%, its movement is reduced by half.</li>
+                            <li><strong>Offset</strong> shifts the scaled result from −100% to +100%.</li>
+                            <li>The final value is limited to the valid MIDI range before it is converted to 0–127.</li>
+                        </ul>
+                        <p>
+                            In formula form: <code>output = clamp(pattern × amount + offset)</code>. For example, an
+                            Amount of 50% and Offset of +25% transforms a 0–100 pattern into a 25–75 output range.
+                        </p>
+                        <p>
+                            The knobs are disabled while Pitch, Velocity, Gate, Pan or Rate is selected. Changing a
+                            CTRL knob in the Max for Live device updates the matching plugin knob, and changes made in
+                            the plugin are reflected in Max when that CTRL lane is selected.
+                        </p>
+
+                        <h3>Pan output</h3>
+                        <p>
+                            Open the main menu and enable <strong>Send Pan (CC 10)</strong> to transmit the Pan lane.
+                            Disable it when CC 10 would take control of a pan parameter that you want to adjust
+                            manually in the DAW. When Send Pan is disabled, the Pan lane and its right-click MIDI Learn
+                            action are disabled as well. This setting is saved with the preset.
+                        </p>
+
+                        <h3>Control rests with Impose</h3>
+                        <p>
+                            By default, Pan and CTRL values are sent on steps with active note triggers. Enable Impose
+                            when you want these control lanes to continue updating across disabled note steps.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="max-for-live" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>10. Max for Live Workflow</h2>
+                        <p>
+                            The Sequencer Max for Live device hosts the Sequencer VST3 inside Ableton Live and places
+                            its generated MIDI directly into the device chain. It also provides direct mapping for all
+                            four CTRL lanes and optional control of the track pan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <figure class="guide-image guide-detail-image">
+                        <img src="images/max-for-live.png" alt="Sequencer Max for Live device showing Open Sequencer, Play, four CTRL mapping buttons, Amount and Offset controls">
+                        <figcaption>The Max for Live device hosts the VST3 and exposes its main Ableton controls.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Set up an Ableton track</h3>
+                        <ol>
+                            <li>Create a MIDI track and place <strong>Sequencer</strong> from Max MIDI Effects on the track.</li>
+                            <li>Place the destination instrument after the Sequencer device.</li>
+                            <li>Send MIDI from a keyboard, clip or another routed track into this track.</li>
+                            <li>Press <strong>Open Seq</strong> to display the complete VST3 editor.</li>
+                            <li>Enable the Play button on either the Max device or the plugin, then send a note to start the selected Play Mode.</li>
+                        </ol>
+                        <p>
+                            The VST3 is required even when you use Max for Live: the Max device is its Ableton host and
+                            controller, not a separate copy of the sequencer engine.
+                        </p>
+
+                        <h3>Open Seq and Play</h3>
+                        <p>
+                            Open Seq shows or hides the floating plugin editor. Closing the editor with its window
+                            close button also returns Open Seq to its off state. The Play button is synchronized in
+                            both directions, so changing it in Max updates the plugin and changing it in the plugin
+                            updates Max.
+                        </p>
+
+                        <h3>Map CTRL 1–4 to Ableton parameters</h3>
+                        <ol>
+                            <li>Click <strong>Map CTRL 1</strong>, <strong>Map CTRL 2</strong>, <strong>Map CTRL 3</strong> or <strong>Map CTRL 4</strong>. The button changes to Waiting.</li>
+                            <li>Click the parameter you want to control in an Ableton device.</li>
+                            <li>The mapping button displays the parameter name and its highlighted border confirms that the lane is mapped.</li>
+                            <li>Draw values in the corresponding CTRL lane inside Sequencer.</li>
+                            <li>Click the × button on that row to remove the mapping.</li>
+                        </ol>
+                        <p>
+                            This Ableton mapping is direct and does not require the destination device’s MIDI Learn
+                            function. Each CTRL lane can control one mapped Live parameter.
+                        </p>
+
+                        <h3>Amount and Offset</h3>
+                        <p>
+                            Every mapped row includes its own Amount and Offset knobs. These are references to the
+                            matching settings inside the VST3; the calculation is performed by the plugin. Changes
+                            made in Max or in the plugin remain synchronized in both directions.
+                        </p>
+
+                        <h3>Track pan</h3>
+                        <p>
+                            When <strong>Send Pan (CC 10)</strong> is enabled in the plugin menu, the Max device binds
+                            the Pan lane to the current Ableton track’s pan control. Disable Send Pan to release that
+                            binding and adjust the track pan manually.
+                        </p>
+
+                        <h3>MIDI timing and transport</h3>
+                        <p>
+                            MIDI enters the Max device, is processed by the hosted VST3 and then continues to the next
+                            device in the chain. The Max device restores the sample offsets produced by Sequencer so
+                            generated events keep their position inside Ableton’s audio buffer. Sequencer can also run
+                            while Live’s transport is stopped; when the transport is playing in Sync mode, the host PPQ
+                            timeline becomes the timing reference.
+                        </p>
+
+                        <h3>Saving the Live Set</h3>
+                        <p>
+                            The hosted plugin state, CTRL mappings and Max controls are stored with the Ableton Live
+                            Set. Each Sequencer device instance keeps its own pattern, mappings and control values.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="presets" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>11. Presets, Copy and Paste</h2>
+                        <p>
+                            The top bar provides fast preset browsing and saving, while the main menu contains preset
+                            file tools and global Sequencer options. Undo and Redo are supplied by the DAW and therefore
+                            do not appear in this menu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <figure class="guide-image guide-detail-image guide-preset-image">
+                        <img src="images/preset-menu.png" alt="Sequencer preset top bar and main menu showing Load Preset, Copy Sequencer, Paste Sequencer and global options">
+                        <figcaption>The preset top bar and main menu. Paste remains unavailable until a sequence has been copied.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>Browse and load presets</h3>
+                        <ul>
+                            <li>Click the preset name to open the preset list. Opening the list scans the preset folder and highlights the current preset.</li>
+                            <li>Use the left and right arrows to load the previous or next item from the current preset list.</li>
+                            <li>Choose <strong>Load Preset</strong> from the menu to open a <code>.seqx</code> file directly.</li>
+                            <li>Choose <strong>Rescan Presets</strong> after adding, removing or renaming preset files outside Sequencer.</li>
+                            <li>Choose <strong>Show Preset Folder</strong> to open the user preset location in the operating system.</li>
+                        </ul>
+                        <p>
+                            Loading a preset replaces the complete Sequencer state and starts a new editing history,
+                            so Undo cannot return to the previously loaded preset.
+                        </p>
+
+                        <h3>Save and Save As</h3>
+                        <ul>
+                            <li><strong>Save</strong> updates the current editable user preset.</li>
+                            <li><strong>Save As</strong> creates a preset with a new name and asks before replacing an existing file.</li>
+                            <li>Save is dimmed for factory presets and read-only user presets; use Save As to create an editable copy.</li>
+                            <li>Preset saving is unavailable during the trial.</li>
+                        </ul>
+
+                        <h3>Create a read-only preset</h3>
+                        <p>
+                            Hold the physical <strong>Control</strong> key while clicking Save or Save As to mark the
+                            saved preset as read-only. This uses Control on both macOS and Windows—not Command on macOS.
+                            The Save button becomes inactive after the read-only preset is loaded; use Save As when you
+                            want to create another version.
+                        </p>
+
+                        <h3>Delete a user preset</h3>
+                        <p>
+                            Open the preset list, hold <strong>Shift</strong> and right-click a preset, then confirm the
+                            deletion. Deleting the file cannot be undone.
+                        </p>
+
+                        <h3>Copy a sequence between plugin instances</h3>
+                        <ol>
+                            <li>Open the main menu in the source instance and choose <strong>Copy Sequencer</strong>.</li>
+                            <li>Open another Sequencer instance in the same DAW session.</li>
+                            <li>Choose <strong>Paste Sequencer</strong>. The command is dimmed until something has been copied.</li>
+                        </ol>
+                        <p>Copy Sequencer includes:</p>
+                        <ul>
+                            <li>All 32 steps in every pattern lane, including triggers</li>
+                            <li>Direction, Start and Step length</li>
+                            <li>Sync, Beat and Time values</li>
+                            <li>Retrigger and Impose</li>
+                            <li>Amount and Offset for CTRL 1–4</li>
+                        </ul>
+                        <p>
+                            The copied data is held in memory and shared by Sequencer instances in the current DAW
+                            process. It is intended for quick transfer during the session and is not a replacement for
+                            saving a <code>.seqx</code> preset.
+                        </p>
+
+                        <h3>Other menu options</h3>
+                        <ul>
+                            <li><strong>Init</strong> returns the pattern and principal controls to their defaults.</li>
+                            <li><strong>Pitch Range</strong> selects the range used by the Pitch lane.</li>
+                            <li><strong>Input Timing: Free</strong> starts the pattern from the incoming Note On position.</li>
+                            <li><strong>Input Timing: Quantized</strong> aligns the first step to the next timing grid boundary.</li>
+                            <li><strong>Send Pan (CC 10)</strong> enables or releases Sequencer’s Pan output.</li>
+                            <li><strong>Resize</strong> changes the plugin editor size.</li>
+                            <li><strong>Email My License</strong>, <strong>Check for Updates</strong> and <strong>About</strong> provide account, version and product information.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section id="shortcuts" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>12. Modifier Keys, DAW Undo/Redo and Ableton Keyboard Focus</h2>
+                        <p>
+                            Sequencer uses a small set of modifier keys for whole-pattern edits, preset protection and
+                            standard editing commands. Keyboard focus is especially important in Ableton Live because
+                            only the focused window receives computer-keyboard events.
+                        </p>
+
+                        <h3>Modifier-key reference</h3>
+                        <div class="guide-support-table-wrap">
+                            <table class="guide-support-table">
+                                <thead>
+                                    <tr>
+                                        <th>Modifier or shortcut</th>
+                                        <th>Where to use it</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Alt (Windows) / Option (macOS)</td>
+                                        <td>Click or drag a pattern value</td>
+                                        <td>Apply that value to all 32 steps in the selected lane.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alt / Option</td>
+                                        <td>Click a trigger</td>
+                                        <td>Set all 32 triggers to the new state of the clicked trigger.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alt / Option</td>
+                                        <td>Click a knob</td>
+                                        <td>Return the knob to its default value.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shift</td>
+                                        <td>Click Rand or Reset</td>
+                                        <td>Apply the action to every pattern lane, including triggers.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Control</td>
+                                        <td>Click Save or Save As</td>
+                                        <td>Save the preset as read-only. On macOS this is Control, not Command.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shift + right-click</td>
+                                        <td>User preset in the preset list</td>
+                                        <td>Open the confirmation for permanently deleting that preset.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>DAW Undo and Redo</h3>
+                        <p>
+                            Sequencer has no Undo or Redo buttons and no Undo/Redo menu items. Use the standard editing
+                            shortcuts provided through the DAW environment:
+                        </p>
+                        <ul>
+                            <li><strong>macOS:</strong> Command–Z to undo; Command–Shift–Z or Command–Y to redo.</li>
+                            <li><strong>Windows:</strong> Ctrl–Z to undo; Ctrl–Shift–Z or Ctrl–Y to redo.</li>
+                        </ul>
+                        <p>
+                            When the plugin window has focus, these standard shortcuts operate on Sequencer’s pattern
+                            edit history. One mouse-down-to-mouse-up gesture is one action, even when it draws across
+                            several steps. A knob drag, Rand, Reset, shift action and Paste are also each grouped as a
+                            single action. Pattern recording is not added as a series of Undo actions, and loading a
+                            preset clears the previous editing history.
+                        </p>
+
+                        <h3>Ableton computer-keyboard focus</h3>
+                        <p>
+                            Ableton’s Computer MIDI Keyboard and the Sequencer plugin cannot both receive the same
+                            keyboard event. The routing depends on which window currently has keyboard focus.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-focus-diagram" aria-label="Ableton and Sequencer computer keyboard focus routing">
+                    <div class="guide-focus-path">
+                        <h3>Ableton window focused</h3>
+                        <div class="guide-focus-chain">
+                            <span class="guide-flow-node">Computer Keyboard</span>
+                            <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                            <span class="guide-flow-node guide-flow-node-accent">Ableton Computer MIDI Keyboard</span>
+                            <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                            <span class="guide-flow-node">Track MIDI Input</span>
+                        </div>
+                    </div>
+                    <div class="guide-focus-path">
+                        <h3>Sequencer window focused</h3>
+                        <div class="guide-focus-chain">
+                            <span class="guide-flow-node">Computer Keyboard</span>
+                            <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                            <span class="guide-flow-node guide-flow-node-accent">Sequencer Keyboard Handler</span>
+                            <span class="guide-flow-arrow" aria-hidden="true">→</span>
+                            <span class="guide-flow-node">Next Instrument</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <p>
+                            With Sequencer focused, Ableton does not convert the computer keyboard into track MIDI;
+                            Sequencer handles the piano-key layout itself and sends the resulting notes through its
+                            MIDI output. Press <strong>Z</strong> to lower the plugin keyboard octave and
+                            <strong>X</strong> to raise it. Click the Ableton window when you want Ableton’s keyboard
+                            shortcuts or Computer MIDI Keyboard to take control again. Sequencer releases held
+                            computer-keyboard notes whenever focus changes to prevent stuck notes.
+                        </p>
+                        <p>
+                            This direct computer-keyboard handling applies to the Ableton/Max for Live workflow. In
+                            other VST3 hosts, use the host’s normal MIDI input and keyboard-focus behavior.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="trial-activation" class="guide-section">
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h2>13. Trial and Activation</h2>
+                        <p>
+                            Sequencer can be evaluated in Trial mode before activation. The trial uses one shared
+                            session timer for every Sequencer instance running in the current DAW process.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-control-images guide-trial-images">
+                    <figure class="guide-control-card guide-activation-card">
+                        <img src="images/activation.png" alt="Sequencer license activation view with license-key field and Activate button">
+                        <figcaption>License activation</figcaption>
+                    </figure>
+                </div>
+
+                <div class="guide-row onecol">
+                    <div class="guide-text">
+                        <h3>How the trial session works</h3>
+                        <ul>
+                            <li>The 10-minute countdown starts when the first Sequencer instance is loaded in the DAW.</li>
+                            <li>All Sequencer instances share the same countdown; loading another instance does not start another timer.</li>
+                            <li>Removing and reloading an instance does not reset the current DAW session timer.</li>
+                            <li>The timer is held only in memory. Closing the DAW ends that session, and a new DAW session starts a new countdown.</li>
+                            <li>The remaining time appears at the bottom-right as <strong>Trial MM:SS</strong>.</li>
+                        </ul>
+
+                        <h3>Trial restrictions</h3>
+                        <p>
+                            You can edit patterns and test playback during the active trial period, but Save and Save
+                            As are unavailable. Saving the DAW project does not save the Sequencer state while Trial
+                            mode is active. Trial patterns and settings therefore will not be restored when that DAW
+                            project is opened again.
+                        </p>
+                        <p>
+                            When the session ends, Sequencer first releases any generated held note and then blocks
+                            both incoming and outgoing MIDI. The status changes to <strong>Trial session ended</strong>
+                            and the trial-ended view is displayed. If the editor is opened again after expiration, the
+                            same view is shown until the product is activated or the DAW session is closed.
+                        </p>
+
+                        <h3>Activate Sequencer</h3>
+                        <ol>
+                            <li>Purchase Sequencer and copy the license key supplied with your order.</li>
+                            <li>Connect the computer to the internet.</li>
+                            <li>Open Sequencer’s main menu and choose <strong>Activate</strong>.</li>
+                            <li>Paste the complete license key into the license field.</li>
+                            <li>Click <strong>Activate</strong> and wait for verification to finish.</li>
+                            <li>After successful activation, close the activation view. The Trial label and session restrictions are removed.</li>
+                        </ol>
+                        <p>
+                            In Ableton Live, press Open Seq on the Max for Live device and activate through the hosted
+                            VST3 editor. The Max device and VST3 use the same local Sequencer license.
+                        </p>
+
+                        <h3>Moving the license to another computer</h3>
+                        <p>
+                            A license is linked to the activated machine. If the key is already associated with another
+                            computer, Sequencer displays the available reactivation count and offers
+                            <strong>Reactivate</strong>. Confirming reactivation links the license to the current
+                            computer and uses one available reactivation.
+                        </p>
+
+                        <h3>License recovery and activation problems</h3>
+                        <ul>
+                            <li>On an activated installation, choose <strong>Email My License</strong> to send the license information to the purchase email address.</li>
+                            <li>If a key is rejected, verify that the complete key was pasted without additional spaces and that the computer is online.</li>
+                            <li>If no reactivations remain, or verification continues to fail, contact product support with the purchase email and the displayed message.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
