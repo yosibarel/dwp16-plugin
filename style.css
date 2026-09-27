@@ -355,6 +355,40 @@ button:active {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.sequencer-video-section {
+  max-width: 960px;
+  margin: 10px auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.sequencer-video-section h3 {
+  margin-bottom: 10px;
+}
+
+.sequencer-video-section p {
+  margin: 0 auto 22px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.sequencer-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(77, 230, 253, 0.28);
+  border-radius: 10px;
+  background: #070d11;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
+}
+
+.sequencer-video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .product-image-placeholder {
   width: 100%;
   min-height: 300px;
