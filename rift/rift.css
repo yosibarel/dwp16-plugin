@@ -180,6 +180,7 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
 .legal-switcher a { padding: 8px 16px; border: 1px solid var(--line); border-radius: 5px; font-size: 12px; color: var(--muted); }
 .legal-switcher a:hover, .legal-switcher [aria-current] { color: var(--accent-light); background: #64c5cd12; border-color: #44636b; }
 .video-section { border-top: 1px solid var(--line); }
+.video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .video-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--panel, #181d24); }
 .video-frame { aspect-ratio: 16 / 9; background: #080b0e; }
 .video-launch { display: block; position: relative; width: 100%; height: 100%; }
@@ -225,6 +226,7 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
     .device-pair { gap: 10px; }
 }
 @media (max-width: 760px) {
+    .video-grid { grid-template-columns: 1fr; }
     .wrap { width: calc(100% - 40px); }
     .header-inner { width: calc(100% - 40px); min-height: 70px; gap: 20px; }
     .site-nav { gap: 18px; }
