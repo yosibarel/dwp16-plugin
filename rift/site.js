@@ -1,6 +1,6 @@
 "use strict";
 
-// Live checkout enabled for a user-requested real purchase test.
+// Checkout uses Paddle's live environment.
 const riftRelease = Object.freeze({
     checkoutEnabled: true,
     priceId: "pri_01m4ky03ks9zbt3yxt1987e2bp"

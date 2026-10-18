@@ -153,6 +153,8 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
 .download-card .micro { font-size: 11px; }
 .download-status { display: inline-flex; align-items: center; gap: 7px; color: #9cb7bf; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
 .download-status::before { content: ''; width: 5px; height: 5px; background: #7b949e; border-radius: 50%; }
+.download-status.available { color: var(--accent-light); }
+.download-status.available::before { background: var(--accent); }
 .android-download { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; scroll-margin-top: 110px; }
 .android-download .button { width: auto; }
 .android-download .detail-list { margin: 0; }
