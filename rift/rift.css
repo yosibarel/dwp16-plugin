@@ -179,6 +179,20 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
 .legal-switcher { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 .legal-switcher a { padding: 8px 16px; border: 1px solid var(--line); border-radius: 5px; font-size: 12px; color: var(--muted); }
 .legal-switcher a:hover, .legal-switcher [aria-current] { color: var(--accent-light); background: #64c5cd12; border-color: #44636b; }
+.video-section { border-top: 1px solid var(--line); }
+.video-card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--panel, #181d24); }
+.video-frame { aspect-ratio: 16 / 9; background: #080b0e; }
+.video-launch { display: block; position: relative; width: 100%; height: 100%; }
+.video-launch img { width: 100%; height: 100%; object-fit: cover; }
+.video-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(56px, 8vw, 90px); aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--accent-light); color: #101216; background: var(--accent-light); font-size: clamp(22px, 3vw, 34px); padding-left: 4px; box-shadow: 0 8px 40px #0009; transition: box-shadow .2s; }
+.video-launch:hover .video-play, .video-launch:focus-visible .video-play { box-shadow: 0 0 36px #51c7cf88; }
+.video-play-label { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); padding: 6px 14px; background: #101216e6; border-radius: 6px; color: #fff; font-size: 12px; }
+.video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.video-caption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 26px; }
+.video-caption h3 { margin-top: 12px; }
+.video-caption p { color: var(--muted); margin-top: 8px; }
+.video-caption > .text-link { flex-shrink: 0; }
+.video-privacy { padding: 0 26px 22px; }
 .legal-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 70px; padding-top: 40px; }
 .legal-sidebar { align-self: start; position: sticky; top: 116px; max-height: calc(100dvh - 140px); overflow: auto; }
 .legal-sidebar ol { list-style: none; margin: 18px 0 24px; padding: 0; }

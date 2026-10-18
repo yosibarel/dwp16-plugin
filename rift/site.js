@@ -8,6 +8,25 @@ const riftRelease = Object.freeze({
 
 document.body.classList.add("page-loaded");
 
+// Keep YouTube disconnected until the visitor explicitly chooses to play.
+document.querySelectorAll("[data-video-id]").forEach(link => {
+    const videoId = link.dataset.videoId;
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return;
+    link.addEventListener("click", event => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        const player = document.createElement("iframe");
+        player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1`;
+        player.title = link.dataset.videoTitle || "Rift demonstration video";
+        player.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        player.allowFullscreen = true;
+        player.referrerPolicy = "strict-origin-when-cross-origin";
+        player.tabIndex = 0;
+        link.replaceWith(player);
+        player.focus();
+    });
+});
+
 // Display the original interface captures, without altering the product UI.
 const imageDialog = document.querySelector(".image-dialog");
 if (imageDialog && typeof imageDialog.showModal === "function") {
