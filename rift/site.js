@@ -74,7 +74,19 @@ if (buyButton && riftRelease.checkoutEnabled) {
     paddleScript.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
     paddleScript.onload = () => {
         try {
-            window.Paddle.Initialize({ token: "live_e2340a100db3ddedd42f4e6006c" });
+            window.Paddle.Initialize({
+                token: "live_e2340a100db3ddedd42f4e6006c",
+                eventCallback: event => {
+                    // Analytics must never prevent checkout from working.
+                    try {
+                        if (typeof window.riftTrackCheckout === "function") {
+                            window.riftTrackCheckout(event, riftRelease.priceId);
+                        }
+                    } catch (_) {
+                        // Checkout remains usable when tracking is unavailable.
+                    }
+                }
+            });
             buyButton.disabled = false;
             buyButton.textContent = "Buy Rift — $59 USD";
             status.textContent = "Secure checkout is provided by Paddle. Your license key will be sent by email.";
