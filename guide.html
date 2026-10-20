@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#101216">
     <title>User Guide | DWP-16</title>
     <link rel="icon" href="ic_logo.png" type="image/png">
-    <link rel="stylesheet" href="dwp16.css?v=2">
+    <link rel="stylesheet" href="dwp16.css?v=3">
     <script src="dwp16.js?v=2" defer></script>
 
 </head>
@@ -514,11 +514,10 @@
               <li>XY Pads: X1, X2, X3, X4 and Y1, Y2, Y3, Y4</li>
             </ul>
             <h3>Mod Learn and Assign</h3>
-            <p>Click a modulation source to enter Mod Learn <img
-                style="margin-left: 6px; margin-right: 6px;  vertical-align:-18px;" src="images/guide/mod_connect.png"
-                alt="">. The target control shows a ring above the knob <img
-                style="margin-left: 6px; margin-right: 6px; vertical-align:-28px;" src="images/guide/mod_knob.png"
-                alt="">. Drag over the
+            <p>Click a modulation source to enter Mod Learn <img class="inline-control inline-source"
+                src="images/guide/mod_connect.png" alt="Mod Learn source control">.
+              The target control shows a ring above the knob <img class="inline-control inline-knob"
+                src="images/guide/mod_knob.png" alt="Knob with a modulation ring">. Drag over the
               ring
               to set the modulation range.</p>
             <h3>Range and Polarity</h3>
@@ -538,13 +537,12 @@
             </ul>
             <h3>Status Indicators</h3>
             <ul>
-              <li>Linked but source disabled: the ring above the knob is greyed out. <div><img
-                    style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_knob_go.png" alt=""></div>
+              <li>Linked but source disabled: the ring above the knob is greyed out.
+                <img class="inline-control inline-knob" src="images/guide/mod_knob_go.png" alt="Disabled modulation ring">
               </li>
               <li>Source linked: a lit status indicator appears next to the modulation source in the sources
                 list/panel.
-                <div><img style="margin-left: 6px; margin-right: 6px;" src="images/guide/mod_connect.png" alt="">
-                </div>
+                <img class="inline-control inline-source" src="images/guide/mod_connect.png" alt="Linked source indicator">
               </li>
               <li>Mod Learn active: the ring and the selected range are illuminated.</li>
             </ul>
@@ -591,7 +589,7 @@
 
       <section id="menu" class="guide-section">
         <div class="guide-row">
-          <div class="guide-image">
+          <div class="guide-image guide-image-menu">
             <img src="images/guide/placeholder-menu.png" alt="Main Menu">
           </div>
           <div class="guide-text">

@@ -441,6 +441,9 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
 .guide-text strong { color: #d6e2e6; }
 .guide-text a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
 .guide-text img { display: inline-block; max-width: calc(100% - 12px); height: auto; }
+.guide-text .inline-control { display: inline-block; width: auto; max-width: none; height: 32px; margin: 0 5px; padding: 3px; vertical-align: middle; border: 1px solid #34464e; border-radius: 5px; background: #171f25; object-fit: contain; }
+.guide-text .inline-knob { height: 40px; }
+.manual .guide-image-menu { width: min(100%, 200px); justify-self: start; }
 @media (max-width: 1050px) {
     .manual-layout { gap: 28px; grid-template-columns: 165px minmax(0, 1fr); }
     .guide-row { grid-template-columns: 1fr; }
