@@ -447,8 +447,11 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
 .manual .guide-image .image-zoom { width: fit-content; max-width: 100%; }
 .manual .guide-image .image-zoom img { width: auto; max-width: 100%; }
 .manual .guide-image .image-zoom .guide-midi-preview { width: 240px; }
+.manual .guide-image .image-zoom .guide-channel-detail { width: 220px; }
+.manual .guide-image .image-zoom:has(.guide-channel-detail) { align-self: center; }
 .manual .guide-image .image-zoom .guide-modulation-preview { width: 360px; }
 .guide-text .guide-detail-menu { width: 180px; max-width: 100%; height: auto; }
+.guide-text .guide-small-menu { width: 130px; max-width: 100%; height: auto; }
 .guide-text .guide-detail-dialog { display: block; width: 230px; max-width: 100%; height: auto; margin-top: 16px; }
 .manual .guide-image-menu { width: min(100%, 200px); justify-self: start; }
 @media (max-width: 1050px) {
