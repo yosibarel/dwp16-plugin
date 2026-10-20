@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#101216">
     <title>User Guide | DWP-16</title>
     <link rel="icon" href="ic_logo.png" type="image/png">
-    <link rel="stylesheet" href="dwp16.css?v=3">
+    <link rel="stylesheet" href="dwp16.css?v=4">
     <script src="dwp16.js?v=2" defer></script>
 
 </head>
@@ -238,7 +238,7 @@
       <section id="midi-modes" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-midi.png" alt="MIDI Input Modes">
+            <img class="guide-midi-preview" src="images/guide/placeholder-midi.png" alt="MIDI Input Modes">
           </div>
           <div class="guide-text">
             <h2>MIDI Input Modes</h2>
@@ -470,7 +470,7 @@
               temporary internal preset. On paste, a selection dialog opens so you can choose which components to
               apply:
               Sample, LFO Line, Effects, Sequencer, Glitch.</p>
-            <img style="margin-left: 6px; margin-top: 16px;" src="images/guide/preset_load_dialog.png"
+            <img class="guide-detail-dialog" src="images/guide/preset_load_dialog.png"
               alt="Channel Load/Paste Options Dialog">
             <h3>Export and Import</h3>
             <ul>
@@ -490,7 +490,7 @@
       <section id="modulation" class="guide-section">
         <div class="guide-row">
           <div class="guide-image">
-            <img src="images/guide/placeholder-modulation.png" alt="Modulation">
+            <img class="guide-modulation-preview" src="images/guide/placeholder-modulation.png" alt="Modulation">
           </div>
           <div class="guide-text">
             <h2>Modulation</h2>
@@ -525,12 +525,12 @@
               the
               current value.</p>
             <div style="margin-left: 0px; margin-top: 20px; align-content: center;"><img
-                src="images/guide/mod_disconnect_knob.png" alt="Range/Polarity"></div>
+                class="guide-detail-menu" src="images/guide/mod_disconnect_knob.png" alt="Range/Polarity"></div>
             <h3>Unassign</h3>
             <ul>
               <li>From the source menu (triangle): open the assignment list and choose Clear for a single target or
                 Clear All. <div style="margin-left: 0px; margin-top: 20px; align-content: center;"><img
-                    src="images/guide/mod_disconnect_learn.png" alt="Source Menu"></div>
+                    class="guide-detail-menu" src="images/guide/mod_disconnect_learn.png" alt="Source Menu"></div>
               </li>
               <li>Right-click the target control: show all linked sources and choose Disconnect.</li>
               <li>While Mod Learn is active: set the modulation amount to 0% to remove the link.</li>
