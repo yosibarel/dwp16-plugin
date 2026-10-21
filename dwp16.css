@@ -290,8 +290,8 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
     .hero .text-link { font-size: 11px; }
 }
 /* DWP-16-only composition. This is a local copy, not a shared product stylesheet. */
-.dwp-page .wrap { width: min(1216px, calc(100% - 80px)); }
-.dwp-page .header-inner { width: min(1336px, calc(100% - 64px)); }
+.dwp-page .wrap { width: min(1180px, calc(100% - 80px)); }
+.dwp-page .header-inner { width: min(1280px, calc(100% - 64px)); }
 .dwp-page .brand { font-size: 27px; }
 .dwp-page .site-nav { font-size: 12px; gap: 26px; }
 .dwp-page .hero { padding-top: 68px; }
