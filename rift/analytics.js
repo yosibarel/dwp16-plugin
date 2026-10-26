@@ -14,12 +14,13 @@ document.head.appendChild(riftGoogleTag);
 // Track download clicks without delaying or replacing normal link navigation.
 const riftDownloadPlatforms = {
     "RiftInstaller.pkg": "macOS",
-    "Rift-1.0.0-Windows.zip": "Windows",
     "RiftRemote.apk": "Android"
 };
 document.querySelectorAll('a[href*="/Rift-Releases/releases/download/"]').forEach(link => {
     const fileName = new URL(link.href).pathname.split("/").pop();
-    const platform = riftDownloadPlatforms[fileName];
+    const platform = /^Rift-\d+\.\d+\.\d+-Windows\.zip$/.test(fileName)
+        ? "Windows"
+        : riftDownloadPlatforms[fileName];
     if (!platform) return;
     link.addEventListener("click", () => {
         window.gtag("event", "downloadBinary", {
