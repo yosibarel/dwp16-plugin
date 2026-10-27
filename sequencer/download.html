@@ -1,131 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Sequencer Plugin</title>
-    <meta name="description" content="Download the Sequencer MIDI plugin for Windows and macOS, or purchase the full version for $29.">
-    <link rel="stylesheet" href="../style-privacy.css?v=1.4">
+    <meta name="theme-color" content="#101216">
+    <title>Sequencer | Downloads &amp; Licensing</title>
+    <meta name="description" content="Download Sequencer 1.0.1 for macOS and Windows. Try the VST3 MIDI effect and Max for Live workflow, or buy a $29 license.">
+    <link rel="canonical" href="https://dwp-plugin.com/sequencer/download.html">
     <link rel="icon" href="../ic_logo.png" type="image/png">
-    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-    <script type="text/javascript">
-        Paddle.Initialize({
-            token: "live_e2340a100db3ddedd42f4e6006c"
-        });
-        Paddle.Setup({ vendor: 208730 });
-    </script>
+    <link rel="stylesheet" href="sequencer.css?v=1.0">
+    <script src="analytics.js?v=1.0" defer></script>
+    <script src="site.js?v=1.0" defer></script>
 </head>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9KQHGHMQ9Q"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-9KQHGHMQ9Q');
-</script>
-
-<body>
-    <div class="bg">
-        <div class="bg-layer"></div>
-    </div>
-
-    <script>
-        function trackDownload(platform) {
-            if (typeof gtag === "function") {
-                gtag('event', 'downloadBinary', {
-                    'event_category': 'Download',
-                    'event_label': 'Sequencer ' + platform
-                });
-            }
-        }
-    </script>
-
-    <div class="container">
-        <header class="topbar" style="display: block;">
-            <a href="index.html" class="logo-container">
-                <img src="../ic_logo.png" alt="Sequencer Logo" class="logo">
-                <h2 class="header-logo">Sequencer</h2>
-            </a>
-            <h1>Download Sequencer Plugin</h1>
-            <p>Try the free trial version or upgrade to the full version by purchasing a license.</p>
-
-            <div class="license-note">
-                <strong>Internet requirement:</strong> Sequencer requires a periodic internet connection to validate
-                that the license is still active. License activation can be moved to a new computer when needed.
-            </div>
-        </header>
-
-        <section id="downloads">
-            <h2>Choose Your Platform <span
-                    style="font-size: 0.7em; color: #ffffff; font-weight: normal;">(v1.0.1)</span></h2>
-            <div class="download-buttons">
-                <button class="download-button" type="button"
-                    onclick="trackDownload('Windows'); window.location.href='https://github.com/yosibarel/Sequencer/releases/download/1.0.1/Sequencer_Setup.zip'">
-                    <img src="../images/windows-icon.png" alt="Windows">
-                    <span>Download for Windows</span>
-                </button>
-                <button class="download-button" type="button"
-                    onclick="trackDownload('Mac'); window.location.href='https://github.com/yosibarel/Sequencer/releases/download/1.0.1/Sequencer-macOS.pkg'">
-                    <img src="../images/mac-icon.png" alt="macOS">
-                    <span>Download for Mac</span>
-                </button>
-            </div>
-        </section>
-
-        <section id="purchase">
-            <h2>Upgrade to Full Version</h2>
-            <p>
-                Unlock the complete Sequencer experience and enjoy unlimited access with a one-time license for
-                just <strong>$29.00</strong>.
-            </p>
-
-            <button class="purchase-button paddle_button" data-locale="en" data-items='[
-                    {
-                        "priceId": "pri_01m210wy3bpykyg09byjc1ame3", "quantity": 1
-                    }
-                ]'>
-                Buy Now 29.00 USD
-            </button>
-        </section>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.body.classList.add('page-loaded');
-
-            var layer = document.querySelector('.bg-layer');
-            if (!layer) return;
-
-            var maxMove = 300;
-            var ticking = false;
-
-            function clamp(value, minimum, maximum) {
-                return value < minimum ? minimum : (value > maximum ? maximum : value);
-            }
-
-            function update() {
-                var doc = document.documentElement;
-                var y = window.scrollY || doc.scrollTop || 0;
-                var maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
-                var move = -clamp(y / maxScroll, 0, 1) * maxMove;
-                layer.style.transform = 'translate3d(0,' + move + 'px,0)';
-            }
-
-            function onScroll() {
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(function () {
-                    update();
-                    ticking = false;
-                });
-            }
-
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', update, { passive: true });
-            update();
-        });
-    </script>
+<body class="sequencer-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="index.html" aria-label="Sequencer home"><img src="../ic_logo.png" alt="" width="36" height="36"><span>Sequencer<span class="brand-period">.</span></span></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="index.html#watch">Watch</a><a href="guide.html">User guide</a><details class="products-menu"><summary>Products <span aria-hidden="true">⌄</span></summary><div class="products-list"><a href="../index.html">DWP-16</a><a href="../nexora/index.html">Nexora</a><a href="index.html" aria-current="true">Sequencer</a><a href="../rift/index.html">Rift</a></div></details></nav><a class="button button-small" href="download.html#purchase"><span class="button-label label-long">Buy — $29</span><span class="button-label label-short">Buy</span><span aria-hidden="true">↗</span></a></div></header>
+<main id="main">
+<section class="downloads-hero wrap"><p class="eyebrow">SEQUENCER / VERSION 1.0.1</p><h1>Your next idea<br><em>starts with a step.</em></h1><p>Try the MIDI sequencer with your instruments. One license covers the VST3 plug-in and the included Max for Live workflow.</p></section>
+<section class="wrap" aria-label="Sequencer downloads"><div class="download-grid">
+<article class="download-card"><span class="download-status available">Available now · 1.0.1</span><h2>Sequencer for macOS</h2><p>Universal installer for Intel and Apple Silicon.</p><ul><li>VST3 MIDI effect plug-in</li><li>Optional Max for Live MIDI device</li><li>Requires a compatible host and an instrument</li></ul><a class="button" data-download-platform="Mac" href="https://github.com/yosibarel/Sequencer/releases/download/1.0.1/Sequencer-macOS.pkg">Download for macOS <span aria-hidden="true">↓</span></a><p class="micro">Version 1.0.1 · 10.9 MB PKG · <a class="text-link" href="https://github.com/yosibarel/Sequencer/releases/tag/1.0.1">Release notes &amp; checksums ↗</a></p></article>
+<article class="download-card"><span class="download-status available">Available now · 1.0.1</span><h2>Sequencer for Windows</h2><p>Installer for 64-bit Intel and AMD computers.</p><ul><li>VST3 MIDI effect plug-in</li><li>Optional Max for Live MIDI device</li><li>Extract the ZIP and run the installer</li></ul><a class="button" data-download-platform="Windows" href="https://github.com/yosibarel/Sequencer/releases/download/1.0.1/Sequencer_Setup.zip">Download for Windows <span aria-hidden="true">↓</span></a><p class="micro">Version 1.0.1 · 7.8 MB ZIP · <a class="text-link" href="https://github.com/yosibarel/Sequencer/releases/tag/1.0.1">Release notes &amp; checksums ↗</a></p></article>
+</div><div class="license-notice"><p class="eyebrow">Internet requirement</p><p>Internet access is required for activation and periodic license validation. You can move activation to a new computer when needed. <a class="text-link" href="guide.html#trial-activation">Read the activation guide ↗</a></p></div></section>
+<section class="section wrap purchase-section" id="purchase" aria-labelledby="purchase-title"><div class="purchase-copy"><p class="eyebrow">KEEP THE PATTERNS YOU DISCOVER</p><h2 id="purchase-title">One Sequencer license.<br><em>Every next step.</em></h2><p>Make Sequencer part of your workflow with a one-time license. Use it as a VST3 in a compatible host or through the included Max for Live device.</p><ul class="detail-list"><li><span>Try before you buy</span><p>Ten-minute trial sessions let you explore patterns and playback. Saving presets and project state is disabled in trial mode.</p></li><li><span>Your license, by email</span><p>After purchase, use the license key sent to your email to activate Sequencer from its menu.</p></li></ul><a class="text-link" href="guide.html#installation">Installation &amp; routing guide <span aria-hidden="true">↗</span></a></div><div class="purchase-box"><span class="tag">SEQUENCER LICENSE</span><h3>A place for your ideas.</h3><p class="license-price"><strong>$29</strong><span>USD / one-time purchase</span></p><p>Full pattern editing, preset saving and project recall. The VST3 and Max for Live workflow share the same license.</p><p id="purchase-status" role="status">Loading secure checkout...</p><button type="button" id="sequencer-buy" class="button" disabled>Loading checkout...</button><p class="micro">Secure checkout is provided by Paddle. The final price and applicable taxes are shown at checkout. <a class="text-link" href="terms.html#refund-policy">Refund policy ↗</a></p><noscript><p>Enable JavaScript for checkout, or contact dwp@dwp-plugin.com for help.</p></noscript></div></section>
+<section class="section wrap faq" aria-labelledby="faq-title"><p class="eyebrow">BEFORE YOU START</p><h2 id="faq-title">A few useful details.</h2><details><summary>Does Sequencer make sound on its own?</summary><p>No. Sequencer generates MIDI for your instrument. Route its MIDI output to an instrument in your DAW, or place the Max for Live device before an instrument in Live.</p></details><details><summary>Do I need Max for Live?</summary><p>Only for the included Ableton Live device. The VST3 plug-in can be used independently in a compatible host. The Max device requires the VST3 to be installed.</p></details><details><summary>How does the trial work?</summary><p>The trial provides ten minutes per DAW session, shared by Sequencer instances in that process. Saving presets and Sequencer project state is disabled until activation. See the <a href="guide.html#trial-activation">trial guide</a> for details.</p></details><details><summary>Where can I get help?</summary><p>Read the <a href="guide.html">user guide</a> or email <a href="mailto:dwp@dwp-plugin.com">dwp@dwp-plugin.com</a> with your operating system, DAW version and a description of the issue.</p></details></section>
+</main>
+<footer class="site-footer wrap"><div><a class="brand footer-brand" href="index.html"><img src="../ic_logo.png" alt="" width="28" height="28"><span>Sequencer<span class="brand-period">.</span></span></a><p class="micro">A MIDI sequencer by Yossi Barel.</p></div><nav aria-label="Footer navigation"><a href="guide.html">User guide</a><a href="download.html">Downloads</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="terms.html#refund-policy">Refunds</a><a href="mailto:dwp@dwp-plugin.com">Contact</a></nav></footer>
+<dialog class="image-dialog" aria-labelledby="image-dialog-title"><div class="dialog-toolbar"><span id="image-dialog-title">Sequencer / The interface</span><button class="dialog-close" type="button">Close <span aria-hidden="true">×</span></button></div><img class="dialog-image" alt=""><p class="dialog-caption"></p></dialog>
 </body>
-
 </html>

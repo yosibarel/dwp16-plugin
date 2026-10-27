@@ -1,34 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sequencer User Guide</title>
-    <meta name="description" content="Learn how to install and use the Sequencer VST3 plugin and Max for Live device.">
-    <link rel="stylesheet" href="../style.css?v=2.1">
+    <meta name="theme-color" content="#101216">
+    <title>Sequencer | User Guide</title>
+    <meta name="description" content="Installation, MIDI routing, patterns, control lanes, presets and activation for Sequencer VST3 and Max for Live.">
+    <link rel="canonical" href="https://dwp-plugin.com/sequencer/guide.html">
     <link rel="icon" href="../ic_logo.png" type="image/png">
+    <link rel="stylesheet" href="sequencer.css?v=1.0">
+    <script src="analytics.js?v=1.0" defer></script>
+    <script src="site.js?v=1.0" defer></script>
 </head>
-
-<body>
-    <div class="bg">
-        <div class="bg-layer"></div>
-    </div>
-
-    <div class="container">
-        <a href="index.html" class="logo-container coming-soon-brand">
-            <img src="../ic_logo.png" alt="Sequencer Logo" class="logo">
-            <h2 class="header-logo">Sequencer</h2>
-        </a>
-
-        <div class="main-header">
-            <div>
-                <h1>Sequencer User Guide</h1>
-                <p>Installation, pattern creation, MIDI routing and performance controls.</p>
-            </div>
-        </div>
-
-        <nav class="guide-toc" aria-labelledby="guide-contents-title">
+<body class="sequencer-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="index.html" aria-label="Sequencer home"><img src="../ic_logo.png" alt="" width="36" height="36"><span>Sequencer<span class="brand-period">.</span></span></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="index.html#watch">Watch</a><a href="guide.html" aria-current="page">User guide</a><details class="products-menu"><summary>Products <span aria-hidden="true">⌄</span></summary><div class="products-list"><a href="../index.html">DWP-16</a><a href="../nexora/index.html">Nexora</a><a href="index.html" aria-current="true">Sequencer</a><a href="../rift/index.html">Rift</a></div></details></nav><a class="button button-small" href="download.html"><span class="button-label label-long">Get Sequencer</span><span class="button-label label-short">Get</span><span aria-hidden="true">↗</span></a></div></header>
+<main id="main" class="wrap manual-page"><div class="legal-heading"><p class="eyebrow">SEQUENCER / USER GUIDE</p><h1>Sequencer<br><em>User Guide.</em></h1><p class="manual-intro">Installation, pattern creation, MIDI routing and performance controls.</p></div><nav class="guide-toc" aria-labelledby="guide-contents-title">
             <h2 id="guide-contents-title">Table of Contents</h2>
             <ol>
                 <li><a href="#installation">Installation and Architecture Support</a></li>
@@ -45,9 +32,7 @@
                 <li><a href="#shortcuts">Modifier Keys, DAW Undo/Redo and Ableton Keyboard Focus</a></li>
                 <li><a href="#trial-activation">Trial and Activation</a></li>
             </ol>
-        </nav>
-
-        <main class="guide-main">
+        </nav><article class="guide-main" aria-label="Sequencer user guide">
             <section id="installation" class="guide-section">
                 <div class="guide-row onecol">
                     <div class="guide-text">
@@ -198,7 +183,7 @@
 
                 <div class="guide-row onecol">
                     <figure class="guide-image guide-interface-image">
-                        <img src="images/plugin.png" alt="Sequencer VST3 interface showing its transport, pattern editor, section selector, timing controls and preset bar">
+                        <img src="images/plugin.png" alt="Sequencer VST3 interface showing its transport, pattern editor, section selector, timing controls and preset bar" width="1003" height="428">
                         <figcaption>The Sequencer VST3 interface with a pitch pattern loaded.</figcaption>
                     </figure>
                 </div>
@@ -255,7 +240,7 @@
 
                 <div class="guide-row onecol">
                     <figure class="guide-image guide-detail-image">
-                        <img src="images/pattern-editor.png" alt="The complete 32-step pattern editor displayed as two rows of 16 steps">
+                        <img src="images/pattern-editor.png" alt="The complete 32-step pattern editor displayed as two rows of 16 steps" width="577" height="282">
                         <figcaption>The complete 32-step editor: steps 1–16 on top and steps 17–32 below.</figcaption>
                     </figure>
                 </div>
@@ -312,7 +297,7 @@
 
                 <div class="guide-lane-layout">
                     <figure class="guide-image guide-lane-selector-image">
-                        <img src="images/pattern-sections.png" alt="Sequencer section selector with Pitch, Velocity, Gate, Pan, Rate and four CTRL lanes">
+                        <img src="images/pattern-sections.png" alt="Sequencer section selector with Pitch, Velocity, Gate, Pan, Rate and four CTRL lanes" width="70" height="202">
                         <figcaption>Select the lane you want to edit.</figcaption>
                     </figure>
 
@@ -400,7 +385,7 @@
 
                 <div class="guide-control-layout">
                     <figure class="guide-image guide-timing-image">
-                        <img src="images/timing-controls.png" alt="Sequencer Sync, Beat, Direction, Start and Step controls">
+                        <img src="images/timing-controls.png" alt="Sequencer Sync, Beat, Direction, Start and Step controls" width="120" height="147">
                         <figcaption>With Sync enabled, Beat sets the host-relative base duration.</figcaption>
                     </figure>
 
@@ -479,15 +464,15 @@
 
                 <div class="guide-control-images">
                     <figure class="guide-control-card guide-play-mode-card">
-                        <img src="images/play-mode-menu.png" alt="Sequencer Play Mode menu showing Gate, Hold Mono, Hold Poly, Toggle Mono, Toggle Poly and Latch">
+                        <img src="images/play-mode-menu.png" alt="Sequencer Play Mode menu showing Gate, Hold Mono, Hold Poly, Toggle Mono, Toggle Poly and Latch" width="139" height="164">
                         <figcaption>Play Mode</figcaption>
                     </figure>
                     <figure class="guide-control-card guide-retrigger-card">
-                        <img src="images/retrigger.png" alt="Sequencer Retrigger knob">
+                        <img src="images/retrigger.png" alt="Sequencer Retrigger knob" width="52" height="71">
                         <figcaption>Retrigger</figcaption>
                     </figure>
                     <figure class="guide-control-card guide-impose-card">
-                        <img src="images/impose.png" alt="Sequencer Impose option">
+                        <img src="images/impose.png" alt="Sequencer Impose option" width="71" height="30">
                         <figcaption>Impose</figcaption>
                     </figure>
                 </div>
@@ -542,7 +527,7 @@
 
                 <div class="guide-row onecol">
                     <figure class="guide-image guide-detail-image">
-                        <img src="images/midi-recording.png" alt="Sequencer recording MIDI into the Velocity lane with Pitch From MIDI, Velocity From MIDI and MIDI Center controls visible">
+                        <img src="images/midi-recording.png" alt="Sequencer recording MIDI into the Velocity lane with Pitch From MIDI, Velocity From MIDI and MIDI Center controls visible" width="795" height="186">
                         <figcaption>Record is active while incoming notes populate consecutive pattern steps.</figcaption>
                     </figure>
                 </div>
@@ -617,7 +602,7 @@
 
                 <div class="guide-row onecol">
                     <figure class="guide-image guide-detail-image">
-                        <img src="images/control-mapping.png" alt="CTRL 2 selected with Amount and Offset controls and the Send MIDI CC 111 context menu open">
+                        <img src="images/control-mapping.png" alt="CTRL 2 selected with Amount and Offset controls and the Send MIDI CC 111 context menu open" width="220" height="147">
                         <figcaption>Right-click a CTRL lane and send its CC while the destination is waiting for MIDI Learn.</figcaption>
                     </figure>
                 </div>
@@ -715,7 +700,7 @@
 
                 <div class="guide-row onecol">
                     <figure class="guide-image guide-detail-image">
-                        <img src="images/max-for-live.png" alt="Sequencer Max for Live device showing Open Sequencer, Play, four CTRL mapping buttons, Amount and Offset controls">
+                        <img src="images/max-for-live.png" alt="Sequencer Max for Live device showing Open Sequencer, Play, four CTRL mapping buttons, Amount and Offset controls" width="747" height="192">
                         <figcaption>The Max for Live device hosts the VST3 and exposes its main Ableton controls.</figcaption>
                     </figure>
                 </div>
@@ -801,7 +786,7 @@
 
                 <div class="guide-row onecol">
                     <figure class="guide-image guide-detail-image guide-preset-image">
-                        <img src="images/preset-menu.png" alt="Sequencer preset top bar and main menu showing Load Preset, Copy Sequencer, Paste Sequencer and global options">
+                        <img src="images/preset-menu.png" alt="Sequencer preset top bar and main menu showing Load Preset, Copy Sequencer, Paste Sequencer and global options" width="592" height="433">
                         <figcaption>The preset top bar and main menu. Paste remains unavailable until a sequence has been copied.</figcaption>
                     </figure>
                 </div>
@@ -1010,7 +995,7 @@
 
                 <div class="guide-control-images guide-trial-images">
                     <figure class="guide-control-card guide-activation-card">
-                        <img src="images/activation.png" alt="Sequencer license activation view with license-key field and Activate button">
+                        <img src="images/activation.png" alt="Sequencer license activation view with license-key field and Activate button" width="478" height="285">
                         <figcaption>License activation</figcaption>
                     </figure>
                 </div>
@@ -1071,14 +1056,8 @@
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.body.classList.add('page-loaded');
-        });
-    </script>
+        </article></main>
+<footer class="site-footer wrap"><div><a class="brand footer-brand" href="index.html"><img src="../ic_logo.png" alt="" width="28" height="28"><span>Sequencer<span class="brand-period">.</span></span></a><p class="micro">A MIDI sequencer by Yossi Barel.</p></div><nav aria-label="Footer navigation"><a href="guide.html">User guide</a><a href="download.html">Downloads</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="terms.html#refund-policy">Refunds</a><a href="mailto:dwp@dwp-plugin.com">Contact</a></nav></footer>
+<dialog class="image-dialog" aria-labelledby="image-dialog-title"><div class="dialog-toolbar"><span id="image-dialog-title">Sequencer / The interface</span><button class="dialog-close" type="button">Close <span aria-hidden="true">×</span></button></div><img class="dialog-image" alt=""><p class="dialog-caption"></p></dialog>
 </body>
-
 </html>
