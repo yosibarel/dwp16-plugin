@@ -315,9 +315,6 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
 .video-single .video-frame { aspect-ratio: 16 / 9; }
 .video-single .video-launch img { object-fit: contain; }
 .video-note { margin-top: 16px; }
-.seq-video-title { position: absolute; top: 30px; left: 30px; font: 600 clamp(20px,4vw,42px) 'Manrope', sans-serif; letter-spacing: -.04em; text-shadow: 0 2px 20px #000; }
-.video-single .video-launch::after { content: ''; position: absolute; inset: 0; background: linear-gradient(#0007, transparent 50%, #0006); pointer-events: none; }
-.video-single .video-play, .video-single .video-play-label, .seq-video-title { z-index: 1; }
 .download-card { display: flex; flex-direction: column; align-items: start; }
 .download-card .button { margin-top: auto; }
 .download-card .micro { width: 100%; }
