@@ -484,4 +484,6 @@ figcaption { font-size: 10px; color: #7f929c; text-align: center; margin-top: 12
     .dwp-page .header-inner > .button { grid-column: 2; grid-row: 1; }
     .dwp-page .site-nav { grid-column: 1 / -1; grid-row: 2; width: 100%; margin: 0; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
     .dwp-page .site-nav > a, .dwp-page .site-nav > a:first-child { display: inline-flex; padding-block: 5px; }
+    .dwp-page .products-menu { margin-left: auto; }
+    .dwp-page .products-list { max-width: calc(100vw - 40px); }
 }
