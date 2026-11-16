@@ -1,0 +1,16 @@
+/* Product pages share a visible route back to the DWP collection. */
+.has-home-nav .site-nav > a { white-space: nowrap; }
+.has-home-nav .site-nav > a.home-link { display: inline-flex; align-items: center; color: var(--accent-light); }
+.has-home-nav .site-nav { min-width: 0; }
+@media (max-width: 1050px) {
+    .has-home-nav .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; padding-block: 12px 9px; }
+    .has-home-nav .header-inner > .brand { grid-column: 1; grid-row: 1; min-width: 0; }
+    .has-home-nav .header-inner > .button { grid-column: 2; grid-row: 1; white-space: nowrap; }
+    .has-home-nav .site-nav { grid-column: 1 / -1; grid-row: 2; width: 100%; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; }
+    .has-home-nav .site-nav > a, .has-home-nav .site-nav > a:first-child { display: inline-flex; padding-block: 5px; }
+    .has-home-nav .products-menu { margin-left: auto; }
+    .has-home-nav .products-list { max-width: calc(100vw - 40px); }
+}
+@media (max-width: 480px) {
+    .has-home-nav .site-nav { gap: 3px 15px; font-size: 11px; }
+}
